@@ -1,0 +1,17 @@
+{
+  "slug": "usama-ortho",
+  "displayName": "Dr. Usama Bin Saeed — Orthopedic Clinic",
+  "address": "Canal Expy, Faisalabad (East)",
+  "phone": "0300 0134146",
+  "hours": "Open daily, closes 8:00 PM",
+  "services": [
+    "Fracture care & casting",
+    "Joint replacement (knee/hip)",
+    "Sports injury & ACL",
+    "Spine consultation",
+    "Arthroscopy",
+    "Physiotherapy referral"
+  ],
+  "exampleConsultationFee": "Rs. 2,000 (approximate — confirm with front desk)",
+  "missedCallReply": "Hi, this is Dr. Usama Bin Saeed's Orthopedic Clinic! Sorry we missed your call — what do you need help with?"
+}

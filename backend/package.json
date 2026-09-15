@@ -1,0 +1,18 @@
+{
+  "name": "boneline-backend",
+  "version": "1.0.0",
+  "description": "WhatsApp front-desk automation backend (missed-call text-back, AI FAQ assistant, lead dashboard) for BoneLine clients",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "simulate": "node scripts/simulate.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.1",
+    "better-sqlite3": "^11.5.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1"
+  }
+}
