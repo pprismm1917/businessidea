@@ -144,8 +144,9 @@
     toastIndex = (toastIndex + 1) % toasts.length;
     toasts[toastIndex].classList.add("is-active");
   }
+  var toastHover = false;
   function startToasts() {
-    if (toasts.length > 1 && !toastTimer && !doc.hidden && heroVisible) toastTimer = win.setInterval(nextToast, 3000);
+    if (toasts.length > 1 && !toastTimer && !doc.hidden && heroVisible && !toastHover && !reduced()) toastTimer = win.setInterval(nextToast, 3000);
   }
   function stopToasts() {
     win.clearInterval(toastTimer);
@@ -154,6 +155,12 @@
   doc.addEventListener("visibilitychange", function () {
     if (doc.hidden) stopToasts(); else startToasts();
   });
+  var device = toastWrap ? toastWrap.closest(".hero__device") : null;
+  if (device) {
+    device.addEventListener("mouseenter", function () { toastHover = true; stopToasts(); });
+    device.addEventListener("mouseleave", function () { toastHover = false; startToasts(); });
+  }
+  onMqChange(mqReduce, function () { if (reduced()) stopToasts(); else startToasts(); });
 
   // Optional hero video (only when enabled in the HTML and the visitor can afford it)
   var video = $("[data-hero-video]");
@@ -286,11 +293,7 @@
 
     var messageFor = function (input) {
       var v = input.value.trim();
-      if (input.required && !v) {
-        var label = form.querySelector('label[for="' + input.id + '"]');
-        var name = label ? label.textContent.replace(/\(optional\)/i, "").trim().toLowerCase() : "this field";
-        return "Please enter your " + name.replace(/^your /, "") + ".";
-      }
+      if (input.required && !v) return input.getAttribute("data-err") || "Please fill this in.";
       if (input.type === "email" && v && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return "Please enter a valid email, like you@yourcompany.com.";
       if (input.type === "tel" && v && v.replace(/\D/g, "").length < 10) return "Please enter a 10-digit phone number.";
       return "";

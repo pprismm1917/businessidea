@@ -17,7 +17,7 @@ It's a plain "static" website. There's no build step, no framework and nothing t
 | `assets/js/main.js` | Small extras: mobile menu, animations, the before/after slider, the contact form. The site still works if this doesn't load. |
 | `assets/fonts/` | Barlow Condensed (headings) and Inter (body text), hosted with the site. Both are free fonts under the SIL Open Font License (license files included). |
 | `assets/img/` | `logo.svg` (for light backgrounds), `logo-light.svg` (for dark backgrounds), and `fence-tile.svg` (the cedar fence pattern used around the site). |
-| `assets/video/` | Empty. This is where an optional hero video goes (see below). |
+| `assets/video/` | Where an optional hero video goes (see below). Holds only a short note for now. |
 | `favicon.svg` | The little icon in the browser tab. |
 | `apple-touch-icon.png` | The icon used when someone saves the site to an iPhone home screen. |
 | `og.png` | The preview image shown when the link is shared (Facebook, iMessage, LinkedIn, Slack…). |

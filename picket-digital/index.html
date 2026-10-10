@@ -601,7 +601,7 @@
                   <defs><path id="seal-path" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0"/></defs>
                   <circle cx="60" cy="60" r="57" class="seal__ring"/>
                   <circle cx="60" cy="60" r="33" class="seal__core"/>
-                  <g class="seal__spin"><text class="seal__text"><textPath href="#seal-path" startOffset="0" textLength="272" lengthAdjust="spacing">FREE DRAFT FIRST • NO PAYMENT UNTIL YOU APPROVE •</textPath></text></g>
+                  <g class="seal__spin"><text class="seal__text"><textPath href="#seal-path" startOffset="0">FREE DRAFT FIRST • NO PAYMENT UNTIL YOU APPROVE •</textPath></text></g>
                   <path class="seal__check" d="M46 61l9.5 9.5L75 51"/>
                 </svg>
                 <div>
@@ -706,27 +706,27 @@
             <div class="form__grid">
               <div class="field">
                 <label for="f-name">Your name</label>
-                <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-err">
+                <input id="f-name" name="name" type="text" autocomplete="name" data-err="Please enter your name." required aria-describedby="f-name-err">
                 <p class="field__err" id="f-name-err"></p>
               </div>
               <div class="field">
                 <label for="f-company">Company name</label>
-                <input id="f-company" name="company" type="text" autocomplete="organization" required aria-describedby="f-company-err">
+                <input id="f-company" name="company" type="text" autocomplete="organization" data-err="Please enter your company name." required aria-describedby="f-company-err">
                 <p class="field__err" id="f-company-err"></p>
               </div>
               <div class="field">
                 <label for="f-phone">Phone</label>
-                <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required aria-describedby="f-phone-err">
+                <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" data-err="Please enter your phone number." required aria-describedby="f-phone-err">
                 <p class="field__err" id="f-phone-err"></p>
               </div>
               <div class="field">
                 <label for="f-email">Email</label>
-                <input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="f-email-err">
+                <input id="f-email" name="email" type="email" autocomplete="email" data-err="Please enter your email address." required aria-describedby="f-email-err">
                 <p class="field__err" id="f-email-err"></p>
               </div>
               <div class="field field--full">
                 <label for="f-city">City you're based in</label>
-                <input id="f-city" name="city" type="text" autocomplete="address-level2" list="dfw-cities" required aria-describedby="f-city-err">
+                <input id="f-city" name="city" type="text" autocomplete="address-level2" list="dfw-cities" data-err="Please enter your city." required aria-describedby="f-city-err">
                 <datalist id="dfw-cities">
                   <option value="Frisco"></option><option value="McKinney"></option><option value="Prosper"></option><option value="Celina"></option><option value="Allen"></option><option value="Plano"></option><option value="Little Elm"></option><option value="Anna"></option><option value="Princeton"></option><option value="Rockwall"></option><option value="Forney"></option><option value="Fort Worth"></option><option value="Keller"></option><option value="Southlake"></option><option value="Mansfield"></option><option value="Midlothian"></option><option value="Arlington"></option><option value="Denton"></option><option value="Burleson"></option><option value="Weatherford"></option><option value="Dallas"></option>
                 </datalist>
