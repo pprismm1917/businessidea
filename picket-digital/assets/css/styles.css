@@ -2299,6 +2299,8 @@ button { font: inherit; color: inherit; }
 .prose .callout { margin-top: 2.5rem; padding: 1rem 1.2rem; border-left: 3px solid var(--sun); background: var(--paper); border-radius: 0 10px 10px 0; font-size: .95rem; }
 
 .notfound {
+  --fence-h: clamp(150px, 12vw + 90px, 260px);
+  --board: calc(var(--fence-h) * .56 / 3);
   position: relative;
   isolation: isolate;
   min-height: 100vh;
@@ -2306,44 +2308,74 @@ button { font: inherit; color: inherit; }
   display: grid;
   align-items: center;
   overflow: hidden;
-  padding: calc(var(--header-h) + 2rem) 0 calc(var(--fence-h) + 1rem);
+  padding: calc(var(--header-h) + 2rem) 0 calc(var(--fence-h) + 2rem);
   color: var(--cream);
-  --fence-h: clamp(150px, 20vw, 260px);
   --focus: var(--sun);
-  background: linear-gradient(to top, #FADB97 0, #F3B547 calc(var(--fence-h) + 40px), #D9894B calc(var(--fence-h) + 160px), #8A4322 calc(var(--fence-h) + 320px), #2C1F1D calc(var(--fence-h) + 520px), #17181C 100%);
+  background: linear-gradient(to top, #FADB97 0, #F3B547 calc(var(--fence-h) + 40px), #D9894B calc(var(--fence-h) + 150px), #8A4322 calc(var(--fence-h) + 300px), #2C1F1D calc(var(--fence-h) + 500px), #17181C calc(var(--fence-h) + 700px));
 }
-.notfound__copy { position: relative; z-index: 2; max-width: 40rem; }
-.notfound__code { font: 800 .9rem/1 var(--font-body); letter-spacing: .2em; color: var(--sun-soft); margin-bottom: 1rem; }
-.notfound h1 { font: 800 clamp(3rem, 1.5rem + 7vw, 6.5rem)/.9 var(--font-head); text-transform: uppercase; }
-.notfound p { margin: 1.25rem 0 2rem; font-size: 1.15rem; color: rgba(246, 240, 230, .9); max-width: 32em; }
+.notfound__copy { position: relative; z-index: 2; }
+.notfound__code { font: 700 .85rem/1 var(--font-body); letter-spacing: .2em; color: var(--sun-soft); margin-bottom: 1rem; }
+.notfound h1 { font: 800 clamp(3rem, 1.5rem + 7vw, 6.5rem)/.9 var(--font-head); text-transform: uppercase; max-width: 11ch; text-shadow: 0 2px 30px rgba(10, 8, 6, .25); }
+.notfound p:not(.notfound__code) { margin: 1.25rem 0 2rem; font-size: 1.15rem; color: rgba(246, 240, 230, .92); max-width: 32em; }
+.notfound__sun {
+  position: absolute;
+  left: 70%;
+  bottom: calc(var(--fence-h) * .55);
+  width: clamp(140px, 14vw, 220px);
+  aspect-ratio: 1;
+  translate: -50% 50%;
+  border-radius: 50%;
+  background: radial-gradient(circle, #FFF8E4 0 34%, #FDE3A6 50%, rgba(250, 205, 120, .5) 62%, rgba(243, 181, 71, 0) 71%);
+  z-index: 0;
+}
+.notfound__sun::before {
+  content: "";
+  position: absolute;
+  inset: -220%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(252, 214, 140, .6) 0, rgba(243, 165, 71, .25) 24%, transparent 60%);
+  animation: sun-breathe 7s ease-in-out infinite alternate;
+}
 .notfound__fence {
   position: absolute;
-  left: 0; right: 0; bottom: 0;
+  left: 0; right: 0; bottom: -2px;
   height: var(--fence-h);
   display: flex;
   z-index: 1;
 }
-.notfound__fence span { flex: 1; background: url("../img/fence-tile.svg") repeat-x right bottom / auto 100%; }
-.notfound__fence span:last-child { background-position: left bottom; }
+.notfound__fence span { flex: 1 1 0; background: url("../img/fence-tile.svg") repeat-x right bottom / auto 100%; }
+.notfound__fence span:first-child { flex-basis: 70%; }
+.notfound__fence span:last-child { flex-basis: 30%; background-position: left bottom; }
 .notfound__gap {
   position: relative;
-  flex: none;
-  width: calc(var(--fence-h) * .56 / 3 * 2);
+  flex: 0 0 var(--board);
+  translate: calc(var(--board) / -2) 0;
 }
 .notfound__gap::after {
   content: "";
   position: absolute;
-  left: 50%;
+  left: 0;
   bottom: 0;
-  width: 50%;
-  height: 36%;
-  translate: -50% 0;
-  background: linear-gradient(180deg, #B8642A, #6E3412);
-  clip-path: polygon(0 18%, 50% 0, 100% 18%, 100% 100%, 0 100%);
-  rotate: 72deg;
-  transform-origin: bottom left;
-  opacity: .95;
+  width: var(--board);
+  height: 100%;
+  background: url("../img/fence-tile.svg") no-repeat left bottom / auto 100%;
+  transform-origin: 85% 100%;
+  rotate: 64deg;
+  translate: 40% 4%;
+  filter: brightness(.9);
 }
+.notfound__fence::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 30%;
+  background: linear-gradient(to top, rgba(14, 10, 6, .6), transparent);
+  pointer-events: none;
+}
+@media (min-width: 520px) {
+  .notfound .hero__ctas { flex-direction: row; }
+}
+.footer__base--solo { margin-top: 0; padding-top: 0; border-top: 0; }
 
 /* ==========================================================================
    REDUCED MOTION — turn off ambient animation; keep everything visible
