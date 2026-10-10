@@ -243,14 +243,14 @@ button { font: inherit; color: inherit; }
   z-index: 50;
   height: var(--header-h);
   color: var(--cream);
-  background: rgba(17, 18, 21, .78);
+  background: rgba(17, 18, 21, .93);
   -webkit-backdrop-filter: saturate(1.4) blur(14px);
   backdrop-filter: saturate(1.4) blur(14px);
   border-bottom: 1px solid rgba(246, 240, 230, .07);
   transition: background-color .35s, border-color .35s, box-shadow .35s;
   --focus: var(--sun);
 }
-.js .site-header:not(.is-scrolled):not(.is-open) {
+.js .has-hero .site-header:not(.is-scrolled):not(.is-open) {
   background: rgba(17, 18, 21, 0);
   border-color: transparent;
   -webkit-backdrop-filter: none;
@@ -903,7 +903,6 @@ button { font: inherit; color: inherit; }
   letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--sun-soft);
-  white-space: nowrap;
 }
 .marquee {
   display: flex;
@@ -942,7 +941,7 @@ button { font: inherit; color: inherit; }
 @keyframes marquee { to { transform: translateX(-100%); } }
 @media (min-width: 900px) {
   .cities__inner { flex-direction: row; align-items: center; gap: 0; }
-  .cities__label { padding-right: 1.5rem; border-right: 1px solid rgba(255, 224, 161, .25); }
+  .cities__label { padding-right: 1.5rem; border-right: 1px solid rgba(255, 224, 161, .25); white-space: nowrap; }
 }
 
 /* ==========================================================================
@@ -992,7 +991,7 @@ button { font: inherit; color: inherit; }
   display: grid;
   gap: 2.5rem;
 }
-.problem .h2 { font-size: clamp(2.15rem, 1.4rem + 3vw, 3.9rem); margin-bottom: 0; }
+.problem .h2 { font-size: clamp(2.15rem, 1.4rem + 2.6vw, 3.5rem); margin-bottom: 0; }
 .h2__soft { display: block; margin-top: .35em; color: var(--cedar-deep); }
 .search-mock {
   padding: 1rem;
@@ -1214,10 +1213,12 @@ button { font: inherit; color: inherit; }
 }
 .build__step p { margin-top: .3rem; color: rgba(246, 240, 230, .75); font-size: .98rem; }
 
-.build__visual { position: relative; }
-.build__stage {
+.build__visual {
   --tr: clamp(0, var(--p) / .1, 1);
   --tg: clamp(0, (var(--p) - .82) / .12, 1);
+  position: relative;
+}
+.build__stage {
   position: relative;
   width: 100%;
   max-width: 560px;
@@ -1231,7 +1232,7 @@ button { font: inherit; color: inherit; }
   opacity: var(--tg);
   transform: scale(calc(.8 + .2 * var(--tg)));
 }
-.build__fence {
+.build__fence, .build__ghosts {
   position: absolute;
   left: 5%; right: 5%;
   top: 12%;
@@ -1240,6 +1241,12 @@ button { font: inherit; color: inherit; }
   justify-content: space-between;
   align-items: flex-end;
   overflow: hidden;
+}
+.build__ghosts i {
+  width: 15.2%;
+  height: 100%;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 360' preserveAspectRatio='none'%3E%3Cpath d='M1.5 36.7 40 2l38.5 34.7v321.8h-77Z' fill='none' stroke='%23F3B547' stroke-width='1.6' stroke-dasharray='7 6' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  opacity: .42;
 }
 .build__rail {
   position: absolute;
@@ -1291,7 +1298,7 @@ button { font: inherit; color: inherit; }
 }
 .build__toast {
   position: absolute;
-  top: 0;
+  top: -5%;
   left: 50%;
   z-index: 3;
   display: flex;
@@ -1370,14 +1377,14 @@ button { font: inherit; color: inherit; }
     .build .eyebrow { order: 1; margin-bottom: 0; align-self: flex-start; }
     .build .h2 { order: 2; margin: 0; font-size: clamp(2rem, 8vw, 2.6rem); }
     .build .build__lede { display: none; }
-    .build .build__stage { order: 3; max-width: none; width: auto; height: clamp(150px, 30svh, 300px); aspect-ratio: auto; }
+    .build .build__stage { order: 3; max-width: none; width: 100%; margin-inline: 0; height: clamp(150px, 30svh, 300px); aspect-ratio: auto; }
     .build .build__steps { order: 4; margin: 0; }
     .build .build__step { padding: .42rem 0; gap: .75rem; align-items: center; }
     .build .build__step p { display: none; }
     .build .build__step h3 { font-size: 1.2rem; padding-top: 0; }
     .build .build__num { width: 1.9rem; height: 1.9rem; font-size: 1rem; }
     .build .build__result { order: 5; margin-top: .25rem; font-size: clamp(1.7rem, 7vw, 2.2rem); }
-    .build .build__fence { left: 50%; right: auto; width: min(100%, 44svh); translate: -50% 0; }
+    .build .build__fence, .build .build__ghosts { left: 50%; right: auto; width: min(100%, 44svh); translate: -50% 0; }
     .build .build__toast { font-size: .78rem; padding: .5rem .7rem .5rem .5rem; }
     .build .build__toast .toast__app { width: 30px; height: 30px; }
   }
@@ -1387,18 +1394,18 @@ button { font: inherit; color: inherit; }
   .build.is-scrub .eyebrow { order: 1; margin-bottom: 0; align-self: flex-start; }
   .build.is-scrub .h2 { order: 2; margin: 0; font-size: clamp(2rem, 8vw, 2.6rem); }
   .build.is-scrub .build__lede { display: none; }
-  .build.is-scrub .build__stage { order: 3; max-width: none; width: auto; height: clamp(150px, 30svh, 300px); aspect-ratio: auto; }
+  .build.is-scrub .build__stage { order: 3; max-width: none; width: 100%; margin-inline: 0; height: clamp(150px, 30svh, 300px); aspect-ratio: auto; }
   .build.is-scrub .build__steps { order: 4; margin: 0; }
   .build.is-scrub .build__step { padding: .42rem 0; gap: .75rem; align-items: center; }
   .build.is-scrub .build__step p { display: none; }
   .build.is-scrub .build__step h3 { font-size: 1.2rem; padding-top: 0; }
   .build.is-scrub .build__num { width: 1.9rem; height: 1.9rem; font-size: 1rem; }
   .build.is-scrub .build__result { order: 5; margin-top: .25rem; font-size: clamp(1.7rem, 7vw, 2.2rem); }
-  .build.is-scrub .build__fence { left: 50%; right: auto; width: min(100%, 44svh); translate: -50% 0; }
+  .build.is-scrub .build__fence, .build.is-scrub .build__ghosts { left: 50%; right: auto; width: min(100%, 44svh); translate: -50% 0; }
   .build.is-scrub .build__toast { font-size: .78rem; padding: .5rem .7rem .5rem .5rem; }
   .build.is-scrub .build__toast .toast__app { width: 30px; height: 30px; }
 }
-@media (prefers-reduced-motion: no-preference) and (min-height: 560px) and (min-width: 960px) and (max-height: 860px) {
+@media (prefers-reduced-motion: no-preference) and (min-height: 560px) and (min-width: 960px) and (max-height: 940px) {
   @supports (animation-timeline: view()) {
     .build .build__step p { display: none; }
     .build .build__step { padding: .6rem 0; align-items: center; }
@@ -1530,7 +1537,7 @@ button { font: inherit; color: inherit; }
 }
 .compare__tag {
   position: absolute;
-  top: 12px;
+  bottom: 12px;
   z-index: 4;
   padding: .3rem .6rem;
   border-radius: 6px;
@@ -1555,7 +1562,7 @@ button { font: inherit; color: inherit; }
   gap: .4em;
   padding: .45em .75em .45em .5em;
   border-radius: 999px;
-  font: 700 2.55cqi/1.1 var(--font-body);
+  font: 700 max(10.5px, 2.3cqi)/1.1 var(--font-body);
   white-space: nowrap;
   box-shadow: 0 8px 18px -8px rgba(0, 0, 0, .5);
   pointer-events: none;
@@ -1577,7 +1584,7 @@ button { font: inherit; color: inherit; }
 .soc {
   position: absolute;
   inset: 0;
-  font: 400 3.05cqi/1.35 Helvetica, Arial, sans-serif;
+  font: 400 2.75cqi/1.35 Helvetica, Arial, sans-serif;
   color: #4B4F56;
   background: #E9EBEE;
   overflow: hidden;
@@ -1629,7 +1636,7 @@ button { font: inherit; color: inherit; }
 .site {
   position: absolute;
   inset: 0;
-  font-size: 3.05cqi;
+  font-size: 2.75cqi;
   line-height: 1.35;
   background: var(--paper);
   color: var(--ink);
@@ -1848,7 +1855,7 @@ button { font: inherit; color: inherit; }
   content: "";
   position: absolute;
   left: 0; right: 0; bottom: 0;
-  height: 42%;
+  height: 30%;
   background: url("../img/fence-tile.svg") repeat-x left bottom / auto 100%;
 }
 .demo--oak .demo__cta, .demo--oak .demo__btn { background: var(--sun); color: var(--charcoal); }
@@ -2243,7 +2250,8 @@ button { font: inherit; color: inherit; }
 .footer__grid { display: grid; gap: 2.25rem; }
 .brand--footer { margin-bottom: 1rem; }
 .footer__brand p { max-width: 32ch; }
-.footer__nav ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .2rem; }
+.footer__nav ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .1rem 1rem; }
+@media (min-width: 860px) { .footer__nav ul { grid-template-columns: 1fr; } }
 .footer__nav a, .footer__contact a {
   display: inline-flex;
   align-items: center;

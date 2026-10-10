@@ -71,7 +71,7 @@
   }
   </script>
 </head>
-<body>
+<body class="has-hero">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- Icon sprite (decorative; referenced with <use>) -->
@@ -170,17 +170,18 @@
           </defs>
           <g fill="#1B241F">
             <path d="M0 236c150-18 300-22 470-14s300 16 470 8 300-30 460-22 170 14 200 12v80H0Z"/>
-            <path d="M558 178 696 116l138 62h-12v62H570v-62z"/>
+            <g transform="translate(230 0)"><path d="M558 178 696 116l138 62h-12v62H570v-62z"/>
             <rect x="752" y="124" width="18" height="34"/>
-            <path d="M790 196 874 164l90 32h-10v44H800v-44z"/>
-            <ellipse cx="380" cy="190" rx="74" ry="32"/><ellipse cx="334" cy="206" rx="44" ry="22"/><ellipse cx="428" cy="204" rx="46" ry="22"/><rect x="374" y="200" width="11" height="40"/>
-            <ellipse cx="1052" cy="194" rx="58" ry="28"/><ellipse cx="1012" cy="206" rx="34" ry="18"/><rect x="1047" y="204" width="9" height="36"/>
-            <path d="M1186 140l24 98h-48z"/><path d="M1218 164l18 74h-36z"/>
-            <ellipse cx="160" cy="214" rx="52" ry="22"/><rect x="155" y="218" width="8" height="22"/>
+            <path d="M790 196 874 164l90 32h-10v44H800v-44z"/></g>
+            <ellipse cx="90" cy="194" rx="74" ry="32"/><ellipse cx="44" cy="210" rx="44" ry="22"/><ellipse cx="138" cy="208" rx="46" ry="22"/><rect x="84" y="204" width="11" height="36"/>
+            <ellipse cx="1290" cy="196" rx="58" ry="28"/><ellipse cx="1250" cy="208" rx="34" ry="18"/><rect x="1285" y="206" width="9" height="34"/>
+            <path d="M1396 140l24 98h-48z"/><path d="M1428 164l18 74h-36z"/><path d="M640 168l16 70h-32z"/>
           </g>
-          <ellipse cx="646" cy="204" rx="90" ry="40" fill="url(#win-glow)"/>
-          <g fill="#F3B547"><rect x="606" y="192" width="26" height="22" rx="1"/><rect x="646" y="192" width="26" height="22" rx="1" fill-opacity=".85"/></g>
-          <path stroke="#1B241F" stroke-width="2.5" d="M619 192v22M606 203h26M659 192v22M646 203h26"/>
+          <g transform="translate(230 0)">
+            <ellipse cx="646" cy="204" rx="90" ry="40" fill="url(#win-glow)"/>
+            <g fill="#F3B547"><rect x="606" y="192" width="26" height="22" rx="1"/><rect x="646" y="192" width="26" height="22" rx="1" fill-opacity=".85"/></g>
+            <path stroke="#1B241F" stroke-width="2.5" d="M619 192v22M606 203h26M659 192v22M646 203h26"/>
+          </g>
         </svg>
         <div class="hero__fence"></div>
         <div class="hero__motes"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
@@ -294,8 +295,8 @@
               <span class="search-mock__q"><span>fence company near me</span></span>
             </div>
             <ul class="search-mock__results" aria-hidden="true">
-              <li><span class="search-mock__pin">A</span><span class="search-mock__txt"><b>A competitor's fence company</b><small>Website · Quote form · Call</small></span><span class="search-mock__tag">Gets the call</span></li>
-              <li><span class="search-mock__pin">B</span><span class="search-mock__txt"><b>Another fence &amp; deck crew</b><small>Website · Photos · Call</small></span><span class="search-mock__tag">Gets the call</span></li>
+              <li><span class="search-mock__pin">A</span><span class="search-mock__txt"><b>A competitor</b><small>Website · Quote form · Call</small></span><span class="search-mock__tag">Gets the call</span></li>
+              <li><span class="search-mock__pin">B</span><span class="search-mock__txt"><b>Another competitor</b><small>Website · Photos · Call</small></span><span class="search-mock__tag">Gets the call</span></li>
               <li class="is-you"><span class="search-mock__pin">?</span><span class="search-mock__txt"><b>Your company</b><small>Not showing up</small></span></li>
             </ul>
           </div>
@@ -361,6 +362,7 @@
             <div class="build__stage" aria-hidden="true">
               <div class="build__glow"></div>
               <div class="build__toast"><span class="toast__app"><svg class="icon"><use href="#i-bell"/></svg></span><span><b>New quote request</b><small>Cedar privacy fence · Allen, TX</small></span></div>
+              <div class="build__ghosts"><i></i><i></i><i></i><i></i><i></i></div>
               <div class="build__fence">
                 <span class="build__rail build__rail--top"></span>
                 <span class="build__rail build__rail--bottom"></span>
@@ -416,8 +418,8 @@
                     <div class="soc__react"><span>Like</span><span>Comment</span><span>Share</span></div>
                   </div>
                 </div>
-                <span class="note note--bad" style="--x:4%;--y:29%">Hard to find on Google</span>
-                <span class="note note--bad" style="--x:7%;--y:50%">No quote form</span>
+                <span class="note note--bad" style="--x:4%;--y:15%">Hard to find on Google</span>
+                <span class="note note--bad" style="--x:5%;--y:39.5%">No quote form</span>
                 <span class="note note--bad" style="--x:4%;--y:69%">Last post: 3 months ago</span>
               </div>
 
