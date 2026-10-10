@@ -1,0 +1,11 @@
+// Cloudflare Workers config for the Picket Digital website.
+// It deploys the static files in ./picket-digital (no build step).
+// The "name" must match the Worker/project name in the Cloudflare dashboard.
+{
+  "name": "picket-digital",
+  "compatibility_date": "2025-10-01",
+  "assets": {
+    "directory": "./picket-digital",
+    "not_found_handling": "404-page"
+  }
+}

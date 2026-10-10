@@ -28,16 +28,10 @@ It's a plain "static" website. There's no build step, no framework and nothing t
 
 ## Launch checklist (do these before going live)
 
-Search the files for `TODO` to find every spot.
 
-1. **Phone number.** `(214) 555-0100` is a placeholder. Replace it in `index.html` (contact section and footer, 2 places each: the visible number *and* the `tel:+12145550100` link). Once you have a real number, you can also add `"telephone": "+1-214-…"` to the JSON-LD block near the top of `index.html`.
+1. **Phone number.** ✅ Done: (276) 300-4340, with a WhatsApp link in the contact section. To change it, edit the `tel:` links and visible number in `index.html` (contact section and footer) and the `"telephone"` line in the JSON-LD block near the top.
 2. **Email address.** Make sure `hello@picketdigital.com` actually receives mail (set up the inbox or forwarding in your email provider). It appears in `index.html`, `privacy.html` and in `assets/js/main.js` (the error message).
-3. **Contact form (Formspree).**
-   - Go to [formspree.io](https://formspree.io), create a free account and a new form. Set the notification email to your inbox.
-   - Formspree gives you an endpoint like `https://formspree.io/f/abcdwxyz`.
-   - In `index.html`, find `https://formspree.io/f/YOUR_FORM_ID` and replace `YOUR_FORM_ID` with your ID (e.g. `abcdwxyz`).
-   - Send yourself a test from the live site. The first submission may ask you to confirm the form in Formspree.
-   - Until you do this, the form shows a friendly "not connected yet, please email us" message.
+3. **Contact form (Formspree).** ✅ Connected to form `mbgdyzln`. Send yourself a test from the live site; the first submission may ask you to confirm the form in Formspree. To switch forms, change the `action` URL of the form in `index.html`.
 4. **(Optional) Hero video.** See "Add a hero video" below.
 5. **If your domain is not picketdigital.com**, search-and-replace `https://picketdigital.com` in `index.html`, `privacy.html`, `sitemap.xml` and `robots.txt` (canonical link, Open Graph tags, JSON-LD, sitemap).
 6. **Email still sends and receives after the domain/DNS move.** Send a test to `hello@picketdigital.com` from another account and reply from it (see "Domain bought somewhere else" below).
@@ -50,7 +44,19 @@ Search the files for `TODO` to find every spot.
 
 ---
 
-## Put it online with Cloudflare Pages
+## Put it online with Cloudflare Workers (current setup)
+
+The repository root has a `wrangler.jsonc` file that tells Cloudflare to publish this folder as a static site.
+
+1. Cloudflare dashboard → **Workers & Pages** → **Create** → **Import a repository** → choose `businessidea`.
+2. **Project name:** `picket-digital` (must match `"name"` in `wrangler.jsonc`).
+3. **Build command:** leave empty. **Deploy command:** `npx wrangler deploy`.
+4. After it's created: **Settings → Build → Branch control** → set the production branch to the branch that contains this folder, then retry the deployment.
+5. **Settings → Domains & Routes → Add → Custom domain** → `picketdigital.com` (and `www.picketdigital.com` if you want).
+
+`README.md` and `assets/video/README.txt` are excluded from the published site by `.assetsignore`.
+
+## Alternative: Cloudflare Pages
 
 Pick Option A or B up front: a project created with Direct Upload can't be switched to GitHub later (you'd have to create a new project).
 
