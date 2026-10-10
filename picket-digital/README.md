@@ -51,7 +51,7 @@ The repository root has a `wrangler.jsonc` file that tells Cloudflare to publish
 1. Cloudflare dashboard → **Workers & Pages** → **Create** → **Import a repository** → choose `businessidea`.
 2. **Project name:** `picket-digital` (must match `"name"` in `wrangler.jsonc`).
 3. **Build command:** leave empty. **Deploy command:** `npx wrangler deploy`.
-4. After it's created: **Settings → Build → Branch control** → set the production branch to the branch that contains this folder, then retry the deployment.
+4. After it's created: **Settings → Builds → Production branch** → pick the branch that contains this folder (currently `claude/sleepy-ramanujan-vf20b2`). Every push to that branch then redeploys the site automatically.
 5. **Settings → Domains & Routes → Add → Custom domain** → `picketdigital.com` (and `www.picketdigital.com` if you want).
 
 `README.md` and `assets/video/README.txt` are excluded from the published site by `.assetsignore`.
