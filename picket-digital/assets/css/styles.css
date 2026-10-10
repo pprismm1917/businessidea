@@ -1247,7 +1247,8 @@ button { font: inherit; color: inherit; }
   width: 15.2%;
   height: 100%;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 360' preserveAspectRatio='none'%3E%3Cpath d='M1.5 36.7 40 2l38.5 34.7v321.8h-77Z' fill='none' stroke='%23F3B547' stroke-width='1.6' stroke-dasharray='7 6' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
-  opacity: .42;
+  --t: clamp(0, (var(--p) - var(--s)) / .14, 1);
+  opacity: calc(.45 * (1 - var(--t)));
 }
 .build__rail {
   position: absolute;
@@ -1405,6 +1406,12 @@ button { font: inherit; color: inherit; }
   .build.is-scrub .build__fence, .build.is-scrub .build__ghosts { left: 50%; right: auto; width: min(100%, 44svh); translate: -50% 0; }
   .build.is-scrub .build__toast { font-size: .78rem; padding: .5rem .7rem .5rem .5rem; }
   .build.is-scrub .build__toast .toast__app { width: 30px; height: 30px; }
+}
+@media (prefers-reduced-motion: no-preference) and (min-height: 560px) and (min-width: 960px) {
+  @supports (animation-timeline: view()) {
+    .build .build__stage { width: min(100%, calc((100svh - var(--header-h) - 8.5rem) * 1.19)); }
+  }
+  .build.is-scrub .build__stage { width: min(100%, calc((100vh - var(--header-h) - 8.5rem) * 1.19)); }
 }
 @media (prefers-reduced-motion: no-preference) and (min-height: 560px) and (min-width: 960px) and (max-height: 940px) {
   @supports (animation-timeline: view()) {
