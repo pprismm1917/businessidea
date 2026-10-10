@@ -40,11 +40,19 @@ Search the files for `TODO` to find every spot.
    - Until you do this, the form shows a friendly "not connected yet, please email us" message.
 4. **(Optional) Hero video.** See "Add a hero video" below.
 5. **If your domain is not picketdigital.com**, search-and-replace `https://picketdigital.com` in `index.html`, `privacy.html`, `sitemap.xml` and `robots.txt` (canonical link, Open Graph tags, JSON-LD, sitemap).
-6. After launch, check the share preview with the [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) and submit `https://picketdigital.com/sitemap.xml` in [Google Search Console](https://search.google.com/search-console).
+6. **Email still sends and receives after the domain/DNS move.** Send a test to `hello@picketdigital.com` from another account and reply from it (see "Domain bought somewhere else" below).
+7. After launch, check the share preview with the [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) and submit `https://picketdigital.com/sitemap.xml` in [Google Search Console](https://search.google.com/search-console).
+
+**Later, to keep the site honest:**
+
+- **When your first 3 launch partners have signed**, remove the launch offer from `index.html`: the ribbon (`price-card__ribbon`), the "$0 for launch partners*" pill (`price__zero`) and the * footnote (`price__fine`).
+- **If you edit `privacy.html`**, update its "Last updated" date and the `<lastmod>` date for `/privacy` in `sitemap.xml`.
 
 ---
 
 ## Put it online with Cloudflare Pages
+
+Pick Option A or B up front: a project created with Direct Upload can't be switched to GitHub later (you'd have to create a new project).
 
 ### Option A: Direct Upload (easiest, no GitHub needed)
 
@@ -72,6 +80,16 @@ Search the files for `TODO` to find every spot.
 
 HTTPS/SSL is automatic.
 
+### Domain bought somewhere else / email already set up
+
+Cloudflare Pages can only use the main domain (`picketdigital.com`, without `www`) once the domain's DNS is managed by Cloudflare. That means switching the domain's **nameservers** to Cloudflare. If you do that without copying your email records first, **`hello@picketdigital.com` stops working**, and the site, the contact form's error message and the privacy page all point people to that address. So, in this order:
+
+1. In Cloudflare, click **Add a site** (or **Add a domain**), enter `picketdigital.com` and choose the **Free** plan.
+2. **Before you change any nameservers**, compare the DNS list Cloudflare imported with the records your email provider gave you. Make sure every one is there: the **MX** records, the **SPF** record (a TXT record starting `v=spf1`), the **DKIM** record(s) (TXT or CNAME) and the **DMARC** record (TXT on `_dmarc`). Add any that are missing, and set them to **DNS only** (grey cloud), not Proxied.
+3. At the company where you bought the domain (your registrar), replace the nameservers with the two Cloudflare shows you. Wait until Cloudflare says the domain is **Active** (minutes to a few hours).
+4. Now add the custom domains in the Pages project, as described above.
+5. Send a test email to `hello@picketdigital.com` from another account, and reply from it, to confirm email still works both ways.
+
 ---
 
 ## Add a hero video (optional, e.g. from Higgsfield)
@@ -79,7 +97,7 @@ HTTPS/SSL is automatic.
 By default, the top of the page shows a hand-built, very lightweight illustrated golden-hour scene. You can layer a short looping video on top of it. The video only loads on **desktop screens (900px+ wide)**, when the visitor hasn't asked for reduced motion and isn't in data-saver mode. Phones always get the fast illustration.
 
 1. **Make the clip.** In Higgsfield (or similar), generate a calm 5–10 second shot, e.g. *"golden hour Texas backyard, new cedar privacy fence, warm sunlight, slow camera push-in"*. Keep the **left side darker/simple**, because the headline sits there. Export **MP4, 1080p, no audio**.
-2. **Compress it.** Install [ffmpeg](https://ffmpeg.org/download.html), put the export next to you as `input.mp4`, then run:
+2. **Compress it.** Install [ffmpeg](https://ffmpeg.org/download.html). Put your exported video in a folder and rename it `input.mp4`. Open **Terminal** (Mac) or **Command Prompt** (Windows) in that folder (Mac: right-click the folder → Services → New Terminal at Folder; Windows: type `cmd` in the folder's address bar and press Enter), then run:
 
    ```bash
    # MP4 (H.264): works everywhere
@@ -102,10 +120,10 @@ If you replace the video later with a new file of the same name, change `?v=1` t
 
 Files in `assets/` are cached by visitors' browsers for a year (that's what makes repeat visits instant). So after you change `styles.css` or `main.js`, change the version number where they're loaded, or people may keep seeing the old file:
 
-- In `index.html` and `privacy.html`: `assets/css/styles.css?v=1` becomes `?v=2`, and `assets/js/main.js?v=1` becomes `?v=2`
-- In `404.html`: `/assets/css/styles.css?v=1` and `/assets/js/main.js?v=1`, same change
+- In `index.html` and `privacy.html`: `assets/css/styles.css?v=3` becomes `?v=4`, and `assets/js/main.js?v=3` becomes `?v=4`
+- In `404.html`: `/assets/css/styles.css?v=3` and `/assets/js/main.js?v=3`, same change
 
-Use the same new number everywhere. Next time use `?v=3`, and so on. If you swap an image or font in `assets/`, give the new file a new name instead.
+Use the same new number everywhere. Next time use `?v=5`, and so on. If you swap an image or font in `assets/`, give the new file a new name instead.
 
 HTML pages aren't cached long, so text changes in the `.html` files show up right away after you deploy.
 
@@ -114,6 +132,7 @@ HTML pages aren't cached long, so text changes in the `.html` files show up righ
 ## Good to know
 
 - **Honesty rules used on this site:** no fake testimonials, logos, review counts or invented stats. The demo designs and the before/after are labeled as illustrations with fictional companies (`.example` web addresses). The only outside number is the ~165,000 monthly searches estimate, credited to Google Keyword Planner data via MarketKeep. Once you have real clients (with permission), swap a demo for a real project.
-- **Security header (`_headers`).** The `Content-Security-Policy` line only allows scripts from this site, plus Cloudflare Web Analytics and Formspree. If you add another service later (Google Analytics, a chat widget, a booking tool), add its domain to that line or delete the line. Also, the small inline script at the top of each HTML page is allowed by its fingerprint (the `sha256-…` value). If you edit that one line of script, the fingerprint must be updated too, but the site still works if you don't.
+- **Security header (`_headers`).** The `Content-Security-Policy` line allows scripts only from this site and Cloudflare Web Analytics, and lets the contact form send to Formspree. If you add another service later (Google Analytics, a chat widget, a booking tool), add its domain to that line or delete the line. Also, the small inline script at the top of each HTML page is allowed by its fingerprint (the `sha256-…` value). If you edit that one line of script, the fingerprint must be updated too, but the site still works if you don't.
 - **Privacy policy.** `privacy.html` is a plain-English template, not legal advice. Update it if you add analytics, ads or a newsletter.
+- **This README is public.** Everything in the folder gets uploaded, so this file can be opened at `picketdigital.com/README.md`. That's harmless (it holds no passwords), and `_headers` tells search engines not to list it. Never put passwords or private notes in this folder.
 - **Preview on your computer:** you can double-click `index.html` to open it. For a true preview (including the 404 page), run `npx http-server picket-digital` in this repository and open the address it shows.

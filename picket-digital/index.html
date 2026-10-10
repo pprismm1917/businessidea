@@ -11,8 +11,8 @@
   <script>document.documentElement.classList.replace("no-js","js")</script>
 
   <link rel="preload" href="assets/fonts/barlow-condensed-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/styles.css?v=2">
-  <script src="assets/js/main.js?v=2" defer></script>
+  <link rel="stylesheet" href="assets/css/styles.css?v=3">
+  <script src="assets/js/main.js?v=3" defer></script>
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -122,6 +122,8 @@
     <symbol id="i-noweb" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.3 2.4 3.5 5.2 3.5 8.5s-1.2 6.1-3.5 8.5c-2.3-2.4-3.5-5.2-3.5-8.5S9.7 5.9 12 3.5z"/><path d="M4 4l16 16"/></symbol>
     <symbol id="i-social" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 19.5a6 6 0 0 1 12 0"/><path d="M15.5 5.2a3 3 0 0 1 0 5.6M17.5 14a6 6 0 0 1 3.5 5.5"/></symbol>
     <symbol id="i-oldsite" viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M10 9.5l4 4M14 9.5l-4 4"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 6v12M15 6v12"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z"/></symbol>
     <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
   </svg>
 
@@ -139,7 +141,7 @@
       <nav id="site-nav" class="site-nav" aria-label="Main">
         <ul class="site-nav__list">
           <li><a href="#how">How it works</a></li>
-          <li><a href="#included">What's included</a></li>
+          <li><a href="#included">What’s included</a></li>
           <li><a href="#pricing">Pricing</a></li>
           <li><a href="#faq">FAQ</a></li>
         </ul>
@@ -271,7 +273,7 @@
     <section class="cities" aria-labelledby="cities-label">
       <div class="cities__inner">
         <p class="cities__label" id="cities-label">Built for fence &amp; deck companies across DFW</p>
-        <div class="marquee">
+        <div class="marquee" data-pause-offscreen>
           <ul class="marquee__track">
             <li>Frisco</li><li>McKinney</li><li>Prosper</li><li>Celina</li><li>Allen</li><li>Plano</li><li>Little Elm</li><li>Anna</li><li>Princeton</li><li>Rockwall</li><li>Forney</li><li>Fort Worth</li><li>Keller</li><li>Southlake</li><li>Mansfield</li><li>Midlothian</li><li>Arlington</li><li>Denton</li><li>Burleson</li><li>Weatherford</li>
           </ul>
@@ -279,6 +281,11 @@
             <li>Frisco</li><li>McKinney</li><li>Prosper</li><li>Celina</li><li>Allen</li><li>Plano</li><li>Little Elm</li><li>Anna</li><li>Princeton</li><li>Rockwall</li><li>Forney</li><li>Fort Worth</li><li>Keller</li><li>Southlake</li><li>Mansfield</li><li>Midlothian</li><li>Arlington</li><li>Denton</li><li>Burleson</li><li>Weatherford</li>
           </ul>
         </div>
+        <button class="motion-toggle" type="button" data-motion-toggle hidden>
+          <svg class="icon motion-toggle__pause" aria-hidden="true" focusable="false"><use href="#i-pause"/></svg>
+          <svg class="icon motion-toggle__play" aria-hidden="true" focusable="false"><use href="#i-play"/></svg>
+          <span data-motion-label>Pause motion</span>
+        </button>
       </div>
     </section>
 
@@ -287,7 +294,7 @@
       <div class="container problem__grid">
         <div class="problem__copy reveal">
           <p class="eyebrow">The problem</p>
-          <h2 class="h2" id="problem-title">Homeowners Google “fence company near me.” <span class="h2__soft">If you're not there, your competitor gets the call.</span></h2>
+          <h2 class="h2" id="problem-title">Homeowners Google “fence company near me.” <span class="h2__soft">If you’re not there, your competitor gets the call.</span></h2>
         </div>
 
         <div class="problem__visual reveal">
@@ -309,7 +316,7 @@
           <li class="pain reveal">
             <span class="pain__icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-noweb"/></svg></span>
             <h3 class="pain__title">No website</h3>
-            <p>Homeowners can't find you — so they call someone they can.</p>
+            <p>Homeowners can’t find you — so they call someone they can.</p>
             <span class="pain__cost">= lost job</span>
           </li>
           <li class="pain reveal">
@@ -320,8 +327,8 @@
           </li>
           <li class="pain reveal">
             <span class="pain__icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-oldsite"/></svg></span>
-            <h3 class="pain__title">Outdated site that's hard to use on a phone</h3>
-            <p>Tiny text, slow pages, buttons that don't work. They hit “back” and call the next company.</p>
+            <h3 class="pain__title">Outdated site that’s hard to use on a phone</h3>
+            <p>Tiny text, slow pages, buttons that don’t work. They hit “back” and call the next company.</p>
             <span class="pain__cost">= lost job</span>
           </li>
         </ul>
@@ -335,15 +342,15 @@
           <div class="build__copy">
             <p class="eyebrow eyebrow--sun">What we build</p>
             <h2 class="h2" id="build-title">We build it plank by plank.</h2>
-            <p class="build__lede">Every piece has one job: turn a homeowner's search into your next quote request.</p>
+            <p class="build__lede">Every piece has one job: turn a homeowner’s search into your next quote request.</p>
             <ol class="build__steps">
               <li class="build__step" style="--s:.1">
                 <span class="build__num" aria-hidden="true">1</span>
-                <div><h3>Mobile-first website</h3><p>Fast, clear and easy to tap — built for the phone in a homeowner's hand.</p></div>
+                <div><h3>Mobile-first website</h3><p>Fast, clear and easy to tap — built for the phone in a homeowner’s hand.</p></div>
               </li>
               <li class="build__step" style="--s:.24">
                 <span class="build__num" aria-hidden="true">2</span>
-                <div><h3>Instant quote form <small>texts &amp; emails you</small></h3><p>Requests hit your phone right away, so you can call back while they're still shopping.</p></div>
+                <div><h3>Instant quote form <small>texts &amp; emails you</small></h3><p>Requests hit your phone right away, so you can call back while they’re still shopping.</p></div>
               </li>
               <li class="build__step" style="--s:.38">
                 <span class="build__num" aria-hidden="true">3</span>
@@ -387,15 +394,15 @@
       <div class="container compare-section__grid">
         <div class="compare-section__copy reveal">
           <p class="eyebrow">Before &amp; after</p>
-          <h2 class="h2" id="compare-title">From “just a Facebook page” to a site that books jobs.</h2>
+          <h2 class="h2" id="compare-title">From “just a Facebook page” to a site built to get quote requests.</h2>
           <p class="lede">A social page is a fine start. But homeowners comparing fence companies want to see your work, trust you, and ask for a quote in one tap.</p>
           <ul class="ticks" role="list">
-            <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Shows up when people search Google</li>
+            <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Set up so Google can find and list you (site + Google Business Profile)</li>
             <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Quote form that texts &amp; emails you</li>
             <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Tap-to-call on every page</li>
             <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Your best projects up front, not buried</li>
           </ul>
-          <p class="fine">Illustration with a fictional company — not a real client's page.</p>
+          <p class="fine">Illustration with a fictional company — not a real client’s page.</p>
         </div>
 
         <figure class="compare reveal" data-compare style="--pos:50%">
@@ -437,14 +444,14 @@
                   <div class="site__form">
                     <span class="site__label">Get a free quote</span>
                     <span class="site__row"><span class="site__field">Cedar privacy fence</span><span class="site__field">ZIP 75070</span></span>
-                    <span class="site__send">Send — we'll text you back</span>
+                    <span class="site__send">Send — we’ll text you back</span>
                   </div>
                   <span class="site__label site__label--dark">Recent projects</span>
                   <div class="site__gallery"><i></i><i></i><i></i></div>
                   <div class="site__reviews"><svg class="icon"><use href="#i-star"/></svg><span>Reviews from your Google profile</span></div>
                 </div>
-                <span class="note note--good" style="--x:55%;--y:52%">Quote form texts you</span>
-                <span class="note note--good" style="--x:64%;--y:13%">Tap to call</span>
+                <span class="note note--good" style="--x:56%;--y:35%">Quote form texts you</span>
+                <span class="note note--good" style="--x:50%;--y:4.5%">Tap to call</span>
                 <span class="note note--good" style="--x:60%;--y:79%">Your real photos</span>
               </div>
 
@@ -464,19 +471,19 @@
     <section class="section section--cream included" id="included" aria-labelledby="included-title">
       <div class="container">
         <header class="section-head reveal">
-          <p class="eyebrow">What's included</p>
+          <p class="eyebrow">What’s included</p>
           <h2 class="h2" id="included-title">Everything you need to win the job online.</h2>
           <p class="lede">One monthly plan. We build it, host it, keep it secure and make your edits — you keep building fences.</p>
         </header>
         <ul class="features" role="list">
-          <li class="feature reveal"><span class="feature__icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-mobile"/></svg></span><h3>Mobile-first website</h3><p>Designed for phones first, because that's where your customers are.</p></li>
-          <li class="feature reveal"><span class="feature__icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg></span><h3>Quote form → text &amp; email</h3><p>Every request lands on your phone the moment it's sent.</p></li>
+          <li class="feature reveal"><span class="feature__icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-mobile"/></svg></span><h3>Mobile-first website</h3><p>Designed for phones first, because that’s where your customers are.</p></li>
+          <li class="feature reveal"><span class="feature__icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg></span><h3>Quote form → text &amp; email</h3><p>Every request lands on your phone the moment it’s sent.</p></li>
           <li class="feature reveal"><span class="feature__icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-gallery"/></svg></span><h3>Project gallery</h3><p>Your best fences, gates and decks, organized and fast-loading.</p></li>
           <li class="feature reveal"><span class="feature__icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span><h3>Reviews showcase</h3><p>Your real Google reviews, front and center where they count.</p></li>
           <li class="feature reveal"><span class="feature__icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg></span><h3>Service-area pages</h3><p>Pages for the DFW cities you serve — Frisco, Keller, Forney and more.</p></li>
-          <li class="feature reveal"><span class="feature__icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-store"/></svg></span><h3>Google Business Profile setup</h3><p>Set up or cleaned up, and linked to your new site.</p></li>
+          <li class="feature reveal"><span class="feature__icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-store"/></svg></span><h3>Google Business Profile</h3><p>Set up or cleaned up, and linked to your new site.</p></li>
           <li class="feature reveal"><span class="feature__icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-shield"/></svg></span><h3>Hosting, SSL &amp; security</h3><p>Fast, secure hosting with the padlock in the address bar. Handled.</p></li>
-          <li class="feature reveal"><span class="feature__icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-edit"/></svg></span><h3>Edits whenever you need them</h3><p>New photos, prices or services? Send them over and we'll update it.</p></li>
+          <li class="feature reveal"><span class="feature__icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-edit"/></svg></span><h3>Edits whenever you need them</h3><p>New photos, prices or services? Send them over and we’ll update it.</p></li>
         </ul>
       </div>
     </section>
@@ -493,7 +500,7 @@
           <li class="how__step reveal">
             <span class="how__num" aria-hidden="true">01</span>
             <h3>We build your draft — free</h3>
-            <p>Send us your company name and a few photos — or we'll pull them from your Google or Facebook page.</p>
+            <p>Send us your company name and a few photos — or we’ll pull them from your Google or Facebook page.</p>
             <span class="how__meta"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg>Draft in about 48 hours</span>
           </li>
           <li class="how__step reveal">
@@ -579,10 +586,10 @@
             <div class="price-card__main">
               <h3 class="price-card__name" id="plan-name">The Picket Plan</h3>
               <p class="price"><span class="price__amt">$199</span><span class="price__per">/mo</span></p>
-              <p class="price__setup">+ $299 one-time setup <span class="price__zero">$0 for our first 3 DFW partners*</span></p>
+              <p class="price__setup">+ $299 one-time setup <span class="price__zero">$0 for launch partners*</span></p>
               <p class="price__terms">12-month minimum · Hosting, SSL &amp; edits included</p>
               <a class="btn btn--sun btn--lg btn--block" href="#contact">Get my free draft <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
-              <p class="price__once">Prefer to pay once? <a href="#contact">Ask us about a one-time build.</a></p>
+              <p class="price__once">Prefer to pay once? <a class="tap-link" href="#contact">Ask us about a one-time build.</a></p>
               <p class="price__fine">*In exchange for honest feedback and permission to show your site as an example of our work.</p>
             </div>
             <div class="price-card__side">
@@ -599,15 +606,19 @@
                 <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Domain registered in your name</li>
               </ul>
               <div class="guarantee">
-                <svg class="seal" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
-                  <defs><path id="seal-path" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0"/></defs>
-                  <circle cx="60" cy="60" r="57" class="seal__ring"/>
-                  <circle cx="60" cy="60" r="33" class="seal__core"/>
-                  <g class="seal__spin"><text class="seal__text"><textPath href="#seal-path" startOffset="0">FREE DRAFT FIRST • NO PAYMENT UNTIL YOU APPROVE •</textPath></text></g>
-                  <path class="seal__check" d="M46 61l9.5 9.5L75 51"/>
-                </svg>
+                <span class="seal" aria-hidden="true" data-pause-offscreen>
+                  <svg class="seal__base" viewBox="0 0 120 120" focusable="false">
+                    <circle cx="60" cy="60" r="57" class="seal__ring"/>
+                    <circle cx="60" cy="60" r="33" class="seal__core"/>
+                    <path class="seal__check" d="M46 61l9.5 9.5L75 51"/>
+                  </svg>
+                  <svg class="seal__spin" viewBox="0 0 120 120" focusable="false">
+                    <defs><path id="seal-path" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0"/></defs>
+                    <text class="seal__text"><textPath href="#seal-path" startOffset="0" textLength="272" lengthAdjust="spacing">FREE DRAFT FIRST • NO PAYMENT UNTIL YOU APPROVE •</textPath></text>
+                  </svg>
+                </span>
                 <div>
-                  <p class="guarantee__title">You don't pay a cent until you approve the design.</p>
+                  <p class="guarantee__title">You don’t pay a cent until you approve the design.</p>
                   <p class="guarantee__text">We build your draft first — free. Love it, or walk away.</p>
                 </div>
               </div>
@@ -622,7 +633,7 @@
       <div class="container">
         <header class="section-head reveal">
           <p class="eyebrow">Later on</p>
-          <h2 class="h2" id="grow-title">Grow beyond the website — when you're ready.</h2>
+          <h2 class="h2" id="grow-title">Grow beyond the website&nbsp;— when you’re ready.</h2>
           <p class="lede">Start with a great website. When you want more, we can add these. No pressure, no bundles.</p>
         </header>
         <ul class="grow__grid" role="list">
@@ -640,7 +651,7 @@
         <header class="section-head reveal">
           <p class="eyebrow">FAQ</p>
           <h2 class="h2" id="faq-title">Straight answers.</h2>
-          <p class="lede">Don't see your question? <a href="#contact">Ask us</a> — a real person will answer.</p>
+          <p class="lede">Don’t see your question? <a class="tap-link" href="#contact">Ask us</a> — a real person will answer.</p>
         </header>
         <div class="faq__list">
           <details class="qa">
@@ -649,27 +660,27 @@
           </details>
           <details class="qa">
             <summary>What if I already have a website?</summary>
-            <div class="qa__a"><p>No problem. We'll look at what you have, keep what's working, and build a faster, phone-friendly version. We'll handle moving your domain over when you're ready to switch.</p></div>
+            <div class="qa__a"><p>No problem. We’ll look at what you have, keep what’s working, and build a faster, phone-friendly version. We’ll handle moving your domain over when you’re ready to switch.</p></div>
           </details>
           <details class="qa">
             <summary>How long does it take?</summary>
-            <div class="qa__a"><p>Your free draft is usually ready in about 48 hours. Once you approve it, your site is live in about 7 days.</p></div>
+            <div class="qa__a"><p>Your free draft is usually ready in about 48 hours. Most sites are live within about 7 days of your first message — the exact timing depends on how quickly you review and approve.</p></div>
           </details>
           <details class="qa">
             <summary>Is there a contract?</summary>
-            <div class="qa__a"><p>The monthly plan has a 12-month minimum, and you'll see every term in writing before you sign. You don't pay anything until you've approved your design. Prefer to pay once? Ask us about a one-time build.</p></div>
+            <div class="qa__a"><p>The monthly plan has a 12-month minimum, and you’ll see every term in writing before you sign. You don’t pay anything until you’ve approved your design. Whatever you decide later, your domain and content stay yours. Prefer to pay once? Ask us about a one-time build.</p></div>
           </details>
           <details class="qa">
             <summary>Do you only work with fence companies?</summary>
-            <div class="qa__a"><p>Fence &amp; deck companies in DFW — that's all we do. That focus means your site is built around how homeowners actually shop for a fence or deck.</p></div>
+            <div class="qa__a"><p>Fence &amp; deck companies in DFW — that’s all we do. That focus means your site is built around how homeowners actually shop for a fence or deck.</p></div>
           </details>
           <details class="qa">
             <summary>Where are you based?</summary>
-            <div class="qa__a"><p>We're a remote team and work Texas business hours.</p></div>
+            <div class="qa__a"><p>We’re a remote team and work Texas business hours.</p></div>
           </details>
           <details class="qa">
             <summary>What do you need from me?</summary>
-            <div class="qa__a"><p>Your company name, phone number, service area and a few project photos. That's it. No photos handy? We can pull them from your Google or Facebook page.</p></div>
+            <div class="qa__a"><p>Your company name, phone number, service area and a few project photos. That’s it. No photos handy? We can pull them from your Google or Facebook page.</p></div>
           </details>
         </div>
       </div>
@@ -681,7 +692,7 @@
         <div class="contact__copy">
           <p class="eyebrow eyebrow--sun">Free, no obligation</p>
           <h2 class="h2" id="contact-title">Get your free website draft</h2>
-          <p class="lede">Tell us about your company. We'll build a draft of your new site and send you a link to review — free.</p>
+          <p class="lede">Tell us about your company. We’ll build a draft of your new site and send you a link to review — free.</p>
           <ol class="next-steps">
             <li><span>1</span>We reply to confirm a few details.</li>
             <li><span>2</span>Your draft is ready in about 48 hours.</li>
@@ -727,7 +738,7 @@
                 <p class="field__err" id="f-email-err"></p>
               </div>
               <div class="field field--full">
-                <label for="f-city">City you're based in</label>
+                <label for="f-city">City you’re based in</label>
                 <input id="f-city" name="city" type="text" autocomplete="address-level2" list="dfw-cities" data-err="Please enter your city." required aria-describedby="f-city-err">
                 <datalist id="dfw-cities">
                   <option value="Frisco"></option><option value="McKinney"></option><option value="Prosper"></option><option value="Celina"></option><option value="Allen"></option><option value="Plano"></option><option value="Little Elm"></option><option value="Anna"></option><option value="Princeton"></option><option value="Rockwall"></option><option value="Forney"></option><option value="Fort Worth"></option><option value="Keller"></option><option value="Southlake"></option><option value="Mansfield"></option><option value="Midlothian"></option><option value="Arlington"></option><option value="Denton"></option><option value="Burleson"></option><option value="Weatherford"></option><option value="Dallas"></option>
@@ -744,7 +755,7 @@
               </div>
             </div>
             <button class="btn btn--sun btn--lg btn--block form__submit" type="submit"><span class="form__submit-label">Send — get my free draft</span><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></button>
-            <p class="form__fine">No payment, no obligation. We only use your info to reply. <a href="privacy.html">Privacy</a></p>
+            <p class="form__fine">No payment, no obligation. We only use your info to reply. <a class="tap-link" href="privacy.html">Privacy</a></p>
             <p class="form__status" role="status" aria-live="polite" data-form-status></p>
           </form>
         </div>
@@ -764,7 +775,7 @@
       <nav class="footer__nav" aria-label="Footer">
         <ul>
           <li><a href="#how">How it works</a></li>
-          <li><a href="#included">What's included</a></li>
+          <li><a href="#included">What’s included</a></li>
           <li><a href="#pricing">Pricing</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="#contact">Free draft</a></li>
@@ -780,7 +791,7 @@
     </div>
     <div class="container footer__base">
       <p>© 2026 Picket Digital</p>
-      <p><a href="privacy.html">Privacy</a></p>
+      <p><a class="tap-link" href="privacy.html">Privacy</a></p>
     </div>
   </footer>
 </body>

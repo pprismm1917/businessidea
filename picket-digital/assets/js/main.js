@@ -12,6 +12,9 @@
   var win = window;
   root.classList.remove("no-js");
   root.classList.add("js");
+  // Styles that hide things until this script reveals them (scroll reveals, typing effect, slider)
+  // key off .js-ready, so if this file never loads, the page simply stays fully visible.
+  root.classList.add("js-ready");
 
   var mqReduce = win.matchMedia("(prefers-reduced-motion: reduce)");
   function reduced() { return mqReduce.matches; }
@@ -60,6 +63,7 @@
       toggle.setAttribute("aria-expanded", String(open));
       nav.classList.toggle("is-open", open);
       header.classList.toggle("is-open", open);
+      root.classList.toggle("nav-open", open); // locks page scroll behind the menu (CSS)
       if (open) {
         var first = $("a", nav);
         if (first) win.setTimeout(function () { first.focus(); }, 60);
@@ -75,7 +79,11 @@
       if (e.key === "Escape" && isOpen()) setNav(false, true);
     });
     doc.addEventListener("click", function (e) {
-      if (isOpen() && !header.contains(e.target)) setNav(false);
+      // Clicks on the dimmed backdrop (the header's ::after) report the header itself as the target
+      if (isOpen() && (!header.contains(e.target) || e.target === header)) setNav(false);
+    });
+    header.addEventListener("focusout", function (e) {
+      if (isOpen() && e.relatedTarget && !header.contains(e.relatedTarget)) setNav(false);
     });
     onMqChange(win.matchMedia("(min-width: 960px)"), function (e) {
       if (e.matches && isOpen()) setNav(false);
@@ -145,8 +153,9 @@
     toasts[toastIndex].classList.add("is-active");
   }
   var toastHover = false;
+  var motionPaused = false;
   function startToasts() {
-    if (toasts.length > 1 && !toastTimer && !doc.hidden && heroVisible && !toastHover && !reduced()) toastTimer = win.setInterval(nextToast, 3000);
+    if (toasts.length > 1 && !toastTimer && !doc.hidden && heroVisible && !toastHover && !motionPaused && !reduced()) toastTimer = win.setInterval(nextToast, 3000);
   }
   function stopToasts() {
     win.clearInterval(toastTimer);
@@ -161,6 +170,41 @@
     device.addEventListener("mouseleave", function () { toastHover = false; startToasts(); });
   }
   onMqChange(mqReduce, function () { if (reduced()) stopToasts(); else startToasts(); });
+
+  /* ---------- "Pause motion" button (WCAG 2.2.2): pauses the looping decorations ---------- */
+  var motionBtn = $("[data-motion-toggle]");
+  var motionLabel = motionBtn ? $("[data-motion-label]", motionBtn) : null;
+  function setMotionPaused(paused, remember) {
+    motionPaused = paused;
+    root.classList.toggle("motion-paused", paused);
+    if (motionLabel) motionLabel.textContent = paused ? "Play motion" : "Pause motion";
+    if (paused) stopToasts(); else startToasts();
+    if (video && videoActive) {
+      if (paused) video.pause();
+      else if (heroVisible) { var vp = video.play(); if (vp && vp.catch) vp.catch(videoFail); }
+    }
+    if (remember) {
+      try { win.localStorage.setItem("pd-motion", paused ? "paused" : "on"); } catch (err) { /* storage blocked: fine */ }
+    }
+  }
+  if (motionBtn) {
+    motionBtn.hidden = false;
+    var savedMotion = null;
+    try { savedMotion = win.localStorage.getItem("pd-motion"); } catch (err) { /* ignore */ }
+    if (savedMotion === "paused") setMotionPaused(true, false);
+    motionBtn.addEventListener("click", function () { setMotionPaused(!motionPaused, true); });
+  }
+  // Tapping the city strip also holds it still (hover already does on desktop)
+  var marquee = $(".marquee");
+  if (marquee) marquee.addEventListener("click", function () { marquee.classList.toggle("is-held"); });
+
+  /* ---------- Pause other looping decorations while they're off-screen ---------- */
+  if ("IntersectionObserver" in win) {
+    var pauseIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { en.target.classList.toggle("is-offscreen", !en.isIntersecting); });
+    });
+    $$("[data-pause-offscreen]").forEach(function (el) { pauseIO.observe(el); });
+  }
 
   // Optional hero video (only when enabled in the HTML and the visitor can afford it)
   var video = $("[data-hero-video]");
@@ -195,8 +239,10 @@
         video.preload = "auto";
         video.load();
         videoActive = true;
-        var playing = video.play();
-        if (playing && playing.catch) playing.catch(videoFail);
+        if (!motionPaused) {
+          var playing = video.play();
+          if (playing && playing.catch) playing.catch(videoFail);
+        }
       }
     }
   }
@@ -207,7 +253,7 @@
       hero.classList.toggle("is-offscreen", !heroVisible);
       if (heroVisible) {
         startToasts();
-        if (videoActive) { var pp = video.play(); if (pp && pp.catch) pp.catch(videoFail); }
+        if (videoActive && !motionPaused) { var pp = video.play(); if (pp && pp.catch) pp.catch(videoFail); }
         paintHero();
       } else {
         stopToasts();
@@ -245,16 +291,57 @@
   /* ---------- Before / after slider ---------- */
   $$("[data-compare]").forEach(function (fig) {
     var range = $("[data-compare-range]", fig);
-    if (!range) return;
+    var view = $(".compare__view", fig);
+    if (!range || !view) return;
     var touched = false;
     var update = function () {
       var v = parseFloat(range.value);
       fig.style.setProperty("--pos", v + "%");
+      fig.style.setProperty("--posn", String(v)); // unitless copy: the handle moves with transform
       range.setAttribute("aria-valuetext", Math.round(v) + "% before page, " + Math.round(100 - v) + "% after design");
     };
     range.addEventListener("input", function () { touched = true; update(); });
-    range.addEventListener("pointerdown", function () { touched = true; });
     update();
+
+    // Pointer dragging on the picture. The range input itself ignores the pointer (CSS), so a
+    // vertical swipe on a phone scrolls the page instead of snapping the slider.
+    var drag = null;
+    var setFromX = function (x) {
+      var r = view.getBoundingClientRect();
+      var v = Math.round(clamp((x - r.left) / r.width, 0, 1) * 100);
+      if (String(v) !== range.value) {
+        range.value = v;
+        range.dispatchEvent(new Event("input", { bubbles: true }));
+      }
+    };
+    var startDrag = function (e) {
+      drag.active = true;
+      touched = true;
+      fig.classList.add("is-dragging");
+      try { view.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ }
+      setFromX(e.clientX);
+    };
+    view.addEventListener("pointerdown", function (e) {
+      if (e.button > 0) return;
+      drag = { id: e.pointerId, x: e.clientX, y: e.clientY, active: false };
+      if (e.pointerType === "mouse") { e.preventDefault(); startDrag(e); }
+    });
+    view.addEventListener("pointermove", function (e) {
+      if (!drag || e.pointerId !== drag.id) return;
+      if (drag.active) { setFromX(e.clientX); return; }
+      var dx = Math.abs(e.clientX - drag.x);
+      var dy = Math.abs(e.clientY - drag.y);
+      if (dx > 8 && dx > dy) startDrag(e);       // clearly sideways: it's a slider drag
+      else if (dy > 8 && dy >= dx) drag = null;  // mostly vertical: let the page scroll
+    });
+    var endDrag = function (e) {
+      if (!drag || (e && e.pointerId !== drag.id)) return;
+      drag = null;
+      fig.classList.remove("is-dragging");
+    };
+    view.addEventListener("pointerup", endDrag);
+    view.addEventListener("pointercancel", endDrag);
+    view.addEventListener("lostpointercapture", function (e) { if (e.target === view) endDrag(e); });
 
     // One gentle "nudge" the first time it scrolls into view, to show it can be dragged
     if (!reduced() && "IntersectionObserver" in win) {
@@ -305,7 +392,7 @@
       else input.removeAttribute("aria-invalid");
     };
     var setStatus = function (type, text, withEmail) {
-      statusEl.className = "form__status" + (type === "error" ? " is-error" : "");
+      statusEl.className = "form__status" + (type === "error" && text ? " is-error" : "");
       statusEl.textContent = text;
       if (withEmail) {
         var a = doc.createElement("a");
@@ -326,22 +413,30 @@
       });
     });
 
+    // A failed send is announced by moving focus to the message (live regions alone can be missed)
+    var showSendError = function (text) {
+      setStatus("error", text, true);
+      statusEl.setAttribute("tabindex", "-1");
+      statusEl.focus();
+    };
     var showSuccess = function () {
       var wrap = form.closest("[data-form-wrap]") || form.parentNode;
       var first = (form.elements.name && form.elements.name.value.trim().split(/\s+/)[0]) || "";
       var box = doc.createElement("div");
       box.className = "form-success";
-      box.setAttribute("tabindex", "-1");
-      box.setAttribute("role", "status");
-      box.innerHTML = '<div class="form-success__icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg></div><h3></h3><p></p>';
-      $("h3", box).textContent = first ? "Thanks, " + first + "!" : "Thanks — got it!";
-      $("p", box).textContent = "We'll be in touch during Texas business hours to confirm a few details. Your free draft is usually ready in about 48 hours.";
+      box.innerHTML = '<div class="form-success__icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check"/></svg></div><h3 tabindex="-1"></h3><p></p>';
+      var title = $("h3", box);
+      title.textContent = first ? "Thanks, " + first + "!" : "Thanks \u2014 got it!";
+      $("p", box).textContent = "We\u2019ll be in touch during Texas business hours to confirm a few details. Your free draft is usually ready in about 48 hours.";
       wrap.replaceChildren(box);
-      box.focus();
+      title.focus(); // screen readers read the heading; the paragraph follows
     };
+
+    var sending = false; // blocks double submits (e.g. pressing Enter twice)
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+      if (sending) return;
       var firstBad = null;
       checked.forEach(function (input) {
         var msg = messageFor(input);
@@ -355,10 +450,12 @@
       }
       if (form.action.indexOf("YOUR_FORM_ID") !== -1) {
         if (win.console) console.warn("Picket Digital: the contact form isn't connected yet. Paste your Formspree form ID into the form's action in index.html.");
-        setStatus("error", "This form isn't connected yet. Please email us at", true);
+        showSendError("This form isn\u2019t connected yet. Please email us at");
         return;
       }
+      sending = true;
       setStatus("", "");
+      statusEl.removeAttribute("tabindex");
       submitBtn.setAttribute("aria-busy", "true");
       if (submitLabel) submitLabel.textContent = "Sending…";
 
@@ -370,8 +467,9 @@
         if (res.ok) { showSuccess(); return; }
         throw new Error("HTTP " + res.status);
       }).catch(function () {
-        setStatus("error", "Sorry — that didn't go through. Please try again, or email us at", true);
+        showSendError("Sorry \u2014 that didn\u2019t go through. Please try again, or email us at");
       }).then(function () {
+        sending = false;
         submitBtn.removeAttribute("aria-busy");
         if (submitLabel) submitLabel.textContent = submitText;
       });

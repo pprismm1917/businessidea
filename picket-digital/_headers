@@ -25,6 +25,11 @@
 /404.html
   Cache-Control: public, max-age=0, must-revalidate
 
+# Owner notes: fine to be public, but keep them out of search results
+/README.md
+  X-Robots-Tag: noindex
+  Cache-Control: public, max-age=0, must-revalidate
+
 # Small root files that keep the same name: cache for a day
 /favicon.svg
   Cache-Control: public, max-age=86400
