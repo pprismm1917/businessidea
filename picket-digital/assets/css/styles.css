@@ -1146,6 +1146,7 @@ button { font: inherit; color: inherit; }
 .build {
   --p: 1;
   position: relative;
+  overflow-x: clip;
   color: var(--cream);
   background:
     radial-gradient(90% 70% at 75% 100%, rgba(243, 181, 71, .14), transparent 60%),
