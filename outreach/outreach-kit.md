@@ -78,7 +78,7 @@ Never invent a personal line. If you can't find anything true, skip it and start
 
 ```
 Moe
-Picket Digital · picketdigital.com · (276) 300-4340
+Picket Digital · picketdigital.com · (469) 629-7172
 [mailing address]
 Reply "no" and I won't email again.
 ```
@@ -107,14 +107,14 @@ Hi {{first_name}},
 
 I'm Moe. I build websites only for fence and deck companies in Dallas–Fort Worth.
 
-I'd like to make {{company}} a free draft website: your photos, the cities you serve around {{city}}, tap-to-call, and a quote form that texts your phone when a homeowner asks for a price.
+I'd like to make {{company}} a free draft website: your photos, the cities you serve around {{city}}, tap-to-call, and a quote form that sends requests straight to your phone when a homeowner asks for a price.
 
 No cost and nothing to sign to see it. If you don't like it, just say no.
 
 Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
-Picket Digital · picketdigital.com · (276) 300-4340
+Picket Digital · picketdigital.com · (469) 629-7172
 [mailing address]
 Reply "no" and I won't email again.
 ```
@@ -131,7 +131,7 @@ I can build the free draft for {{company}} this week. You'd see your own site, w
 Is that a "yes" or a "no"? Either answer is fine.
 
 Moe
-Picket Digital · picketdigital.com · (276) 300-4340
+Picket Digital · picketdigital.com · (469) 629-7172
 [mailing address]
 Reply "no" and I won't email again.
 ```
@@ -150,7 +150,7 @@ If you ever want a free website draft for {{company}}, just reply "yes". The off
 Wishing you a busy season in {{city}}.
 
 Moe
-Picket Digital · picketdigital.com · (276) 300-4340
+Picket Digital · picketdigital.com · (469) 629-7172
 [mailing address]
 Reply "no" and I won't email again.
 ```
@@ -204,14 +204,14 @@ Hi {{first_name}},
 
 I looked for a {{company}} website and couldn't find one. When people in {{city}} search "fence company near me", they call the companies they can find online.
 
-I'm Moe. I build websites only for fence and deck companies in DFW. I'd like to make you a free draft with your photos, your cities, and a quote form that texts you.
+I'm Moe. I build websites only for fence and deck companies in DFW. I'd like to make you a free draft with your photos, your cities, and a quote form that sends requests straight to your phone.
 
 No cost and nothing to sign to see it.
 
 Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
-Picket Digital · picketdigital.com · (276) 300-4340
+Picket Digital · picketdigital.com · (469) 629-7172
 [mailing address]
 Reply "no" and I won't email again.
 ```
@@ -227,14 +227,14 @@ Hi {{first_name}},
 
 Your Facebook page shows good work, but it's hard to find on Google and there's no quote form for homeowners in {{city}}.
 
-I'm Moe. I build websites only for fence and deck companies in DFW. I'd like to turn your best photos into a free draft website with your cities, tap-to-call, and a quote form that texts you.
+I'm Moe. I build websites only for fence and deck companies in DFW. I'd like to turn your best photos into a free draft website with your cities, tap-to-call, and a quote form that sends requests straight to your phone.
 
 No cost and nothing to sign to see it.
 
 Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
-Picket Digital · picketdigital.com · (276) 300-4340
+Picket Digital · picketdigital.com · (469) 629-7172
 [mailing address]
 Reply "no" and I won't email again.
 ```
@@ -250,14 +250,14 @@ Hi {{first_name}},
 
 I opened the {{company}} website on my phone. {{site_issue}}. Many homeowners in {{city}} will see it on a phone first.
 
-I'm Moe. I build websites only for fence and deck companies in DFW. I'd like to make you a free draft: fast on phones, with your photos and a quote form that texts you.
+I'm Moe. I build websites only for fence and deck companies in DFW. I'd like to make you a free draft: fast on phones, with your photos and a quote form that sends requests straight to your phone.
 
 No cost and nothing to sign to see it.
 
 Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
-Picket Digital · picketdigital.com · (276) 300-4340
+Picket Digital · picketdigital.com · (469) 629-7172
 [mailing address]
 Reply "no" and I won't email again.
 ```
@@ -293,7 +293,7 @@ Don't list 5 problems. Don't say "your website is bad". One true problem is enou
 > **You:** Hi {{first_name}}, this is Moe from Picket Digital. I know you're busy, so I'll be quick. Thirty seconds, OK?
 > *(wait)*
 > **You:** We build websites only for fence and deck companies in Dallas–Fort Worth. I saw that {{company}} [doesn't have a website / only has a Facebook page / has a website that's hard to use on a phone].
-> I'd like to build you a **free draft website**: your photos, your cities, and a quote form that texts your phone. You don't pay anything to see it. If you like it, we talk. If not, no problem.
+> I'd like to build you a **free draft website**: your photos, your cities, and a quote form that sends requests straight to your phone. You don't pay anything to see it. If you like it, we talk. If not, no problem.
 > Can I send it to you?
 
 **If yes:**
@@ -332,7 +332,7 @@ If they ask which country, **tell them the truth**. If you work alone right now,
 
 ### 3.4 Voicemail (live, not recorded in advance; under 20 seconds; one per company)
 
-> Hi {{first_name}}, this is Moe with Picket Digital. We build websites for fence companies in Dallas–Fort Worth. I'd like to make {{company}} a free draft website, no cost to see it. I'll send you a short email too. My number is 276-300-4340. Thanks!
+> Hi {{first_name}}, this is Moe with Picket Digital. We build websites for fence companies in Dallas–Fort Worth. I'd like to make {{company}} a free draft website, no cost to see it. I'll send you a short email too. My number is 469-629-7172. Thanks!
 
 ---
 
@@ -568,7 +568,7 @@ Fence owners will check you before they reply. Many of your prospects live on Fa
 - LinkedIn banner: `brand/cover-linkedin-1584x396.png`
 - Short bio: `Websites for fence & deck companies in Dallas–Fort Worth. Free draft first. You pay only if you approve. Remote team, Texas business hours.`
 - Website: `https://picketdigital.com`
-- Phone: (276) 300-4340
+- Phone: (469) 629-7172
 
 **Rules:** post 2 times a week. Reply to every comment within a day. Pin the launch post. Don't tag companies you are prospecting. **Never use a real company's page or website as a "before" example** without their written OK.
 
@@ -585,7 +585,7 @@ How it works:
 2. You look at it on your phone and ask for changes.
 3. You only pay if you approve it.
 
-Your site gets your real photos, the cities you serve, tap-to-call, and a quote form that texts you when a homeowner asks for a price.
+Your site gets your real photos, the cities you serve, tap-to-call, and a quote form that sends requests straight to your phone when a homeowner asks for a price.
 
 Run a fence or deck crew in DFW? Send us a message or visit picketdigital.com.
 
@@ -614,7 +614,7 @@ picketdigital.com
 ```
 3 things every fence company website needs:
 
-1. A quote form that texts you.
+1. A quote form that sends requests straight to your phone.
 Homeowners often ask 2 or 3 companies for a price. The one who calls back first has a better chance to get the job.
 
 2. Your real photos.
@@ -651,7 +651,7 @@ Before and after (concept).
 
 Before: a Facebook page. Last post 3 months ago: "another one done!! call or msg for pricing."
 
-After: a website with the best projects on top, the cities they serve, tap-to-call, and a quote form that texts the owner.
+After: a website with the best projects on top, the cities they serve, tap-to-call, and a quote form that sends requests straight to the owner's phone.
 
 Same company. Same great work. Much easier for a homeowner to say "let's get a quote."
 
@@ -665,7 +665,7 @@ Try the slider yourself: picketdigital.com
 Before / after: a concept for a fence company.
 
 Before: only a Facebook page, hard to find on Google, no quote form, last post months ago.
-After: a phone-first website with real project photos, service-area cities, tap-to-call, and a quote form that texts the owner.
+After: a phone-first website with real project photos, service-area cities, tap-to-call, and a quote form that sends requests straight to the owner's phone.
 
 The work stays the same. What changes is how easy it is for a homeowner to ask for a quote.
 
