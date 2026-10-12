@@ -29,7 +29,7 @@ It's a plain "static" website. There's no build step, no framework and nothing t
 ## Launch checklist (do these before going live)
 
 
-1. **Phone number.** ✅ Done: (276) 300-4340, with a WhatsApp link in the contact section. To change it, edit the `tel:` links and visible number in `index.html` (contact section and footer) and the `"telephone"` line in the JSON-LD block near the top.
+1. **Phone number.** ✅ Done: calls go to (469) 629-7172 (KrispCall); the WhatsApp link in the contact section uses +1 276-300-4340. To change it, edit the `tel:` links and visible number in `index.html` (contact section and footer) and the `"telephone"` line in the JSON-LD block near the top.
 2. **Email address.** Make sure `hello@picketdigital.com` actually receives mail (set up the inbox or forwarding in your email provider). It appears in `index.html`, `privacy.html` and in `assets/js/main.js` (the error message).
 3. **Contact form (Formspree).** ✅ Connected to form `mbgdyzln`. Send yourself a test from the live site; the first submission may ask you to confirm the form in Formspree. To switch forms, change the `action` URL of the form in `index.html`.
 4. **(Optional) Hero video.** See "Add a hero video" below.
