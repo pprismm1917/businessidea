@@ -518,10 +518,10 @@ Update the row **right after every contact**. Use these three columns:
 Examples: `2026-10-16 email_2`, `2026-10-22 email_3`, `2026-10-15 send draft by 5pm`, `2026-10-14 call 4pm`.
 For `won`, `lost`, `no_reply`, `not_a_fit` and `do_not_contact`, leave `next_step` empty.
 
-Example rows (fictional companies):
+Example rows (fictional companies; only these columns shown, `prospects.csv` has more):
 
 ```
-company,city,websiteStatus,status,last_contact,next_step
+name,city,website_status,status,last_contact,next_step
 Lone Oak Fence Co.,Keller,facebook_only,email_1,2026-10-13,2026-10-16 email_2
 Prairie Post Fence & Deck,McKinney,outdated,draft_sent,2026-10-15,2026-10-17 T4 reminder
 Caliche Road Fence & Gate,Weatherford,none,do_not_contact,2026-10-14,
