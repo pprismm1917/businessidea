@@ -181,9 +181,9 @@ Optional one line: `Done, you won't hear from me again. Sorry for the bother.` T
 
 ## 2. Email 1 variants: no website, Facebook only, outdated website
 
-Look at the company first (section 6.2). Then pick the variant. The `websiteStatus` column in `prospects.csv` tells you which one:
+Look at the company first (section 6.2). Then pick the variant. The `website_status` column in `prospects.csv` tells you which one:
 
-| websiteStatus | Use |
+| website_status | Use |
 |---|---|
 | `none` | 2A: no website |
 | `facebook_only` | 2B: Facebook only |
