@@ -85,8 +85,9 @@ The site is set up for **Cloudflare Workers & Pages**.
    - **Build command:** leave empty (you build on your computer with `node build.mjs` and commit `dist/`)
    - **Deploy command:** `npx wrangler deploy`
 4. Deploy. You get a free `growth-guru.<your-account>.workers.dev` address to check everything.
+5. If the first build fails at "Cloning", Cloudflare built the repository's default branch, which may not contain this folder. Open **growth-guru → Settings → Build → Branch control**, set the production branch to the branch that holds the site, and push a change to start a new build. (**Retry build** rebuilds the old branch, so it fails again.)
 
-From then on, every push to GitHub redeploys automatically.
+From then on, every push to the production branch redeploys automatically.
 
 **"Push" means sending your changes to GitHub.** The easiest way is the free [GitHub Desktop](https://desktop.github.com) app:
 
