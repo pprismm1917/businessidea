@@ -78,8 +78,11 @@ Never invent a personal line. If you can't find anything true, skip it and start
 
 ```
 Moe
-Picket Digital · picketdigital.com · (469) 629-7172
-JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
+Picket Digital
+Websites & local SEO for DFW fence and deck companies
+picketdigital.com · (469) 629-7172
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, UAE
+
 Reply "no" and I won't email again.
 ```
 
@@ -114,8 +117,11 @@ No cost and nothing to sign to see it. If you don't like it, just say no.
 Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
-Picket Digital · picketdigital.com · (469) 629-7172
-JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
+Picket Digital
+Websites & local SEO for DFW fence and deck companies
+picketdigital.com · (469) 629-7172
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, UAE
+
 Reply "no" and I won't email again.
 ```
 
@@ -131,8 +137,11 @@ I can build the free draft for {{company}} this week. You'd see your own site, w
 Is that a "yes" or a "no"? Either answer is fine.
 
 Moe
-Picket Digital · picketdigital.com · (469) 629-7172
-JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
+Picket Digital
+Websites & local SEO for DFW fence and deck companies
+picketdigital.com · (469) 629-7172
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, UAE
+
 Reply "no" and I won't email again.
 ```
 
@@ -150,8 +159,11 @@ If you ever want a free website draft for {{company}}, just reply "yes". The off
 Wishing you a busy season in {{city}}.
 
 Moe
-Picket Digital · picketdigital.com · (469) 629-7172
-JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
+Picket Digital
+Websites & local SEO for DFW fence and deck companies
+picketdigital.com · (469) 629-7172
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, UAE
+
 Reply "no" and I won't email again.
 ```
 
@@ -211,8 +223,11 @@ No cost and nothing to sign to see it.
 Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
-Picket Digital · picketdigital.com · (469) 629-7172
-JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
+Picket Digital
+Websites & local SEO for DFW fence and deck companies
+picketdigital.com · (469) 629-7172
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, UAE
+
 Reply "no" and I won't email again.
 ```
 
@@ -234,8 +249,11 @@ No cost and nothing to sign to see it.
 Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
-Picket Digital · picketdigital.com · (469) 629-7172
-JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
+Picket Digital
+Websites & local SEO for DFW fence and deck companies
+picketdigital.com · (469) 629-7172
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, UAE
+
 Reply "no" and I won't email again.
 ```
 
@@ -257,8 +275,11 @@ No cost and nothing to sign to see it.
 Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
-Picket Digital · picketdigital.com · (469) 629-7172
-JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
+Picket Digital
+Websites & local SEO for DFW fence and deck companies
+picketdigital.com · (469) 629-7172
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, UAE
+
 Reply "no" and I won't email again.
 ```
 
