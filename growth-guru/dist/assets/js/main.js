@@ -274,10 +274,14 @@
       const dlg = id ? d.getElementById(`dlg-${id}`) : null;
       if (!dlg) return;
       const btn = $(`[data-open-dialog="dlg-${id}"]`);
-      if (btn) btn.focus({ preventScroll: true });
-      setTimeout(() => openDialog(dlg), delay);
+      setTimeout(() => {
+        if (btn) btn.focus({ preventScroll: true });
+        openDialog(dlg);
+      }, delay);
     };
-    fromHash(350);
+    // Wait for the page to finish loading: the browser's own jump to #… happens then and resets focus.
+    if (d.readyState === 'complete') fromHash(300);
+    else window.addEventListener('load', () => fromHash(250), { once: true });
     window.addEventListener('hashchange', () => fromHash(0));
   }
 
