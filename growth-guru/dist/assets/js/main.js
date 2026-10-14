@@ -433,11 +433,14 @@
     const callOnly = $$('[data-call-only]', form);
     const titleDefault = title ? title.textContent : '';
     // "Book a call" mode: the form doubles as the call request (no Calendly needed).
+    const wantsCall = el('wants_call');
     const setCallMode = (on) => {
+      if (wantsCall) wantsCall.checked = on;
       el('request').value = on ? 'call' : 'message';
       callOnly.forEach((n) => (n.hidden = !on));
       if (title) title.textContent = on ? 'Request your free strategy call' : titleDefault;
     };
+    if (wantsCall) wantsCall.addEventListener('change', () => setCallMode(wantsCall.checked));
 
     const show = (kind, html) => {
       status.className = `form-status is-visible form-status--${kind}`;

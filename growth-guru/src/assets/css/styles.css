@@ -3996,3 +3996,78 @@ html:not(.js) .modal:target {
     display: none;
   }
 }
+
+/* ---------- Contact form: "book a call" checkbox ---------- */
+.call-toggle {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(192, 132, 252, 0.22);
+  background: rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+  transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
+}
+.call-toggle:hover {
+  border-color: rgba(192, 132, 252, 0.4);
+}
+.call-toggle input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+.call-toggle__box {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  margin-top: 1px;
+  border-radius: 7px;
+  border: 1.5px solid rgba(192, 132, 252, 0.5);
+  background: rgba(255, 255, 255, 0.04);
+  transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.call-toggle__box svg {
+  width: 15px;
+  height: 15px;
+  stroke: #fff;
+  stroke-width: 3;
+  fill: none;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.15s, transform 0.2s;
+}
+.call-toggle__text {
+  display: grid;
+  gap: 2px;
+}
+.call-toggle__text strong {
+  font-size: 15px;
+  color: #ece6f7;
+}
+.call-toggle__text small {
+  font-size: 13px;
+  color: var(--muted);
+}
+.call-toggle:has(input:checked) {
+  border-color: var(--p-300);
+  background: rgba(168, 85, 247, 0.08);
+}
+.call-toggle input:checked + .call-toggle__box {
+  background: linear-gradient(135deg, #a855f7, #d946ef);
+  border-color: transparent;
+}
+.call-toggle input:checked + .call-toggle__box svg {
+  opacity: 1;
+  transform: scale(1);
+}
+.call-toggle input:focus-visible + .call-toggle__box {
+  box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.35);
+}
+@media (prefers-reduced-motion: reduce) {
+  .call-toggle, .call-toggle__box, .call-toggle__box svg { transition: none; }
+}
