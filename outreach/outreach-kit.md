@@ -28,7 +28,7 @@ Prospect list: `outreach/prospects.csv`
 
 | Day | Do this |
 |---|---|
-| Day 1 | Add your **mailing address** to the email signature (see 1.1). Create the Facebook Page and LinkedIn page (section 8). Publish the launch post. |
+| Day 1 | Mailing address is already in the email signature (see 1.1). Create the Facebook Page and LinkedIn page (section 8). Publish the launch post. |
 | Day 1 | Send yourself a test email to a Gmail and an Outlook address. Check it lands in the inbox (you already did this, good). |
 | Days 1–10 | Send **10–15** first emails per day to companies in `prospects.csv`. Follow the sequence in section 1. |
 | Days 2–10 | Call 5–10 companies per day during Texas business hours (section 3). |
@@ -48,7 +48,7 @@ Use a world clock on your phone with "Dallas" in it. All times in this kit are T
 - **Send from your real name and address:** "Moe, Picket Digital" `<moe@picketdigital.com>`. Replies go to the same address.
 - **Honest subject line.** It must match what is inside. Never write "re:" or "fwd:" on a first email.
 - **It is clearly an offer.** Our emails say what we sell. Never pretend to be a customer, a friend or a neighbor.
-- **Real mailing address in every email.** Replace `[mailing address]` with a real postal address where you receive mail: your real business address (in your country is fine) or a mailbox you rent. If you rent a US mailbox, call it a "mailing address". **Never call it an office.**
+- **Real mailing address in every email.** Ours is the Ras Al Khaimah business address in the signature. If you ever switch to a rented mailbox, use a real postal address where you receive mail. If you rent a US mailbox, call it a "mailing address". **Never call it an office.**
 - **Easy opt-out in every email:** "Reply 'no' and I won't email again."
 - **When someone says no, stop. Same day.** The law gives you 10 business days. Do it the same day. Mark them `do_not_contact` in `prospects.csv`. Never email them again, from any address.
 - **Plain text only.** No images, no attachments, no open-tracking. **One link maximum:** picketdigital.com.
@@ -79,7 +79,7 @@ Never invent a personal line. If you can't find anything true, skip it and start
 ```
 Moe
 Picket Digital · picketdigital.com · (469) 629-7172
-[mailing address]
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
 Reply "no" and I won't email again.
 ```
 
@@ -115,7 +115,7 @@ Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
 Picket Digital · picketdigital.com · (469) 629-7172
-[mailing address]
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
 Reply "no" and I won't email again.
 ```
 
@@ -132,7 +132,7 @@ Is that a "yes" or a "no"? Either answer is fine.
 
 Moe
 Picket Digital · picketdigital.com · (469) 629-7172
-[mailing address]
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
 Reply "no" and I won't email again.
 ```
 
@@ -151,7 +151,7 @@ Wishing you a busy season in {{city}}.
 
 Moe
 Picket Digital · picketdigital.com · (469) 629-7172
-[mailing address]
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
 Reply "no" and I won't email again.
 ```
 
@@ -212,7 +212,7 @@ Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
 Picket Digital · picketdigital.com · (469) 629-7172
-[mailing address]
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
 Reply "no" and I won't email again.
 ```
 
@@ -235,7 +235,7 @@ Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
 Picket Digital · picketdigital.com · (469) 629-7172
-[mailing address]
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
 Reply "no" and I won't email again.
 ```
 
@@ -258,7 +258,7 @@ Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
 Picket Digital · picketdigital.com · (469) 629-7172
-[mailing address]
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
 Reply "no" and I won't email again.
 ```
 

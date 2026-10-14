@@ -4,7 +4,7 @@ These are the 19 prospects in `prospects.csv` that publish an email address. Eac
 
 ## Before you send
 
-1. **Replace `[mailing address]`** in the signature with your real postal address (US law, CAN-SPAM). Without it, don't send.
+1. **Keep the mailing address** in the signature of every email (US law, CAN-SPAM). It's already filled in below.
 2. **Open their website once** before sending. If they've already fixed the problem mentioned, change that sentence or skip them.
 3. **Send from** `Moe, Picket Digital <moe@picketdigital.com>`, as **plain text** (no images, no attachments, no tracking).
 4. **Send 10 on Day 1, 9 on Day 2.** Weekday mornings, 6:30–9:00 am Texas time (= 4:30–7:00 pm Pakistan time).
@@ -17,7 +17,7 @@ These are the 19 prospects in `prospects.csv` that publish an email address. Eac
 ```
 Moe
 Picket Digital · picketdigital.com · (469) 629-7172
-[mailing address]
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
 Reply "no" and I won't email again.
 ```
 
@@ -42,7 +42,7 @@ Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
 Picket Digital · picketdigital.com · (469) 629-7172
-[mailing address]
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
 Reply "no" and I won't email again.
 ```
 
@@ -63,7 +63,7 @@ Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
 Picket Digital · picketdigital.com · (469) 629-7172
-[mailing address]
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
 Reply "no" and I won't email again.
 ```
 
@@ -84,7 +84,7 @@ Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
 Picket Digital · picketdigital.com · (469) 629-7172
-[mailing address]
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
 Reply "no" and I won't email again.
 ```
 
@@ -105,7 +105,7 @@ Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
 Picket Digital · picketdigital.com · (469) 629-7172
-[mailing address]
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
 Reply "no" and I won't email again.
 ```
 
@@ -126,7 +126,7 @@ Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
 Picket Digital · picketdigital.com · (469) 629-7172
-[mailing address]
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
 Reply "no" and I won't email again.
 ```
 
@@ -147,7 +147,7 @@ Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
 Picket Digital · picketdigital.com · (469) 629-7172
-[mailing address]
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
 Reply "no" and I won't email again.
 ```
 
@@ -168,7 +168,7 @@ Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
 Picket Digital · picketdigital.com · (469) 629-7172
-[mailing address]
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
 Reply "no" and I won't email again.
 ```
 
@@ -189,7 +189,7 @@ Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
 Picket Digital · picketdigital.com · (469) 629-7172
-[mailing address]
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
 Reply "no" and I won't email again.
 ```
 
@@ -210,7 +210,7 @@ Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
 Picket Digital · picketdigital.com · (469) 629-7172
-[mailing address]
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
 Reply "no" and I won't email again.
 ```
 
@@ -231,7 +231,7 @@ Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
 Picket Digital · picketdigital.com · (469) 629-7172
-[mailing address]
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
 Reply "no" and I won't email again.
 ```
 
@@ -256,7 +256,7 @@ Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
 Picket Digital · picketdigital.com · (469) 629-7172
-[mailing address]
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
 Reply "no" and I won't email again.
 ```
 
@@ -277,7 +277,7 @@ Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
 Picket Digital · picketdigital.com · (469) 629-7172
-[mailing address]
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
 Reply "no" and I won't email again.
 ```
 
@@ -298,7 +298,7 @@ Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
 Picket Digital · picketdigital.com · (469) 629-7172
-[mailing address]
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
 Reply "no" and I won't email again.
 ```
 
@@ -319,7 +319,7 @@ Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
 Picket Digital · picketdigital.com · (469) 629-7172
-[mailing address]
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
 Reply "no" and I won't email again.
 ```
 
@@ -340,7 +340,7 @@ Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
 Picket Digital · picketdigital.com · (469) 629-7172
-[mailing address]
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
 Reply "no" and I won't email again.
 ```
 
@@ -361,7 +361,7 @@ Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
 Picket Digital · picketdigital.com · (469) 629-7172
-[mailing address]
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
 Reply "no" and I won't email again.
 ```
 
@@ -382,7 +382,7 @@ Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
 Picket Digital · picketdigital.com · (469) 629-7172
-[mailing address]
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
 Reply "no" and I won't email again.
 ```
 
@@ -403,7 +403,7 @@ Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
 Picket Digital · picketdigital.com · (469) 629-7172
-[mailing address]
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
 Reply "no" and I won't email again.
 ```
 
@@ -424,6 +424,6 @@ Reply "yes" and I'll send a draft in 48 hours.
 
 Moe
 Picket Digital · picketdigital.com · (469) 629-7172
-[mailing address]
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
 Reply "no" and I won't email again.
 ```
