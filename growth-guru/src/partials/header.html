@@ -1,0 +1,31 @@
+<header class="site-header" data-header>
+  <div class="container site-header__inner">
+    <a class="brand" href="/" aria-label="Growth Guru Agency, home">
+      <img class="brand__mark" src="/assets/img/logo-mark.svg" width="40" height="40" alt="">
+      <span class="brand__text" aria-hidden="true">
+        <span class="brand__name">GROWTH GURU <span class="brand__tag">[GGA]</span></span>
+        <span class="brand__sub">DIGITAL AGENCY</span>
+      </span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      {{block:nav}}
+      <span class="nav__indicator" aria-hidden="true"></span>
+    </nav>
+    <div class="site-header__actions">
+      <a class="btn btn--primary btn--sm site-header__cta" {{book}}>Book a free strategy call</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
+        <span class="visually-hidden">Menu</span>
+        <span class="menu-toggle__bars" aria-hidden="true"><i></i><i></i><i></i></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu" data-menu>
+    <nav class="container mobile-menu__inner" aria-label="Mobile">
+      {{block:mobile-nav}}
+      <div class="mobile-menu__foot">
+        <a class="btn btn--primary btn--block" {{book}}>Book a free strategy call {{icon:arrow-right}}</a>
+        <a class="mobile-menu__email" href="mailto:{{site.email}}">{{icon:mail}}{{site.email}}</a>
+      </div>
+    </nav>
+  </div>
+</header>

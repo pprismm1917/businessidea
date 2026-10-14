@@ -1,0 +1,30 @@
+# Cloudflare headers file (copied to dist/_headers by build.mjs; the two {{...}} lines are filled in automatically).
+# If you add another outside service later (chat widget, analytics, video embed...), add its domain
+# to the Content-Security-Policy line below, or the browser will block it.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Strict-Transport-Security: max-age=31536000
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' {{CSP_SCRIPT_HASHES}} https://assets.calendly.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://assets.calendly.com; img-src 'self' data: https://assets.calendly.com; font-src 'self'; frame-src https://calendly.com https://*.calendly.com; connect-src 'self' https://formspree.io https://cloudflareinsights.com https://calendly.com; form-action 'self' https://formspree.io mailto:; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
+
+# CSS, JS, fonts and images: cache for a year (build.mjs adds ?v=... to links whenever a file changes)
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Pages: always check for a fresh copy
+{{HTML_CACHE_RULES}}
+
+# Small root files that keep the same name: cache for a day
+/og.png
+  Cache-Control: public, max-age=86400
+/apple-touch-icon.png
+  Cache-Control: public, max-age=86400
+/favicon.svg
+  Cache-Control: public, max-age=86400
+/robots.txt
+  Cache-Control: public, max-age=3600
+/sitemap.xml
+  Cache-Control: public, max-age=3600

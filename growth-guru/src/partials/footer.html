@@ -1,0 +1,46 @@
+<footer class="site-footer">
+  <div class="site-footer__glow" aria-hidden="true"></div>
+  <div class="container">
+    <div class="site-footer__grid">
+      <div class="site-footer__brand">
+        <a class="brand" href="/" aria-label="Growth Guru Agency, home">
+          <img class="brand__mark" src="/assets/img/logo-mark.svg" width="40" height="40" alt="" loading="lazy">
+          <span class="brand__text" aria-hidden="true">
+            <span class="brand__name">GROWTH GURU <span class="brand__tag">[GGA]</span></span>
+            <span class="brand__sub">DIGITAL AGENCY</span>
+          </span>
+        </a>
+        <p>Social media, websites and ads for businesses, brands and creators. Planned, made and run by one team.</p>
+        <a class="btn btn--primary btn--sm" {{book}}>Book a free strategy call {{icon:arrow-right}}</a>
+      </div>
+      <nav class="site-footer__col" aria-labelledby="ft-nav">
+        <h2 class="site-footer__title" id="ft-nav">Navigation</h2>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/services/">Services</a></li>
+          <li><a href="/work/">Work</a></li>
+          <li><a href="/pricing/">Pricing</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+      <nav class="site-footer__col" aria-labelledby="ft-services">
+        <h2 class="site-footer__title" id="ft-services">Services</h2>
+        {{block:footer-services}}
+      </nav>
+      <div class="site-footer__col">
+        <h2 class="site-footer__title">Connect</h2>
+        <ul class="site-footer__contact">
+          <li><a href="mailto:{{site.email}}">{{icon:mail}}<span>{{site.email}}</span></a></li>
+          <li><a href="/contact/">{{icon:message}}<span>Inquire online</span></a></li>
+          <li><span>{{icon:globe}}<span>Global remote team</span></span></li>
+        </ul>
+        {{block:socials}}
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      <p>© {{year}} Growth Guru Agency (GGA). All rights reserved.</p>
+      <p class="site-footer__legal"><span>Concept work is labeled</span><a href="/privacy/">Privacy</a></p>
+    </div>
+  </div>
+</footer>
