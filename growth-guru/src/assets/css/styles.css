@@ -1440,6 +1440,23 @@ main > .section:last-child {
   .hero-stage .gg-cube {
     --gg-w: 500px;
   }
+  /* bigger cube: move the labels out to its edges so they don't cover the corners */
+  .float-chip--1 {
+    left: -4%;
+    top: 15%;
+  }
+  .float-chip--2 {
+    right: -3%;
+    top: 9%;
+  }
+  .float-chip--3 {
+    left: -1%;
+    bottom: 13%;
+  }
+  .float-chip--4 {
+    right: -4%;
+    bottom: 17%;
+  }
 }
 @media (max-width: 480px) {
   .float-chip {
