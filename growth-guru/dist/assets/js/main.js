@@ -434,11 +434,21 @@
     const titleDefault = title ? title.textContent : '';
     // "Book a call" mode: the form doubles as the call request (no Calendly needed).
     const wantsCall = el('wants_call');
+    const callMsg = "Hi! I'd like to book a free 30-minute strategy call.";
     const setCallMode = (on) => {
       if (wantsCall) wantsCall.checked = on;
       el('request').value = on ? 'call' : 'message';
       callOnly.forEach((n) => (n.hidden = !on));
       if (title) title.textContent = on ? 'Request your free strategy call' : titleDefault;
+      // Unticked: drop the call greeting we filled in, unless the visitor has edited it.
+      const msg = el('message');
+      if (!on && msg && msg.value.trim() === callMsg) msg.value = '';
+    };
+    // Hidden fields (plan, request) survive form.reset(), so clear them by hand.
+    const clearForm = () => {
+      form.reset();
+      el('plan').value = '';
+      setCallMode(false);
     };
     if (wantsCall) wantsCall.addEventListener('change', () => setCallMode(wantsCall.checked));
 
@@ -494,7 +504,7 @@
         }
       } else if (intent === 'call') {
         setCallMode(true);
-        if (msg && !msg.value.trim()) msg.value = "Hi! I'd like to book a free 30-minute strategy call.";
+        if (msg && !msg.value.trim()) msg.value = callMsg;
         used = true;
       }
       if (used && scroll && card) {
@@ -526,7 +536,7 @@
       // Honeypot filled in: quietly pretend it worked.
       if (el('_gotcha') && el('_gotcha').value) {
         show('success', `<strong>Thanks, ${first}!</strong> Your message is on its way.`);
-        form.reset();
+        clearForm();
         return;
       }
       const isCall = el('request').value === 'call';
@@ -550,8 +560,7 @@
         if (res.ok) {
           const when = response ? ` ${esc(response.charAt(0).toLowerCase() + response.slice(1))}` : ' soon';
           show('success', isCall ? `<strong>Thanks, ${first}!</strong> Your call request is in. We'll email you${when} to confirm a time.` : `<strong>Thanks, ${first}!</strong> Your message is on its way. We'll reply${when}.`);
-          form.reset();
-          setCallMode(false);
+          clearForm();
           fields.forEach((f) => f.removeAttribute('aria-invalid'));
         } else {
           let detail = '';

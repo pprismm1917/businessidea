@@ -107,8 +107,11 @@ Whenever this README says "push", it means these three steps.
 2. In Cloudflare: **Add a site → enter your domain → Free plan**. Cloudflare scans and copies most existing records. Compare its list with your notes and add anything missing (especially MX and TXT).
 3. Cloudflare shows two **nameservers**. In GoDaddy: **Domain → Nameservers → Change → "I'll use my own nameservers"** and paste both. Save. (It can take from a few minutes to a day to switch.)
 4. When the domain shows "Active" in Cloudflare: open your Worker (**Workers & Pages → growth-guru → Settings → Domains & Routes → Add → Custom domain**) and add `yourdomain.com` and `www.yourdomain.com`.
-5. Set `siteUrl` in `site.config.json` to `https://yourdomain.com`, run `node build.mjs`, and push. This turns on the sitemap and the search-engine tags.
-6. Optional: in Google Search Console, add the domain and submit `https://yourdomain.com/sitemap.xml`.
+5. In Cloudflare, open your domain and turn on two settings:
+   - **SSL/TLS → Edge Certificates → Always Use HTTPS**: on. Visitors who type `http://` get sent to the secure `https://` address.
+   - **Rules → Overview → Templates → "Redirect from WWW to root"** → Deploy. `www.yourdomain.com` then forwards to `yourdomain.com`, so search engines see one site, not two.
+6. Set `siteUrl` in `site.config.json` to `https://yourdomain.com`, run `node build.mjs`, and push. This turns on the sitemap and the search-engine tags.
+7. Optional: in Google Search Console, add the domain and submit `https://yourdomain.com/sitemap.xml`.
 
 ---
 

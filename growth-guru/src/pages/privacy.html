@@ -1,7 +1,7 @@
 <!--page
 {
   "title": "Privacy Policy",
-  "description": "How Growth Guru Agency (GGA) handles the information you share through our website, contact form and booking calendar. Plain English, no surprises.",
+  "description": "How Growth Guru Agency (GGA) handles the information you share through our website and contact form. Plain English, no surprises.",
   "nav": "",
   "bodyClass": "page-privacy"
 }
@@ -17,7 +17,7 @@
       <h2 id="what-we-collect">What we collect</h2>
       <ul>
         <li><strong>Contact form.</strong> When you send us a message, we receive what you type: your name, email, company, website or social handle, the service you're interested in and your message.</li>
-        <li><strong>Strategy call bookings.</strong> If you book a call, you enter your name, email and any answers you choose to give into our booking calendar.</li>
+        {{#if site.calendlyUrl}}<li><strong>Strategy call bookings.</strong> If you book a call, you enter your name, email and any answers you choose to give into our booking calendar.</li>{{else}}<li><strong>Strategy call requests.</strong> If you ask for a call, we also receive the days and times you suggest.</li>{{/if}}
         <li><strong>Emails.</strong> If you email us directly, we receive your email address and whatever you include.</li>
         <li><strong>Basic visit statistics.</strong> Our hosting provider may count page visits in an anonymous, cookie-free way so we can see which pages are useful.</li>
       </ul>
@@ -25,7 +25,7 @@
       <h2 id="services-we-use">Services we use</h2>
       <ul>
         <li><strong>Formspree</strong> delivers contact form messages to our inbox. Your message passes through Formspree's servers on the way to us. See <a href="https://formspree.io/legal/privacy-policy/">Formspree's privacy policy</a>.</li>
-        <li><strong>Calendly</strong> runs our booking calendar. The booking window loads only when you click a booking button. See <a href="https://calendly.com/privacy">Calendly's privacy policy</a>.</li>
+        {{#if site.calendlyUrl}}<li><strong>Calendly</strong> runs our booking calendar. The booking window loads only when you click a booking button. See <a href="https://calendly.com/privacy">Calendly's privacy policy</a>.</li>{{/if}}
         <li><strong>Cloudflare</strong> hosts this website and keeps it fast and secure. See <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare's privacy policy</a>.</li>
       </ul>
 
@@ -38,7 +38,7 @@
       <p>We do <strong>not</strong> sell, rent or trade your personal information. We don't add you to a mailing list unless you ask us to.</p>
 
       <h2 id="cookies">Cookies</h2>
-      <p>This website does not use advertising or tracking cookies. If you open the booking calendar, Calendly may set its own cookies to make the booking work.</p>
+      <p>This website does not use advertising or tracking cookies.{{#if site.calendlyUrl}} If you open the booking calendar, Calendly may set its own cookies to make the booking work.{{/if}}</p>
 
       <h2 id="your-choices">Your choices</h2>
       <p>You can ask us at any time to see, correct or delete the information we hold about you. Just email us and we'll take care of it.</p>

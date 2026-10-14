@@ -694,7 +694,7 @@ function structuredData(cfg, page, posts) {
   if (page.nav === 'home') {
     const org = {
       '@context': 'https://schema.org',
-      '@type': 'ProfessionalService',
+      '@type': 'Organization',
       name: 'Growth Guru Agency',
       alternateName: ['GGA', 'Growth Guru'],
       description: 'Social media and digital marketing agency for businesses, brands and creators. Social media management, content creation, website design, paid ads, lead generation and branding.',
