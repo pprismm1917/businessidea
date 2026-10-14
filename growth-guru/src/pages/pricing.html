@@ -1,0 +1,137 @@
+<!--page
+{
+  "title": "Pricing",
+  "description": "Simple monthly plans with zero lock-in contracts: Growth at $199/month, Scale at $349/month, or a custom Enterprise scope. Annual and lifetime packages quoted on a short call.",
+  "nav": "pricing",
+  "bodyClass": "page-pricing",
+  "cube": true
+}
+-->
+<section class="page-hero" aria-labelledby="page-title">
+  <div class="container">
+    <div class="page-hero__grid">
+      <div>
+        <span class="pill hero-in" style="--i:0"><span class="pill__dot" aria-hidden="true"></span>Pricing</span>
+        <h1 class="display-2 hero-in" id="page-title" style="--i:1">Powerful solutions. <span class="grad-text">Flexible pricing.</span></h1>
+        <p class="hero__lead hero-in" style="--i:2">Clear monthly plans with zero lock-in contracts. Pick the plan that fits where you are today, or ask us for a custom scope.</p>
+        <div class="btn-row hero-in" style="--i:3">
+          <a class="btn btn--primary" href="#plans">See the plans {{icon:arrow-right}}</a>
+          <a class="btn btn--ghost" {{book}}>Book a free strategy call</a>
+        </div>
+      </div>
+      <div class="visual pillars" aria-hidden="true">
+        <div class="pillars__stage">
+          <div class="pillars__base"></div>
+          <div class="pillar" style="--h:38%;--i:0"><div class="pillar__body"></div><span class="pillar__cap"></span><span class="pillar__label">Growth</span></div>
+          <div class="pillar" style="--h:58%;--i:1"><div class="pillar__body"></div><span class="pillar__cap"></span><span class="pillar__label">Scale</span></div>
+          <div class="pillar pillar--top" style="--h:78%;--i:2"><div class="pillar__body"></div><span class="pillar__cap"></span><span class="pillar__label">Enterprise</span></div>
+        </div>
+        <svg class="pillars__arrow" viewBox="0 0 200 120" fill="none"><path d="M6 110 C 60 100, 110 70, 186 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M168 12 L188 12 L186 32" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke-dasharray:none;animation:none"/></svg>
+        <div class="particles">
+          <i style="--x:14%;--y:70%;--t:6s;--dl:-1s"></i>
+          <i style="--x:30%;--y:50%;--t:7s;--dl:-3s;--s:2px"></i>
+          <i style="--x:52%;--y:38%;--t:8s;--dl:-2s"></i>
+          <i style="--x:70%;--y:24%;--t:6.5s;--dl:-4s;--s:2px"></i>
+          <i style="--x:86%;--y:46%;--t:7.5s;--dl:-5s"></i>
+          <i style="--x:40%;--y:76%;--t:9s;--dl:-6s;--s:2px"></i>
+        </div>
+      </div>
+    </div>
+    <div class="value-grid">
+      <div class="card glow-card value-card" data-reveal style="--d:0">
+        <span class="icon-tile">{{icon:target}}</span>
+        <div><h3>Results-focused strategy</h3><p>Every plan starts with your goals, not a template.</p></div>
+      </div>
+      <div class="card glow-card value-card" data-reveal style="--d:1">
+        <span class="icon-tile">{{icon:eye}}</span>
+        <div><h3>Transparent pricing</h3><p>You see the price and what's included before you commit.</p></div>
+      </div>
+      <div class="card glow-card value-card" data-reveal style="--d:2">
+        <span class="icon-tile">{{icon:headset}}</span>
+        <div><h3>Dedicated support</h3><p>Talk directly to the strategists doing the work.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--flush-top" id="plans" aria-labelledby="plans-title">
+  <div class="container">
+    <div class="section-head section-head--center" data-reveal>
+      <span class="eyebrow">[ Plans ]</span>
+      <h2 id="plans-title">Choose how you want to work with us</h2>
+      <p>Zero lock-in contracts on every plan.</p>
+    </div>
+
+    <div data-tabs>
+      <div class="tabs-wrap" data-reveal>
+        <div class="tabs" role="tablist" aria-label="Billing options">
+          <span class="tabs__indicator" aria-hidden="true"></span>
+          <button class="tabs__btn" type="button" role="tab" id="tab-monthly" aria-controls="monthly" aria-selected="true">Monthly<span class="tabs__extra"> retainers</span></button>
+          <button class="tabs__btn" type="button" role="tab" id="tab-yearly" aria-controls="yearly" aria-selected="false" tabindex="-1">Yearly<span class="tabs__extra"> deals</span></button>
+          <button class="tabs__btn" type="button" role="tab" id="tab-lifetime" aria-controls="lifetime" aria-selected="false" tabindex="-1">Lifetime<span class="tabs__extra"> package</span></button>
+        </div>
+      </div>
+      <div class="tab-panel is-active" role="tabpanel" id="monthly" aria-labelledby="tab-monthly" tabindex="0">
+        {{block:pricing-monthly}}
+      </div>
+      <div class="tab-panel" role="tabpanel" id="yearly" aria-labelledby="tab-yearly" tabindex="0">
+        {{block:pricing-yearly}}
+      </div>
+      <div class="tab-panel" role="tabpanel" id="lifetime" aria-labelledby="tab-lifetime" tabindex="0">
+        {{block:pricing-lifetime}}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--flush-top" aria-labelledby="why-title">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">[ Why us ]</span>
+      <h2 id="why-title">Why partner with Growth Guru</h2>
+    </div>
+    <div class="why-grid">
+      <article class="card glow-card why-card" data-reveal style="--d:0">
+        <span class="icon-tile">{{icon:file}}</span>
+        <h3>Clear deliverables</h3>
+        <p>You know exactly what you're getting each month. No vague promises.</p>
+      </article>
+      <article class="card glow-card why-card" data-reveal style="--d:1">
+        <span class="icon-tile">{{icon:sliders}}</span>
+        <h3>Flexible options</h3>
+        <p>Start with what you need now and add more as you grow. Zero lock-in contracts.</p>
+      </article>
+      <article class="card glow-card why-card" data-reveal style="--d:2">
+        <span class="icon-tile">{{icon:eye}}</span>
+        <h3>Transparent pricing</h3>
+        <p>Simple monthly prices, published right here. Custom work is quoted up front.</p>
+      </article>
+      <article class="card glow-card why-card" data-reveal style="--d:3">
+        <span class="icon-tile">{{icon:message}}</span>
+        <h3>Direct communication</h3>
+        <p>Talk to the people doing the work, not a chain of account managers.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section section--flush-top" aria-labelledby="cta-title">
+  <div class="container">
+    <div class="cta-band" data-reveal="scale">
+      <div>
+        <span class="eyebrow">[ Still deciding? ]</span>
+        <h2 id="cta-title" style="margin-top:16px">Not sure which plan is right for you?</h2>
+        <p>Tell us about your business and goals. We'll recommend the plan that fits, even if it's the smallest one.</p>
+        <div class="btn-row">
+          <a class="btn btn--primary" {{book}}>Book a free strategy call {{icon:arrow-right}}</a>
+          <a class="btn btn--ghost" href="mailto:{{site.email}}">Email us</a>
+        </div>
+        <span class="cta-band__note">{{icon:clock}}30-minute call · No sales pressure</span>
+      </div>
+      <div class="cta-band__visual" aria-hidden="true">
+        <span class="ring"></span><span class="ring"></span><span class="ring"></span>
+        <div class="gg-cube" data-size="md" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+</section>

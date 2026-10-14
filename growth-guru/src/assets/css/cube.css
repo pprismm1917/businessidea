@@ -176,7 +176,15 @@
 @keyframes gg-halo { from { transform: scale(.92); opacity: .7; } to { transform: scale(1.03); opacity: 1; } }
 @keyframes gg-floor { from { transform: scale(.78); opacity: .35; } to { transform: scale(1.05); opacity: .75; } }
 
-/* reduced motion: a still, angled cube (base transforms above are the static pose) */
+/* reduced motion: the float, pulse, particles, orbits and mouse tilt all stop, but the
+   signature cube keeps turning, slowly and evenly (one smooth turn every 40s), so it
+   still reads as a live 3D object. Longhands keep the off-screen pause working. */
 @media (prefers-reduced-motion: reduce) {
   .gg-cube *, .gg-cube *::before, .gg-cube *::after { animation: none !important; }
+  .gg-cube .gg-cube__spin {
+    animation-name: gg-spin !important;
+    animation-duration: 40s !important;
+    animation-timing-function: linear !important;
+    animation-iteration-count: infinite !important;
+  }
 }

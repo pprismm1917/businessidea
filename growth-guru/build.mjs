@@ -88,6 +88,24 @@ function walk(dir) {
   return out;
 }
 
+// Conservative CSS minifier: drops comments and extra whitespace, never touches quoted strings.
+function minifyCss(css) {
+  return css
+    .split(/("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')/)
+    .map((part, i) =>
+      i % 2
+        ? part
+        : part
+            .replace(/\/\*[\s\S]*?\*\//g, '')
+            .replace(/\s+/g, ' ')
+            .replace(/\s*([{};,])\s*/g, '$1')
+            .replace(/: /g, ':')
+            .replace(/;}/g, '}'),
+    )
+    .join('')
+    .trim();
+}
+
 function writeFile(path, content) {
   mkdirSync(dirname(path), { recursive: true });
   writeFileSync(path, content);
@@ -404,9 +422,10 @@ const SERVICES = [
 
 function bookAttrs(cfg, page, { plan = '', service = '' } = {}) {
   if (cfg.calendlyUrl) return `href="${esc(cfg.calendlyUrl)}" data-calendly target="_blank" rel="noopener"`;
-  if (page.nav === 'contact') return 'href="#contact-form" data-focus-form';
-  const qs = plan ? `?plan=${encodeURIComponent(plan)}` : service ? `?service=${encodeURIComponent(service)}` : '';
-  return `href="/contact/${qs}"`;
+  // No Calendly yet: send people to the contact form. The #hash tells main.js what to pre-fill.
+  const intent = plan ? `plan-${plan}` : service ? `service-${service}` : 'call';
+  if (page.nav === 'contact') return `href="#${intent}" data-form-intent="${intent}"`;
+  return `href="/contact/#${intent}"`;
 }
 
 function pricePanel(cfg, page, plans, key) {
@@ -470,6 +489,10 @@ function makeBlocks(cfg, posts) {
         (n, i) => `<li style="--i:${i}"><a href="${n.href}"${ctx.page.nav === n.key ? ' aria-current="page"' : ''}>${n.label}${icon('arrow-right')}</a></li>`,
       ).join('')}</ul>`,
     socials: () => socialLinks(cfg),
+    // Email shown as text with a line-break hint before "@" so it never splits mid-word on phones.
+    'email-text': () => esc(cfg.email).replace('@', '<wbr>@'),
+    // Keep "(Mon–Fri)" together when the response time wraps (word joiner after each dash).
+    'response-text': () => esc(cfg.responseTime).replace(/[–-]/g, '$&\u2060'),
     'footer-services': () =>
       `<ul>${SERVICES.map((s) => `<li><a href="/services/#${s.id}">${esc(s.short)}</a></li>`).join('')}</ul>`,
     'pricing-monthly': (ctx) => pricePanel(cfg, ctx.page, cfg.pricing.monthly, 'monthly'),
@@ -487,7 +510,7 @@ function makeBlocks(cfg, posts) {
       const base = endpoint
         ? `action="${endpoint}" method="POST" data-endpoint="${endpoint}"`
         : `action="mailto:${esc(cfg.email)}" method="POST" enctype="text/plain" data-endpoint=""`;
-      return `${base} data-email="${esc(cfg.email)}" data-plans="${esc(JSON.stringify(plans))}"`;
+      return `${base} data-email="${esc(cfg.email)}" data-response="${esc(cfg.responseTime)}" data-plans="${esc(JSON.stringify(plans))}"`;
     },
     'blog-topics': () =>
       Object.entries(CATEGORIES)
@@ -589,7 +612,7 @@ function jsonLd(obj) {
 function headMeta(cfg, page) {
   const abs = (p) => (cfg.siteUrl ? cfg.siteUrl + p : p);
   const out = [];
-  const ogImage = abs('/og.png');
+  const ogImage = abs('/assets/img/og.jpg');
   if (cfg.siteUrl && page.path) {
     out.push(`<link rel="canonical" href="${esc(abs(page.path))}">`);
     out.push(`<meta property="og:url" content="${esc(abs(page.path))}">`);
@@ -631,8 +654,8 @@ function structuredData(cfg, page, posts) {
     };
     if (cfg.siteUrl) {
       org.url = cfg.siteUrl + '/';
-      org.logo = cfg.siteUrl + '/apple-touch-icon.png';
-      org.image = cfg.siteUrl + '/og.png';
+      org.logo = cfg.siteUrl + '/assets/img/apple-touch-icon.png';
+      org.image = cfg.siteUrl + '/assets/img/og.jpg';
     }
     const same = Object.values(cfg.socials);
     if (same.length) org.sameAs = same;
@@ -655,7 +678,7 @@ function structuredData(cfg, page, posts) {
       data.mainEntityOfPage = abs(p.url);
       data.url = abs(p.url);
       data.image = abs(p.cover);
-      data.publisher.logo = { '@type': 'ImageObject', url: abs('/apple-touch-icon.png') };
+      data.publisher.logo = { '@type': 'ImageObject', url: abs('/assets/img/apple-touch-icon.png') };
     }
     return jsonLd(data);
   }
@@ -670,10 +693,13 @@ function articleBody(cfg, post, posts) {
   const others = posts.filter((p) => p !== post && p.category !== post.category);
   const related = [...same, ...others].slice(0, 3);
   const cat = CATEGORIES[post.category];
+  // "Book a free strategy call" links written in the posts follow the same rule as every other
+  // booking button: Calendly popup once calendlyUrl is set, otherwise the contact form (pre-filled).
+  const prose = post.html.replace(/<a href="\/contact\/?(?:#[\w-]*)?">([^<]*strategy call[^<]*)<\/a>/gi, (_, label) => `<a ${bookAttrs(cfg, { nav: 'blog' })}>${label}</a>`);
   return `<article class="article">
   <header class="article__hero">
     <div class="container container--narrow">
-      <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/blog/">Growth Hub</a></li><li><a href="/blog/#latest" data-topic-link="${post.category}">${esc(cat.label)}</a></li></ol></nav>
+      <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/blog/">Growth Hub</a></li><li><a href="/blog/?topic=${post.category}#latest">${esc(cat.label)}</a></li></ol></nav>
       <span class="tag">${icon(cat.icon)}${esc(post.categoryLabel)}</span>
       <h1 class="article__title">${esc(post.title)}</h1>
       ${post.excerpt ? `<p class="article__lede">${esc(post.excerpt)}</p>` : ''}
@@ -689,7 +715,7 @@ function articleBody(cfg, post, posts) {
   </figure>
   <div class="container container--narrow">
     <div class="prose">
-${post.html}
+${prose}
     </div>
     <aside class="cta-box glass" aria-label="Work with us">
       <span class="eyebrow">Want help with this?</span>
@@ -740,8 +766,9 @@ function build() {
     const rel = relative(SRC, file).split(sep).join('/');
     const dest = join(DIST, rel);
     mkdirSync(dirname(dest), { recursive: true });
-    copyFileSync(file, dest);
-    const buf = readFileSync(file);
+    let buf = readFileSync(file);
+    if (rel.endsWith('.css')) buf = Buffer.from(minifyCss(buf.toString('utf8')));
+    writeFileSync(dest, buf);
     assetBytes += buf.length;
     assetHashes.set('/' + rel, hash(buf).slice(0, 8));
   }
@@ -749,7 +776,10 @@ function build() {
     const rel = relative(join(SRC, 'static'), file).split(sep).join('/');
     writeFile(join(DIST, rel), readFileSync(file));
   }
-  if (existsSync(join(SRC, 'assets', 'img', 'favicon.svg'))) copyFileSync(join(SRC, 'assets', 'img', 'favicon.svg'), join(DIST, 'favicon.svg'));
+  // Browsers and iPhones sometimes ask for these at the site root, so keep a copy there too.
+  for (const name of ['favicon.svg', 'apple-touch-icon.png']) {
+    if (existsSync(join(SRC, 'assets', 'img', name))) copyFileSync(join(SRC, 'assets', 'img', name), join(DIST, name));
+  }
 
   const versioned = (html, outFile) =>
     html.replace(/(href|src|content)="(\/assets\/[^"?#]+)"/g, (m, attr, p) => {
@@ -824,6 +854,7 @@ function build() {
   if (cfg.siteUrl) {
     const urls = pages
       .filter((p) => p.path && !p.noindex)
+      .sort((a, b) => (a.path === '/' ? -1 : b.path === '/' ? 1 : 0))
       .map((p) => `  <url><loc>${esc(cfg.siteUrl + p.path)}</loc>${p.article ? `<lastmod>${esc(p.article.date)}</lastmod>` : ''}</url>`);
     writeFile(join(DIST, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`);
     writeFile(join(DIST, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${cfg.siteUrl}/sitemap.xml\n`);
@@ -839,9 +870,10 @@ function build() {
   console.log(`  calendlyUrl: ${status(cfg.calendlyUrl, 'booking buttons open Calendly', 'booking buttons go to /contact/')}`);
   console.log(`  formspreeId: ${status(cfg.formspreeId, 'form sends to Formspree', 'form shows the email address instead')}`);
   console.log(`  socials:     ${Object.keys(cfg.socials).length ? Object.keys(cfg.socials).join(', ') : 'none set (icons hidden)'}`);
-  if (warnings.length) {
-    console.log(`\n  Warnings (${warnings.length}):`);
-    for (const w of [...new Set(warnings)]) console.log(`  - ${w}`);
+  const unique = [...new Set(warnings)];
+  if (unique.length) {
+    console.log(`\n  Warnings (${unique.length}):`);
+    for (const w of unique) console.log(`  - ${w}`);
   }
   console.log(`\n  Done in ${Date.now() - started} ms. Output: dist/\n`);
 }
