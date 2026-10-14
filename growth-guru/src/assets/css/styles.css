@@ -464,6 +464,13 @@ main {
   text-transform: uppercase;
   line-height: 1.3;
 }
+@media (max-width: 380px) {
+  .pill {
+    padding-right: 12px;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+  }
+}
 .pill__dot {
   position: relative;
   width: 8px;
@@ -674,6 +681,13 @@ main {
 .js [data-reveal].is-in {
   opacity: 1;
   transform: none;
+}
+/* decorative loops pause while scrolled out of view (class set by main.js) */
+.is-offscreen,
+.is-offscreen *,
+.is-offscreen *::before,
+.is-offscreen *::after {
+  animation-play-state: paused !important;
 }
 
 /* ==========================================================================
@@ -985,10 +999,12 @@ main {
 .site-footer {
   position: relative;
   overflow: hidden;
-  margin-top: var(--sp-8);
-  padding-block: var(--sp-9) var(--sp-6);
-  border-top: 1px solid var(--line-soft);
-  background: linear-gradient(180deg, rgba(17, 13, 26, 0.4), rgba(7, 6, 11, 1));
+  padding-block: var(--sp-8) var(--sp-6);
+  /* no seam: the last section's glow fades into the footer */
+  background: linear-gradient(180deg, transparent, rgba(17, 13, 26, 0.55) 140px, var(--bg));
+}
+main > .section:last-child {
+  padding-bottom: var(--sp-8);
 }
 .site-footer__glow {
   position: absolute;
@@ -1031,7 +1047,16 @@ main {
 }
 .site-footer__col > ul:not(.socials) {
   display: grid;
-  gap: 10px;
+  gap: 0;
+}
+/* taller tap targets, same visual rhythm */
+.site-footer__col > ul:not(.socials) a,
+.site-footer__contact > li > span,
+.site-footer__legal a {
+  padding-block: 7px;
+}
+.site-footer__col > ul:not(.socials):not(.site-footer__contact) a {
+  display: inline-block;
 }
 .site-footer__col a,
 .site-footer__contact span {
@@ -1404,8 +1429,16 @@ main {
   }
 }
 @media (max-width: 959px) {
+  /* phones/tablets: the cube leads, compact enough that the headline and main button stay on the first screen */
   .hero-stage {
-    width: min(100%, 460px);
+    order: -1;
+    width: min(100%, 340px);
+    margin-block: -12px -28px;
+  }
+}
+@media (min-width: 1200px) {
+  .hero-stage .gg-cube {
+    --gg-w: 500px;
   }
 }
 @media (max-width: 480px) {
@@ -1596,6 +1629,17 @@ main {
   font-size: 1.3rem;
   letter-spacing: -0.02em;
 }
+/* "Client" on its own line above the project name, so titles never break around a dash */
+.work-card__client {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 0.78em;
+  letter-spacing: 0;
+  color: var(--p-200);
+}
+.nowrap {
+  white-space: nowrap;
+}
 .work-card__body p {
   color: var(--text-2);
   font-size: 15px;
@@ -1650,11 +1694,14 @@ main {
   transform-origin: top;
   transform: scaleY(0);
   transition: transform 1.6s var(--ease) 0.2s;
+  /* the travelling dot moves with transform in container units (GPU, no per-frame layout) */
+  container-type: size;
 }
 .process__line::after {
   content: "";
   position: absolute;
   left: -4px;
+  top: 0;
   width: 10px;
   height: 10px;
   border-radius: 50%;
@@ -1671,11 +1718,19 @@ html:not(.js) .process__line {
   opacity: 1;
 }
 @keyframes travel-y {
-  0% {
-    top: 0;
+  from {
+    transform: translateY(0);
   }
-  100% {
-    top: calc(100% - 10px);
+  to {
+    transform: translateY(calc(100cqh - 10px));
+  }
+}
+@keyframes travel-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(100cqw - 10px));
   }
 }
 .step {
@@ -1734,15 +1789,8 @@ html:not(.js) .process__line {
   }
   .process__line::after {
     top: -4px;
+    left: 0;
     animation-name: travel-x;
-  }
-  @keyframes travel-x {
-    0% {
-      left: 0;
-    }
-    100% {
-      left: calc(100% - 10px);
-    }
   }
   .step {
     grid-template-columns: 1fr;
@@ -2245,12 +2293,6 @@ html:not(.js) .process__line {
 }
 .pillars__arrow path {
   stroke-dasharray: 6 8;
-  animation: dash 1.6s linear infinite;
-}
-@keyframes dash {
-  to {
-    stroke-dashoffset: -28;
-  }
 }
 
 /* --- Blog: floating editorial cards --- */
@@ -2347,6 +2389,16 @@ html:not(.js) .process__line {
 .ed-card--2,
 .ed-card--3 {
   filter: saturate(0.8) brightness(0.8);
+}
+/* only the front card shows readable text; the cards behind keep art + skeleton lines */
+.ed-card--2 :is(.ed-card__tag, .ed-card__title),
+.ed-card--3 :is(.ed-card__tag, .ed-card__title) {
+  visibility: hidden;
+}
+@media (max-width: 420px) {
+  .ed-card--3 {
+    left: 2%;
+  }
 }
 .editorial__cursor {
   position: absolute;
@@ -2496,6 +2548,18 @@ html:not(.js) .process__line {
 .jump__inner::-webkit-scrollbar {
   display: none;
 }
+/* fade the edge that has more chips behind it (classes set by main.js), so the rail reads as scrollable */
+.jump__inner.fade-start,
+.jump__inner.fade-end {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 var(--fs, 0px), #000 calc(100% - var(--fe, 0px)), transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 var(--fs, 0px), #000 calc(100% - var(--fe, 0px)), transparent);
+}
+.jump__inner.fade-start {
+  --fs: 48px;
+}
+.jump__inner.fade-end {
+  --fe: 56px;
+}
 .jump .chip {
   border-color: transparent;
   flex: none;
@@ -2544,9 +2608,12 @@ html:not(.js) .process__line {
   font-size: clamp(3rem, 6vw, 4.5rem);
   font-weight: 800;
   line-height: 1;
-  letter-spacing: -0.05em;
-  color: transparent;
-  -webkit-text-stroke: 1.5px rgba(192, 132, 252, 0.6);
+  letter-spacing: -0.02em;
+  /* the fill (page color) covers the variable font's overlapping inner contours;
+     half of the 3px stroke shows as a clean 1.5px outline */
+  color: var(--bg);
+  -webkit-text-stroke: 3px rgba(192, 132, 252, 0.6);
+  paint-order: stroke fill;
 }
 .service-block h2 {
   font-size: clamp(1.8rem, 3.4vw, 2.6rem);
@@ -2652,9 +2719,10 @@ html:not(.js) .process__line {
   gap: 8px;
   overflow-x: auto;
   scrollbar-width: none;
-  padding: 2px;
-  margin: -2px;
-  max-width: 100%;
+  /* room for the 2px + 3px focus ring inside the scroll box */
+  padding: 6px;
+  margin: -6px;
+  max-width: calc(100% + 12px);
 }
 .filter-bar__chips::-webkit-scrollbar {
   display: none;
@@ -2796,13 +2864,28 @@ html:has(.modal[open]) {
   background: rgba(168, 85, 247, 0.35);
 }
 @media (min-width: 820px) {
+  .modal {
+    width: min(1040px, calc(100% - 32px));
+  }
+  /* show the whole 3:2 artwork instead of cropping it into a tall column */
   .modal__grid {
-    grid-template-columns: 1.05fr 1fr;
+    grid-template-columns: 1.25fr 1fr;
+    align-items: center;
   }
   .modal__media {
-    aspect-ratio: auto;
-    min-height: 100%;
+    aspect-ratio: 3 / 2;
+    min-height: 0;
   }
+}
+/* no JavaScript: "View project" links to #dlg-…, so show that project as an overlay */
+html:not(.js) .modal:target {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  height: fit-content;
+  margin: auto;
+  box-shadow: 0 0 0 100vmax rgba(4, 3, 8, 0.86), 0 60px 160px -40px rgba(124, 58, 237, 0.7);
 }
 
 /* ==========================================================================
