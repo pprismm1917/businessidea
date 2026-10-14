@@ -1,0 +1,75 @@
+{
+  "siteUrl": "",
+  "email": "growthguruagency1@gmail.com",
+  "responseTime": "Within 24 business hours (Mon–Fri)",
+  "calendlyUrl": "",
+  "formspreeId": "",
+  "socials": {
+    "instagram": "",
+    "tiktok": "",
+    "facebook": "",
+    "linkedin": "",
+    "x": ""
+  },
+  "pricing": {
+    "currency": "$",
+    "monthly": [
+      {
+        "id": "growth",
+        "name": "Growth",
+        "price": "199",
+        "period": "/month",
+        "badge": "Most popular",
+        "highlight": true,
+        "tagline": "For growing brands ready to grow reach, engagement and inbound leads.",
+        "features": [
+          "Dedicated growth strategy roadmap",
+          "Social media strategy & content planning",
+          "Targeted campaign frameworks",
+          "Monthly performance & analytics report",
+          "Community engagement & optimization",
+          "Priority email & Slack support"
+        ],
+        "button": "Choose Growth ($199/mo)"
+      },
+      {
+        "id": "scale",
+        "name": "Scale",
+        "price": "349",
+        "period": "/month",
+        "badge": "High momentum",
+        "highlight": false,
+        "tagline": "For established businesses ready to lead their niche and scale lead generation.",
+        "features": [
+          "Everything in Growth",
+          "Multi-channel content & creative direction",
+          "Paid acquisition & ad funnel strategy",
+          "Conversion rate optimization (CRO)",
+          "Bi-weekly strategy sprints",
+          "Priority access to a strategy director"
+        ],
+        "button": "Choose Scale ($349/mo)"
+      },
+      {
+        "id": "enterprise",
+        "name": "Enterprise",
+        "price": "Custom pricing",
+        "period": "",
+        "badge": "Full custom scope",
+        "highlight": false,
+        "tagline": "For high-growth companies with custom goals.",
+        "features": [
+          "Full-funnel marketing strategy",
+          "Dedicated creative & paid acquisition team",
+          "Marketing technology & CRM setup",
+          "Continuous conversion & funnel testing",
+          "Priority Slack / executive channel",
+          "Custom scope, deliverables & SLA"
+        ],
+        "button": "Request a custom quote"
+      }
+    ],
+    "yearly": null,
+    "lifetime": null
+  }
+}
