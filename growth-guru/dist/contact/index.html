@@ -25,7 +25,7 @@
 <link rel="icon" href="/assets/img/favicon.svg?v=8060ca90" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png?v=ad452e82">
 <script>(function(d){d.classList.add('js');setTimeout(function(){if(!d.classList.contains('ready'))d.classList.remove('js')},4000)})(document.documentElement);</script>
-<script src="/assets/js/main.js?v=41e6752f" defer></script>
+<script src="/assets/js/main.js?v=0b47685d" defer></script>
 
 
 </head>
@@ -90,11 +90,12 @@
   <div class="container">
     <div class="contact-grid">
       <div class="glass hairline form-card" id="contact-form" data-reveal>
-        <h2>Send us a message</h2>
+        <h2 data-form-title>Send us a message</h2>
         <p>Fields marked <span aria-hidden="true" style="color:var(--magenta-2)">*</span><span class="visually-hidden">with an asterisk</span> are required.</p>
         <form class="form" action="https://formspree.io/f/xljgoevz" method="POST" data-endpoint="https://formspree.io/f/xljgoevz" data-email="growthguruagency1@gmail.com" data-response="Within 24 business hours (Mon–Fri)" data-plans="{&quot;growth&quot;:&quot;Growth ($199/month)&quot;,&quot;scale&quot;:&quot;Scale ($349/month)&quot;,&quot;enterprise&quot;:&quot;Enterprise&quot;}" data-contact-form novalidate>
           <input type="hidden" name="_subject" value="New inquiry from the Growth Guru website">
           <input type="hidden" name="plan" value="">
+          <input type="hidden" name="request" value="message">
           <div class="hp-field" aria-hidden="true">
             <label for="cf-company-site">Leave this field empty</label>
             <input type="text" id="cf-company-site" name="_gotcha" tabindex="-1" autocomplete="off">
@@ -128,6 +129,10 @@
               <option value="AI-Powered Digital Marketing" data-key="ai-marketing">AI-Powered Digital Marketing</option><option value="Social Media Management &amp; Content Creation" data-key="social-media">Social Media Management &amp; Content Creation</option><option value="Website Design &amp; Development" data-key="web-design">Website Design &amp; Development</option><option value="Lead Generation &amp; Conversion Strategy" data-key="lead-generation">Lead Generation &amp; Conversion Strategy</option><option value="Branding &amp; Creative Design" data-key="branding">Branding &amp; Creative Design</option><option value="Not sure yet" data-key="not-sure">Not sure yet</option>
             </select>
             <p class="field__error" id="cf-service-error"></p>
+          </div>
+          <div class="field" data-call-only hidden>
+            <label for="cf-call-time">Best days and times for a call <span class="opt">(optional)</span></label>
+            <input id="cf-call-time" name="call_time" type="text" autocomplete="off" placeholder="e.g. Weekdays after 2pm, Eastern time">
           </div>
           <div class="field">
             <label for="cf-message">Message<span class="req" aria-hidden="true">*</span></label>

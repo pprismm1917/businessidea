@@ -33,11 +33,12 @@
   <div class="container">
     <div class="contact-grid">
       <div class="glass hairline form-card" id="contact-form" data-reveal>
-        <h2>Send us a message</h2>
+        <h2 data-form-title>Send us a message</h2>
         <p>Fields marked <span aria-hidden="true" style="color:var(--magenta-2)">*</span><span class="visually-hidden">with an asterisk</span> are required.</p>
         <form class="form" {{block:form-attrs}} data-contact-form novalidate>
           <input type="hidden" name="_subject" value="New inquiry from the Growth Guru website">
           <input type="hidden" name="plan" value="">
+          <input type="hidden" name="request" value="message">
           <div class="hp-field" aria-hidden="true">
             <label for="cf-company-site">Leave this field empty</label>
             <input type="text" id="cf-company-site" name="_gotcha" tabindex="-1" autocomplete="off">
@@ -71,6 +72,10 @@
               {{block:service-options}}
             </select>
             <p class="field__error" id="cf-service-error"></p>
+          </div>
+          <div class="field" data-call-only hidden>
+            <label for="cf-call-time">Best days and times for a call <span class="opt">(optional)</span></label>
+            <input id="cf-call-time" name="call_time" type="text" autocomplete="off" placeholder="e.g. Weekdays after 2pm, Eastern time">
           </div>
           <div class="field">
             <label for="cf-message">Message<span class="req" aria-hidden="true">*</span></label>

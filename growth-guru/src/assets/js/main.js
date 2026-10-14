@@ -429,6 +429,15 @@
     const card = $('#contact-form');
     const fields = $$('input[required], select[required], textarea[required]', form);
     const el = (name) => form.elements.namedItem(name);
+    const title = $('[data-form-title]');
+    const callOnly = $$('[data-call-only]', form);
+    const titleDefault = title ? title.textContent : '';
+    // "Book a call" mode: the form doubles as the call request (no Calendly needed).
+    const setCallMode = (on) => {
+      el('request').value = on ? 'call' : 'message';
+      callOnly.forEach((n) => (n.hidden = !on));
+      if (title) title.textContent = on ? 'Request your free strategy call' : titleDefault;
+    };
 
     const show = (kind, html) => {
       status.className = `form-status is-visible form-status--${kind}`;
@@ -481,7 +490,8 @@
           used = true;
         }
       } else if (intent === 'call') {
-        if (msg && !msg.value.trim()) msg.value = "Hi! I'd like to book a free strategy call. Good days and times for me: ";
+        setCallMode(true);
+        if (msg && !msg.value.trim()) msg.value = "Hi! I'd like to book a free 30-minute strategy call.";
         used = true;
       }
       if (used && scroll && card) {
@@ -516,9 +526,13 @@
         form.reset();
         return;
       }
+      const isCall = el('request').value === 'call';
+      const plan = el('plan').value;
+      const subject = isCall ? `${name} asked to schedule a call with you` : plan ? `${name} is interested in the ${plan} plan` : `New inquiry from ${name}`;
+      el('_subject').value = subject;
       const mailHref = () => {
-        const body = [`Name: ${name}`, `Email: ${el('email').value.trim()}`, `Company: ${el('company').value.trim()}`, `Website/social: ${el('website').value.trim()}`, `Service: ${el('service').value}`, '', el('message').value.trim()].join('\n');
-        return `mailto:${email}?subject=${encodeURIComponent(`Inquiry from ${name}`)}&body=${encodeURIComponent(body)}`;
+        const body = [`Name: ${name}`, `Email: ${el('email').value.trim()}`, `Company: ${el('company').value.trim()}`, `Website/social: ${el('website').value.trim()}`, `Service: ${el('service').value}`, ...(isCall ? [`Best time for a call: ${el('call_time').value.trim()}`] : []), '', el('message').value.trim()].join('\n');
+        return `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       };
       if (!endpoint) {
         show('info', `Our form is being connected. Please email us at <a href="${esc(mailHref())}">${esc(email)}</a>. Tap the address and your message will be copied into the email for you.`);
@@ -531,8 +545,10 @@
       try {
         const res = await fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
         if (res.ok) {
-          show('success', `<strong>Thanks, ${first}!</strong> Your message is on its way.${response ? ` We'll reply ${esc(response.charAt(0).toLowerCase() + response.slice(1))}.` : ''}`);
+          const when = response ? ` ${esc(response.charAt(0).toLowerCase() + response.slice(1))}` : ' soon';
+          show('success', isCall ? `<strong>Thanks, ${first}!</strong> Your call request is in. We'll email you${when} to confirm a time.` : `<strong>Thanks, ${first}!</strong> Your message is on its way. We'll reply${when}.`);
           form.reset();
+          setCallMode(false);
           fields.forEach((f) => f.removeAttribute('aria-invalid'));
         } else {
           let detail = '';
