@@ -38,7 +38,6 @@ Open `site.config.json` in any text editor. Every value is optional; the site st
 | `formspreeId` | The ID of your Formspree form, e.g. `"xyzabcde"` (the last part of `https://formspree.io/f/xyzabcde`) | The contact form politely shows your email address instead of sending. |
 | `socials` | Full links to your profiles, e.g. `"https://www.instagram.com/yourhandle/"` | That icon simply doesn't appear (no dead links). |
 | `pricing.monthly` | The three monthly plans: name, price, badge, description, features, button text | — |
-| `pricing.yearly`, `pricing.lifetime` | `null` for now, or a list of plans in the same format as `monthly` | Those tabs show "Annual and lifetime packages are quoted on a short call." with a booking button. |
 
 Tips:
 - Keep the quotes and commas exactly as they are. If the build complains, it tells you roughly where the typo is.

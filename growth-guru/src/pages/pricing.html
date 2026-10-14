@@ -1,7 +1,7 @@
 <!--page
 {
   "title": "Pricing",
-  "description": "Simple monthly plans with zero lock-in contracts: Growth at $199/month, Scale at $349/month, or a custom Enterprise scope. Annual and lifetime packages quoted on a short call.",
+  "description": "Simple monthly plans with zero lock-in contracts: Growth at $199/month, Scale at $349/month, or a custom Enterprise scope.",
   "nav": "pricing",
   "bodyClass": "page-pricing",
   "cube": true
@@ -58,28 +58,12 @@
   <div class="container">
     <div class="section-head section-head--center" data-reveal>
       <span class="eyebrow">[ Plans ]</span>
-      <h2 id="plans-title">Choose how you want to work with us</h2>
+      <h2 id="plans-title">Simple monthly plans</h2>
       <p>Zero lock-in contracts on every plan.</p>
     </div>
 
-    <div data-tabs>
-      <div class="tabs-wrap" data-reveal>
-        <div class="tabs" role="tablist" aria-label="Billing options">
-          <span class="tabs__indicator" aria-hidden="true"></span>
-          <button class="tabs__btn" type="button" role="tab" id="tab-monthly" aria-controls="monthly" aria-selected="true">Monthly<span class="tabs__extra"> retainers</span></button>
-          <button class="tabs__btn" type="button" role="tab" id="tab-yearly" aria-controls="yearly" aria-selected="false" tabindex="-1">Yearly<span class="tabs__extra"> deals</span></button>
-          <button class="tabs__btn" type="button" role="tab" id="tab-lifetime" aria-controls="lifetime" aria-selected="false" tabindex="-1">Lifetime<span class="tabs__extra"> package</span></button>
-        </div>
-      </div>
-      <div class="tab-panel is-active" role="tabpanel" id="monthly" aria-labelledby="tab-monthly" tabindex="0">
-        {{block:pricing-monthly}}
-      </div>
-      <div class="tab-panel" role="tabpanel" id="yearly" aria-labelledby="tab-yearly" tabindex="0">
-        {{block:pricing-yearly}}
-      </div>
-      <div class="tab-panel" role="tabpanel" id="lifetime" aria-labelledby="tab-lifetime" tabindex="0">
-        {{block:pricing-lifetime}}
-      </div>
+    <div class="plans-wrap">
+      {{block:pricing-monthly}}
     </div>
   </div>
 </section>

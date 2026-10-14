@@ -429,21 +429,7 @@ function bookAttrs(cfg, page, { plan = '', service = '' } = {}) {
 }
 
 function pricePanel(cfg, page, plans, key) {
-  if (!Array.isArray(plans) || plans.length === 0) {
-    const name = key === 'yearly' ? 'Yearly deals' : 'Lifetime package';
-    return `<div class="quote-panel glass" data-reveal>
-  <div class="quote-panel__icon">${icon(key === 'yearly' ? 'calendar' : 'gift')}</div>
-  <div class="quote-panel__body">
-    <span class="eyebrow">${name}</span>
-    <h3>Annual and lifetime packages are quoted on a short call.</h3>
-    <p>Tell us what you need for the year (or for good) and we'll put together a clear package with fixed deliverables. No lock-in, no surprises.</p>
-  </div>
-  <div class="quote-panel__actions">
-    <a class="btn btn--primary" ${bookAttrs(cfg, page)}>Book a free strategy call ${icon('arrow-right')}</a>
-    <a class="btn btn--ghost" href="mailto:${esc(cfg.email)}?subject=${encodeURIComponent(name + ' quote')}">Email us instead</a>
-  </div>
-</div>`;
-  }
+  if (!Array.isArray(plans) || plans.length === 0) return '';
   const cur = esc(cfg.pricing.currency || '$');
   const cards = plans.map((p, i) => {
     const numeric = /^\d[\d,.]*$/.test(String(p.price ?? '').trim());
@@ -496,8 +482,6 @@ function makeBlocks(cfg, posts) {
     'footer-services': () =>
       `<ul>${SERVICES.map((s) => `<li><a href="/services/#${s.id}">${esc(s.short)}</a></li>`).join('')}</ul>`,
     'pricing-monthly': (ctx) => pricePanel(cfg, ctx.page, cfg.pricing.monthly, 'monthly'),
-    'pricing-yearly': (ctx) => pricePanel(cfg, ctx.page, cfg.pricing.yearly, 'yearly'),
-    'pricing-lifetime': (ctx) => pricePanel(cfg, ctx.page, cfg.pricing.lifetime, 'lifetime'),
     'service-options': () =>
       [...SERVICES.map((s) => `<option value="${esc(s.name)}" data-key="${s.id}">${esc(s.name)}</option>`), '<option value="Not sure yet" data-key="not-sure">Not sure yet</option>'].join(''),
     'form-attrs': () => {
