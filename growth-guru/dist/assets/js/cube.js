@@ -1,6 +1,7 @@
 /* Growth Guru [GGA] signature 3D cube. Auto-inits every .gg-cube; no globals.
-   Builds the DOM with CSSOM only (CSP-safe), pauses off-screen / hidden tab,
-   and tilts toward the mouse on desktop (lerped, layered on the CSS spin). */
+   build.mjs already writes the cube's inner markup into each page (so it spins with CSS alone,
+   even without JavaScript); this file adopts that markup, or builds it for an empty .gg-cube,
+   pauses off-screen / hidden tab, and tilts toward the mouse on desktop (lerped, layered on the CSS spin). */
 (() => {
   const d = document, w = window, M = Math;
   const mq = q => w.matchMedia && w.matchMedia(q).matches;
@@ -22,6 +23,8 @@
   const faces = p => { for (const f of 'fbrltu') mk(p, 'face gg-cube__face--' + f); };
 
   function build(el) {
+    const pre = el.querySelector('.gg-cube__tilt');
+    if (pre) return { el, tilt: pre, x: 0, y: 0, vis: true };
     const [np, nr] = SIZES[el.dataset.size] || SIZES.lg;
     el.textContent = '';
     el.setAttribute('aria-hidden', 'true');

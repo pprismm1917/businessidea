@@ -355,6 +355,22 @@ function loadPosts() {
     const category = CATEGORIES[d.category] ? d.category : 'ai-marketing';
     if (!CATEGORIES[d.category]) warn(`src/content/blog/${f}: unknown category "${d.category}", using ai-marketing`);
     let body = fm.body.replace(/^\s*#\s+.+\n/, ''); // drop a duplicate "# Title" line
+    // A closing "## Want…" / "## Ready…" section becomes the article's call-to-action box,
+    // so the article ends with one invitation instead of two in a row.
+    let cta = null;
+    const heads = [...body.matchAll(/^##[ \t]+(.+?)[ \t]*#*[ \t]*$/gm)];
+    const lastHead = heads[heads.length - 1];
+    if (lastHead && /^(want|ready)\b/i.test(lastHead[1])) {
+      const rest = body.slice(lastHead.index + lastHead[0].length);
+      if (!/^\s*(#{1,4}\s|[-*+]\s|\d+[.)]\s|>)/m.test(rest)) {
+        const text = rest.replace(/\s*\[[^\]]*\]\(\/contact\/?[^)]*\)\.?\s*$/, '').replace(/\s+/g, ' ').trim();
+        if (text) {
+          cta = { title: lastHead[1], text };
+          body = body.slice(0, lastHead.index);
+        }
+      }
+    }
+    const headings = [...body.matchAll(/^#{2,4}[ \t]+(.+?)[ \t]*#*[ \t]*$/gm)].map((m) => m[1].replace(/[*_`]/g, ''));
     const words = body.split(/\s+/).filter(Boolean).length;
     posts.push({
       file: f,
@@ -368,6 +384,9 @@ function loadPosts() {
       cover: String(d.cover || `/assets/img/blog/${slug}.svg`),
       featured: d.featured === true,
       author: String(d.author || 'GGA Editorial Team'),
+      keywords: String(d.keywords || ''),
+      headings,
+      cta,
       html: markdown(body),
       url: `/blog/${slug}/`,
     });
@@ -378,7 +397,9 @@ function loadPosts() {
 
 function postCard(p, { size = 'md', headingLevel = 3, lazy = true } = {}) {
   const h = `h${headingLevel}`;
-  const search = `${p.title} ${p.excerpt} ${p.categoryLabel} ${CATEGORIES[p.category].label}`.toLowerCase();
+  const cat = CATEGORIES[p.category];
+  // What the blog search looks through: title, summary, topic, the article's headings and optional keywords.
+  const search = [p.title, p.excerpt, p.categoryLabel, cat.label, cat.blurb, p.keywords, ...p.headings].join(' ').replace(/\s+/g, ' ').toLowerCase();
   return `<article class="post-card post-card--${size}" data-category="${esc(p.category)}" data-search="${esc(search)}">
   <a class="post-card__link" href="${p.url}">
     <div class="post-card__media"><img src="${esc(p.cover)}" alt="" width="1200" height="675"${lazy ? ' loading="lazy"' : ''} decoding="async"></div>
@@ -537,6 +558,51 @@ function makeBlocks(cfg, posts) {
         .join('');
     },
   };
+}
+
+// ---------------------------------------------------------------------------
+// 3D cube markup (same DOM that cube.js would build), written into the page so the
+// cube spins with CSS alone, even if JavaScript is off or slow. cube.js adds the mouse tilt.
+// ---------------------------------------------------------------------------
+const CUBE_SIZES = { lg: [14, 3], md: [8, 2], sm: [0, 1] }; // [particles, rings]
+const CUBE_RINGS = [[84, -18, 72, 14, ''], [96, 10, 79, 30, 'dash'], [72, 38, 64, 9, 'rev']];
+
+function cubeInner(size, rnd) {
+  const [np, nr] = CUBE_SIZES[size] || CUBE_SIZES.lg;
+  const i = (cls, vars, inner = '') => {
+    const style = vars ? ` style="${Object.entries(vars).map(([k, v]) => `--${k}:${v}`).join(';')}"` : '';
+    return `<i class="${cls}"${style}>${inner}</i>`;
+  };
+  const faces = () => [...'fbrltu'].map((f) => i(`gg-cube__face gg-cube__face--${f}`)).join('');
+  const rings = CUBE_RINGS.slice(0, nr)
+    .map(([dm, rz, rx, t, m]) =>
+      i('gg-cube__ring', { d: dm + 'cqi', rz: rz + 'deg', rx: rx + 'deg', t: t + 's' }, i('gg-cube__orbit' + (m ? ' gg-cube__orbit--' + m : ''), null, i('gg-cube__sat'))),
+    )
+    .join('');
+  let particles = '';
+  for (let n = 0; n < np; n++) {
+    const a = (n / np) * 6.283 + rnd() * 0.6;
+    const r = 27 + rnd() * 15;
+    particles += i('gg-cube__p', {
+      x: (Math.cos(a) * r).toFixed(2) + 'cqi',
+      y: (Math.sin(a) * r * 0.88).toFixed(2) + 'cqi',
+      z: ((rnd() * 2 - 1) * 18).toFixed(2) + 'cqi',
+      ps: (0.8 + rnd() * 1.4).toFixed(2) + 'cqi',
+      t: (2.8 + rnd() * 4).toFixed(2) + 's',
+      dl: (-rnd() * 7).toFixed(2) + 's',
+    });
+  }
+  let verts = '';
+  for (let n = 0; n < 8; n++) verts += i('gg-cube__v', { vx: n & 1 ? 1 : -1, vy: n & 2 ? 1 : -1, vz: n & 4 ? 1 : -1 });
+  const spin = i('gg-cube__spin', null, faces() + verts + i('gg-cube__inner', null, faces()));
+  const bob = i('gg-cube__bob', null, rings + particles + i('gg-cube__core') + i('gg-cube__axis', null, spin));
+  return i('gg-cube__halo') + i('gg-cube__floor') + i('gg-cube__stage', null, i('gg-cube__tilt', null, bob));
+}
+
+function prerenderCubes(html) {
+  let seed = 11;
+  const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  return html.replace(/(<div class="gg-cube" data-size="(lg|md|sm)" aria-hidden="true">)(<\/div>)/g, (_, open, size, close) => open + cubeInner(size, rnd) + close);
 }
 
 // ---------------------------------------------------------------------------
@@ -702,9 +768,15 @@ function articleBody(cfg, post, posts) {
 ${prose}
     </div>
     <aside class="cta-box glass" aria-label="Work with us">
-      <span class="eyebrow">Want help with this?</span>
+      ${
+        post.cta
+          ? `<span class="eyebrow">Next step</span>
+      <h2>${mdInline(post.cta.title)}</h2>
+      <p>${mdInline(post.cta.text)}</p>`
+          : `<span class="eyebrow">Want help with this?</span>
       <h2>Let us put this into practice for your brand.</h2>
-      <p>Book a free strategy call. We'll look at where you are now and suggest the next few steps, with no lock-in contracts.</p>
+      <p>Book a free strategy call. We'll look at where you are now and suggest the next few steps, with no lock-in contracts.</p>`
+      }
       <div class="cta-box__actions">
         <a class="btn btn--primary" ${bookAttrs(cfg, { nav: 'blog' })}>Book a free strategy call ${icon('arrow-right')}</a>
         <a class="btn btn--ghost" href="/services/">See our services</a>
@@ -746,11 +818,15 @@ function build() {
   mkdirSync(DIST, { recursive: true });
   const assetHashes = new Map();
   let assetBytes = 0;
+  // cube.css is added to the end of styles.css: one stylesheet for every page, one less blocking request.
+  const cubeCss = join(SRC, 'assets', 'css', 'cube.css');
   for (const file of walk(join(SRC, 'assets'))) {
     const rel = relative(SRC, file).split(sep).join('/');
+    if (rel === 'assets/css/cube.css') continue;
     const dest = join(DIST, rel);
     mkdirSync(dirname(dest), { recursive: true });
     let buf = readFileSync(file);
+    if (rel === 'assets/css/styles.css' && existsSync(cubeCss)) buf = Buffer.concat([buf, Buffer.from('\n'), readFileSync(cubeCss)]);
     if (rel.endsWith('.css')) buf = Buffer.from(minifyCss(buf.toString('utf8')));
     writeFileSync(dest, buf);
     assetBytes += buf.length;
@@ -804,14 +880,15 @@ function build() {
   const inlineHash = createHash('sha256').update(INLINE_SCRIPT).digest('base64');
   const written = [];
   for (const page of pages) {
-    page.fullTitle = page.fullTitleOverride || (page.nav === 'home' ? page.title : `${page.title} | Growth Guru Agency`);
+    // Search results show about 60 characters: add the brand only when the whole title still fits.
+    const branded = `${page.title} | Growth Guru Agency`;
+    page.fullTitle = page.fullTitleOverride || (page.nav === 'home' || branded.length > 60 ? page.title : branded);
     const ctx = { site: cfg, page, year: 2026, posts };
     const pageBlocks = {
       ...blocks,
       'head-meta': () => headMeta(cfg, page),
       jsonld: () => structuredData(cfg, page, posts),
       'inline-script': () => `<script>${INLINE_SCRIPT}</script>`,
-      'page-css': () => (page.cube ? '<link rel="stylesheet" href="/assets/css/cube.css">' : ''),
       'page-js': () => (page.cube ? '<script src="/assets/js/cube.js" defer></script>' : ''),
     };
     const body = page.article ? page.body : render(page.body, ctx, pageBlocks, page.file);
@@ -822,7 +899,7 @@ function build() {
       `<main id="main" tabindex="-1">\n${body}\n</main>\n` +
       render(footerTpl, ctx, pageBlocks, 'src/partials/footer.html') +
       '\n</body>\n</html>\n';
-    html = versioned(html, page.out);
+    html = versioned(prerenderCubes(html), page.out);
     writeFile(join(DIST, page.out), html);
     written.push({ out: page.out, bytes: Buffer.byteLength(html) });
   }

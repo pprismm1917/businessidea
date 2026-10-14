@@ -9,6 +9,7 @@ readMinutes: 4
 cover: "/assets/img/blog/ai-in-content-planning.svg"
 featured: false
 author: "GGA Editorial Team"
+keywords: "AI tools, content calendar, captions, carousels, repurposing, prompts"
 ---
 
 AI writing and planning tools can save you hours every month. They can also fill your feed with bland, generic posts that sound like everyone else. The difference is how you use them.

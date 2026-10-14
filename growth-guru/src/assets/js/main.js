@@ -1,7 +1,7 @@
 /* Growth Guru [GGA] — site interactions.
    Progressive enhancement: every page works without this file.
-   Menu, nav indicator, scroll reveals, services scrollspy, work filter + project dialogs,
-   pricing tabs, blog filter/search, contact form (Formspree), Calendly popup loader. */
+   Menu, nav indicator, scroll reveals, off-screen animation pause, services scrollspy,
+   work filter + project dialogs, blog filter/search, contact form (Formspree), Calendly popup loader. */
 (() => {
   'use strict';
   const d = document;
@@ -147,6 +147,15 @@
     revealEls.forEach((el) => el.classList.add('is-in'));
   }
 
+  /* ---------- Pause decorative loops while they're off-screen ---------- */
+  if ('IntersectionObserver' in window) {
+    const loops = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.target.classList.toggle('is-offscreen', !e.isIntersecting)),
+      { rootMargin: '60px' },
+    );
+    $$('.hero-stage, .visual, .cta-band__visual, .process, .marquee, .not-found__visual').forEach((el) => loops.observe(el));
+  }
+
   /* ---------- Cursor glow on cards (desktop only) ---------- */
   if (mq('(hover: hover) and (pointer: fine)').matches) {
     let pending = null;
@@ -209,6 +218,18 @@
       { passive: true },
     );
     update();
+    // Fade whichever end of the chip rail has more chips hidden behind it.
+    if (strip !== spy) {
+      const edges = () => {
+        const max = strip.scrollWidth - strip.clientWidth;
+        strip.classList.toggle('fade-start', max > 1 && strip.scrollLeft > 1);
+        strip.classList.toggle('fade-end', max > 1 && strip.scrollLeft < max - 1);
+      };
+      strip.addEventListener('scroll', edges, { passive: true });
+      window.addEventListener('resize', edges, { passive: true });
+      if (d.fonts && d.fonts.ready) d.fonts.ready.then(edges);
+      edges();
+    }
   }
 
   /* ---------- Dialogs (work projects) ---------- */
@@ -218,18 +239,43 @@
       if (!dlg.open) dlg.showModal();
     } else dlg.setAttribute('open', '');
   };
-  $$('[data-open-dialog]').forEach((btn) => btn.addEventListener('click', () => openDialog(d.getElementById(btn.dataset.openDialog))));
+  // "View project" is a link to #dlg-… (so it still works without JavaScript); with JS it opens the dialog.
+  $$('[data-open-dialog]').forEach((btn) =>
+    btn.addEventListener('click', (e) => {
+      const dlg = d.getElementById(btn.dataset.openDialog);
+      if (!dlg) return;
+      e.preventDefault();
+      openDialog(dlg);
+    }),
+  );
   $$('dialog.modal').forEach((dlg) => {
     dlg.addEventListener('click', (e) => {
       if (e.target === dlg) dlg.close();
     });
-    $$('[data-close-dialog]', dlg).forEach((b) => b.addEventListener('click', () => dlg.close()));
+    // The close control is a link back to the grid (works without JS); with JS it acts as a button.
+    $$('[data-close-dialog]', dlg).forEach((b) => {
+      b.addEventListener('click', (e) => {
+        e.preventDefault();
+        dlg.close();
+      });
+      b.addEventListener('keydown', (e) => {
+        if (e.key === ' ') {
+          e.preventDefault();
+          dlg.close();
+        }
+      });
+    });
   });
-  // /work/#aura-social opens that project's details
+  // /work/#aura-social (or #dlg-aura-social) opens that project's details. The card's button is
+  // focused first, so closing the dialog returns keyboard focus to that card.
   if ($('[data-work-grid]')) {
     const fromHash = (delay) => {
-      const dlg = location.hash.length > 1 ? d.getElementById(`dlg-${location.hash.slice(1)}`) : null;
-      if (dlg) setTimeout(() => openDialog(dlg), delay);
+      const id = location.hash.slice(1).replace(/^dlg-/, '');
+      const dlg = id ? d.getElementById(`dlg-${id}`) : null;
+      if (!dlg) return;
+      const btn = $(`[data-open-dialog="dlg-${id}"]`);
+      if (btn) btn.focus({ preventScroll: true });
+      setTimeout(() => openDialog(dlg), delay);
     };
     fromHash(350);
     window.addEventListener('hashchange', () => fromHash(0));
@@ -306,55 +352,6 @@
     );
   }
 
-  /* ---------- Tabs (pricing) ---------- */
-  $$('[data-tabs]').forEach((wrap) => {
-    const tabs = $$('[role="tab"]', wrap);
-    const panels = tabs.map((t) => d.getElementById(t.getAttribute('aria-controls')));
-    const indicator = $('.tabs__indicator', wrap);
-    const place = (instant) => {
-      const t = tabs.find((x) => x.getAttribute('aria-selected') === 'true');
-      if (!indicator || !t) return;
-      if (instant) indicator.style.transition = 'none';
-      indicator.style.setProperty('--tx', `${t.offsetLeft}px`);
-      indicator.style.setProperty('--tw', `${t.offsetWidth}px`);
-      if (instant) {
-        void indicator.offsetWidth;
-        indicator.style.transition = '';
-      }
-    };
-    const select = (i, focus) => {
-      tabs.forEach((t, j) => {
-        const on = i === j;
-        t.setAttribute('aria-selected', String(on));
-        t.tabIndex = on ? 0 : -1;
-        if (panels[j]) panels[j].classList.toggle('is-active', on);
-      });
-      if (focus) tabs[i].focus();
-      place(false);
-      const reveals = panels[i] ? $$('[data-reveal]', panels[i]) : [];
-      reveals.forEach((el) => el.classList.add('is-in'));
-    };
-    tabs.forEach((t, i) => {
-      t.addEventListener('click', () => select(i, false));
-      t.addEventListener('keydown', (e) => {
-        let n = null;
-        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') n = (i + 1) % tabs.length;
-        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') n = (i - 1 + tabs.length) % tabs.length;
-        else if (e.key === 'Home') n = 0;
-        else if (e.key === 'End') n = tabs.length - 1;
-        if (n !== null) {
-          e.preventDefault();
-          select(n, true);
-        }
-      });
-    });
-    const fromHash = panels.findIndex((p) => p && `#${p.id}` === location.hash);
-    if (fromHash > 0) select(fromHash, false);
-    place(true);
-    window.addEventListener('resize', () => place(true), { passive: true });
-    if (d.fonts && d.fonts.ready) d.fonts.ready.then(() => place(true));
-  });
-
   /* ---------- Blog: topic filter + instant search ---------- */
   const blog = $('[data-blog]');
   if (blog) {
@@ -367,14 +364,16 @@
     const labels = {};
     chips.forEach((c) => (labels[c.dataset.filter] = c.textContent.trim()));
     let cat = 'all';
+    // Each search word must match the start of a word ("ai" finds "AI", not the "ai" inside "plain").
+    const wordStart = (t) => new RegExp(`(^|[^a-z0-9])${t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`);
     const apply = () => {
       const q = (input ? input.value : '').trim().toLowerCase();
-      const terms = q.split(/\s+/).filter(Boolean);
+      const terms = q.split(/\s+/).filter(Boolean).map(wordStart);
       let n = 0;
       items.forEach((el) => {
         const card = $('.post-card', el);
         const hay = card ? card.dataset.search || '' : '';
-        const ok = (cat === 'all' || el.dataset.category === cat) && terms.every((t) => hay.includes(t));
+        const ok = (cat === 'all' || el.dataset.category === cat) && terms.every((re) => re.test(hay));
         const wasHidden = el.classList.contains('is-hidden');
         el.classList.toggle('is-hidden', !ok);
         if (ok) {

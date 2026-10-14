@@ -9,6 +9,7 @@ readMinutes: 5
 cover: "/assets/img/blog/facebook-marketing-basics.svg"
 featured: true
 author: "GGA Editorial Team"
+keywords: "Meta Business Suite, Meta Pixel, Facebook ads, Facebook Groups, Facebook Page"
 ---
 
 Facebook can feel crowded and complicated, but for many small businesses it is still one of the most useful places to be. It is where a lot of people look up local businesses, check opening hours, read recommendations, join community groups and ask for advice.

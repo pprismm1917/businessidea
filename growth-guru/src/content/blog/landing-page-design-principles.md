@@ -9,6 +9,7 @@ readMinutes: 4
 cover: "/assets/img/blog/landing-page-design-principles.svg"
 featured: false
 author: "GGA Editorial Team"
+keywords: "landing page, headline, call to action, forms, conversions, mobile"
 ---
 
 A landing page has one job: to get a visitor to take one specific action. That might be booking a call, joining a waitlist, downloading a guide or buying a product.

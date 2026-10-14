@@ -9,6 +9,7 @@ readMinutes: 5
 cover: "/assets/img/blog/instagram-content-strategy.svg"
 featured: true
 author: "GGA Editorial Team"
+keywords: "Reels, Stories, carousels, captions, bio, highlights, content pillars"
 ---
 
 Posting on Instagram without a plan feels busy, but it rarely builds anything. You spend hours on content, the likes come and go, and you are still not sure if any of it brings in customers.

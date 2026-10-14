@@ -16,8 +16,8 @@ It's a fast, static website: plain HTML, CSS and a little JavaScript. There's no
 | `src/pages/` | One file per page (home, services, work, pricing, blog, contact, privacy, 404). |
 | `src/partials/` | Pieces shared by every page: `head.html`, `header.html` (top menu), `footer.html`. |
 | `src/content/blog/` | Blog articles, one `.md` file each (see "Add a blog post" below). |
-| `src/assets/css/styles.css` | All the styling. `cube.css` is the animated 3D cube. |
-| `src/assets/js/main.js` | Menu, animations, filters, pricing tabs, blog search, contact form, booking popup. `cube.js` builds the 3D cube. |
+| `src/assets/css/styles.css` | All the styling. `cube.css` is the animated 3D cube (the builder adds it to the end of `styles.css`, so the live site loads one stylesheet). |
+| `src/assets/js/main.js` | Menu, animations, work filters and project pop-ups, blog filters and search, contact form, booking popup. `cube.js` adds the mouse tilt to the 3D cube (the cube itself spins with CSS). |
 | `src/assets/img/` | Logo, favicon, share image (`og.jpg`, 1200×630), project and blog artwork. |
 | `src/assets/fonts/` | Outfit, Plus Jakarta Sans and JetBrains Mono, hosted with the site (free fonts, SIL Open Font License, licenses included). |
 | `src/_headers` | Security and caching rules for Cloudflare. |
@@ -57,7 +57,12 @@ Tips:
 
 ## 2. Build the site
 
-You need [Node.js](https://nodejs.org) (version 18 or newer). Then, in this folder:
+You need [Node.js](https://nodejs.org) (version 18 or newer). Then open a terminal **in this folder**:
+
+- **Mac:** in Finder, right-click the `growth-guru` folder → **Services → New Terminal at Folder** (on some Macs it's directly in the right-click menu).
+- **Windows:** open the `growth-guru` folder in File Explorer, click the address bar at the top, type `cmd` and press Enter.
+
+Then type this and press Enter:
 
 ```
 node build.mjs
@@ -82,6 +87,14 @@ The site is set up for **Cloudflare Workers & Pages**.
 4. Deploy. You get a free `growth-guru.<your-account>.workers.dev` address to check everything.
 
 From then on, every push to GitHub redeploys automatically.
+
+**"Push" means sending your changes to GitHub.** The easiest way is the free [GitHub Desktop](https://desktop.github.com) app:
+
+1. Open GitHub Desktop and pick this repository. Your changed files are listed on the left.
+2. Type a short summary at the bottom left (e.g. "Update prices") and click **Commit to main**.
+3. Click **Push origin** at the top. Cloudflare picks up the change and redeploys within a minute or two.
+
+Whenever this README says "push", it means these three steps.
 
 ---
 
@@ -115,18 +128,22 @@ readMinutes: 6
 cover: "/assets/img/blog/reels-ideas.svg"
 featured: false
 author: "GGA Editorial Team"
+keywords: "Reels, Stories, captions"
 ---
 ```
 
    - `category` must be one of: `instagram`, `tiktok`, `facebook`, `ai-marketing`, `branding-web`.
    - Put the cover image in `src/assets/img/blog/` (1200 × 675 works best; `.svg`, `.png`, `.jpg` or `.webp`).
    - `featured: true` puts it in "Editor's picks" at the top of the blog (the first three featured posts are shown).
+   - `keywords` is optional: extra words people might type into the blog search (the title, summary, topic and headings are already searched).
 3. Write the article under the block. You can use:
    - `## Heading` and `### Smaller heading`
    - `**bold**`, `*italic*`, `` `code` ``
    - `[link text](https://example.com)`
    - lists starting with `- ` or `1. `
    - `> quote`
+
+   If the last section starts with `## Want…` or `## Ready…` (one short paragraph, e.g. "## Want help with Reels?"), it becomes the article's closing "Book a free strategy call" box. Otherwise a standard box is used.
 4. Run `node build.mjs`. The post gets its own page at `/blog/reels-ideas/`, appears in the blog list, search and topic filters, and in "Keep reading" on related posts.
 
 ---

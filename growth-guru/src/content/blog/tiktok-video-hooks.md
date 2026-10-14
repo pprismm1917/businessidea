@@ -3,12 +3,13 @@ title: "TikTok Video Hooks That Capture Attention"
 slug: "tiktok-video-hooks"
 category: "tiktok"
 categoryLabel: "TikTok Growth"
-excerpt: "The first seconds of a TikTok decide if people keep watching. Ten hook formats with real business examples, plus how to film, test and keep your promise."
+excerpt: "The first seconds of a TikTok decide if people keep watching. Ten hook formats with everyday examples, plus how to film, test and keep your promise."
 date: "2026-10-14"
 readMinutes: 5
 cover: "/assets/img/blog/tiktok-video-hooks.svg"
 featured: true
 author: "GGA Editorial Team"
+keywords: "short-form video, hooks, captions, first frame, testing"
 ---
 
 On TikTok, people decide very quickly whether to keep watching or swipe away. That first moment is your **hook**: what you say, what you show and what you write on screen before anything else happens.

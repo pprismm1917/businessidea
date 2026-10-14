@@ -9,6 +9,7 @@ readMinutes: 4
 cover: "/assets/img/blog/brand-consistency.svg"
 featured: false
 author: "GGA Editorial Team"
+keywords: "brand guide, logo, colors, fonts, brand voice, templates"
 ---
 
 When a company grows quickly, more people start creating things for the brand. New hires make sales decks. Freelancers design ads. Someone builds a landing page over the weekend. Each piece looks fine on its own, but together they start to look like five different companies.
