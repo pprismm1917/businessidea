@@ -140,14 +140,19 @@ small { font-size: .875em; }
   background: #fff; color: var(--picket); font-weight: 800; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase;
 }
 .preview-bar__links { display: flex; flex-wrap: wrap; gap: 0 1.25rem; }
-.preview-bar a { display: inline-flex; align-items: center; min-height: 40px; color: #fff; font-weight: 600; }
+.preview-bar a { display: inline-flex; align-items: center; min-height: 44px; color: #fff; font-weight: 600; }
+
+/* Inline phone/email links in running text: pad the hit area to 44px without moving the text. */
+.area__note a, .contact__details a, .footer address a, .footer__col p a, .form__alt a, .live__list a {
+  display: inline-block; padding-block: .65rem; margin-block: -.65rem;
+}
 .preview-bar__cta::after { content: " \2193"; }
 
 /* ---------- Header ---------- */
 .site-header { background: var(--paper); border-bottom: 1px solid var(--line); position: relative; z-index: 40; }
 .site-header__inner { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem; min-height: 68px; padding-block: .5rem; }
 
-.brand { display: inline-flex; align-items: center; gap: .6rem; color: var(--charcoal); text-decoration: none; min-height: 44px; }
+.brand { display: inline-flex; align-items: center; gap: .6rem; color: var(--charcoal); text-decoration: none; min-height: 44px; flex: none; white-space: nowrap; }
 .brand__mark { width: 34px; height: 27px; flex: none; }
 .brand__pickets { fill: var(--accent); }
 .brand__rail { fill: var(--charcoal); }
@@ -165,7 +170,7 @@ small { font-size: .875em; }
 }
 .header__phone:hover { color: var(--accent); }
 .header__phone .icon { color: var(--accent); }
-.header__cta { display: none; }
+.header__cta { display: none; white-space: nowrap; }
 
 .menu-toggle {
   display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; min-width: 44px; padding: 0 .7rem;
@@ -177,7 +182,7 @@ small { font-size: .875em; }
 /* Navigation: with JS it collapses behind the Menu button; without JS it is a plain row of links. */
 .nav { flex-basis: 100%; }
 .nav__list { display: flex; flex-wrap: wrap; gap: .25rem .75rem; padding: .25rem 0 .5rem; }
-.nav__list a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 .5rem; color: var(--charcoal); font-weight: 600; text-decoration: none; border-radius: 6px; }
+.nav__list a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 .5rem; color: var(--charcoal); font-weight: 600; text-decoration: none; border-radius: 6px; white-space: nowrap; }
 .nav__list a:hover { color: var(--accent); background: var(--sand); }
 .js .menu-toggle { display: inline-flex; }
 .no-js .menu-toggle { display: none; }
@@ -195,7 +200,8 @@ small { font-size: .875em; }
 }
 .hero__inner { padding-top: clamp(11rem, 48vw, 16rem); padding-bottom: 2rem; }
 .hero__kicker { font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #f3d9c6; margin-bottom: .6rem; }
-.hero__title { font-size: clamp(2.7rem, 1.6rem + 5.2vw, 5rem); line-height: .98; letter-spacing: .005em; text-wrap: balance; text-shadow: 0 2px 12px rgba(0, 0, 0, .35); }
+/* Phone size is tuned so "Custom cedar fences," fits one line (3 lines total) from 320px up. */
+.hero__title { font-size: clamp(2rem, 11.8vw - 4px, 5rem); line-height: .98; letter-spacing: .005em; text-wrap: balance; text-shadow: 0 2px 12px rgba(0, 0, 0, .35); }
 .hero__sub { margin-top: 1rem; max-width: 34rem; font-size: 1.05rem; line-height: 1.5; color: #f1ece5; text-shadow: 0 1px 6px rgba(0, 0, 0, .4); }
 .hero__actions { display: flex; flex-direction: column; gap: .6rem; margin-top: 1.4rem; }
 .hero__actions .btn { width: 100%; }
@@ -290,9 +296,9 @@ small { font-size: .875em; }
 /* ---------- Reviews ---------- */
 .reviews { background: var(--paper); border-block: 1px solid var(--line); }
 .quotes { display: grid; gap: 1rem; margin-top: 1.75rem; }
-.quote { position: relative; padding: 1.5rem 1.25rem 1.25rem; background: var(--off-white); border: 1px solid var(--line); border-radius: var(--radius); }
+.quote { position: relative; padding: 2.5rem 1.25rem 1.25rem; background: var(--off-white); border: 1px solid var(--line); border-radius: var(--radius); }
 .quote::before {
-  content: "\201C"; position: absolute; top: .1rem; left: 1rem; font-family: var(--font-head); font-size: 4rem; line-height: 1; color: var(--cedar); opacity: .6;
+  content: "\201C"; position: absolute; top: .35rem; left: 1.1rem; font-family: var(--font-head); font-size: 3.5rem; line-height: 1; color: var(--cedar); opacity: .6;
 }
 .quote blockquote p { position: relative; font-size: 1rem; line-height: 1.6; }
 .quote__who { margin-top: .9rem; font-weight: 700; }
@@ -373,7 +379,7 @@ small { font-size: .875em; }
 .footer__brand p { margin-top: 1rem; max-width: 36rem; }
 .footer__heading { font-size: 1.2rem; letter-spacing: .08em; text-transform: uppercase; color: #fff; margin-bottom: .6rem; }
 .footer__col p { margin-top: .6rem; }
-.footer__col address a, .footer address a { display: inline-block; padding: .2rem 0; }
+.footer address a { display: inline-block; padding-block: .65rem; margin-block: -.65rem; }
 .footer__legal { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #3b3733; font-size: .85rem; color: #b5ac9f; }
 
 /* ---------- Make it live (Picket Digital wrapper) ---------- */
@@ -432,7 +438,7 @@ small { font-size: .875em; }
   .sheet__body { display: grid; grid-template-columns: 1.15fr 1fr; gap: 2rem; align-items: center; padding: 1rem 2rem 1.5rem; }
   .sheet__diagram { margin: 0; max-width: 460px; }
   .hero__inner { min-height: 620px; display: flex; flex-direction: column; justify-content: center; padding-top: 4rem; padding-bottom: 4rem; }
-  .hero__title { max-width: 14ch; }
+  .hero__title { max-width: 14ch; font-size: clamp(3.75rem, 1.6rem + 5.2vw, 5rem); }
   .hero::before { background: linear-gradient(90deg, rgba(24, 19, 16, .95) 0%, rgba(24, 19, 16, .88) 38%, rgba(24, 19, 16, .45) 68%, rgba(24, 19, 16, .2) 100%); }
   .hero__img { object-position: 75% 50%; }
 }
@@ -441,15 +447,23 @@ small { font-size: .875em; }
   .site-header { position: sticky; top: 0; }
   .section { scroll-margin-top: 80px; }
   .form { scroll-margin-top: 90px; }
-  .site-header__inner { flex-wrap: nowrap; gap: 1rem; }
+  /* 5 cards on a 6-column grid: 3 on the first row, 2 centered on the second */
+  .cards { grid-template-columns: repeat(6, 1fr); gap: 1.5rem; }
+  .card { grid-column: span 2; }
+  .card:nth-child(4) { grid-column: 2 / span 2; }
+  .gallery { grid-template-columns: repeat(4, 1fr); gap: .9rem; }
+  .card__title { font-size: 1.8rem; }
+}
+
+/* Inline navigation only once everything fits on one row; below this the Menu button stays. */
+@media (min-width: 1180px) {
+  .site-header__inner { flex-wrap: nowrap; gap: .75rem; }
   .js .menu-toggle { display: none; }
   .js .nav, .nav { display: block; flex-basis: auto; margin-left: auto; }
   .js .nav__list, .nav__list { flex-direction: row; gap: .1rem; padding: 0; border: 0; margin: 0; }
-  .js .nav__list a, .nav__list a { min-height: 44px; padding: 0 .7rem; font-size: .98rem; }
+  .js .nav__list a, .nav__list a { min-height: 44px; padding: 0 .6rem; font-size: .98rem; }
   .header__phone { margin-left: 0; font-size: 1.05rem; }
-  .cards { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-  .gallery { grid-template-columns: repeat(4, 1fr); gap: .9rem; }
-  .card__title { font-size: 1.8rem; }
+  .header__cta { margin-right: .25rem; }
 }
 
 @media (min-width: 1200px) {
