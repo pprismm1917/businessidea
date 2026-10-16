@@ -358,6 +358,7 @@ small { font-size: .875em; }
   background: #fff; border: 1.5px solid #bfb6a8; border-radius: 8px;
 }
 .field textarea { resize: vertical; min-height: 110px; }
+.field ::placeholder { color: #6f6961; opacity: 1; }
 .field input:focus, .field select:focus, .field textarea:focus { outline: 3px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
 .field [aria-invalid="true"] { border-color: var(--error); }
 .field__error { display: none; color: var(--error); font-size: .875rem; font-weight: 600; }
@@ -393,7 +394,7 @@ small { font-size: .875em; }
 /* ---------- Sticky phone bar ---------- */
 .sticky-bar {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
-  display: grid; grid-template-columns: 1fr 1fr; gap: .5rem;
+  display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .5rem;
   padding: .55rem var(--gutter) calc(.55rem + env(safe-area-inset-bottom));
   background: rgba(255, 255, 255, .96); border-top: 1px solid var(--line); box-shadow: 0 -6px 20px rgba(31, 29, 27, .1);
   transition: transform 220ms ease;
@@ -405,6 +406,11 @@ small { font-size: .875em; }
 /* ========================================================================
    Breakpoints
    ======================================================================== */
+@media (max-width: 359px) {
+  /* Very small phones: drop the icon and tighten so both buttons still fit side by side */
+  .sticky-bar .btn { font-size: .9rem; padding-inline: .45rem; }
+  .sticky-bar .icon { display: none; }
+}
 @media (min-width: 400px) {
   .sticky-bar .btn { font-size: 1rem; }
 }
