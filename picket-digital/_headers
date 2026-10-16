@@ -30,6 +30,11 @@
   X-Robots-Tag: noindex
   Cache-Control: public, max-age=0, must-revalidate
 
+# Prospect preview sites (/preview/<company>/): never in search results, always fresh
+/preview/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: public, max-age=0, must-revalidate
+
 # Small root files that keep the same name: cache for a day
 /favicon.svg
   Cache-Control: public, max-age=86400

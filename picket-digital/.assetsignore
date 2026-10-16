@@ -1,2 +1,3 @@
-README.md
-assets/video/README.txt
+# Files in this folder that must NOT be uploaded to Cloudflare (same syntax as .gitignore)
+# Internal notes for prospect previews
+preview/*/FACTS.md
