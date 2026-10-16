@@ -77,6 +77,7 @@ Reply "no" and I won't email again.
 ```
 
 ## 3. American Fence and Stone (Wylie)
+**DO NOT SEND. Bounced on 2026-10-16.** The address their own website lists, info@americanfence.com, belongs to a different company (American Fence Company, a national firm) and rejects mail. Reach them by phone instead: (469) 389-0058 (Google listing) or (972) 679-8479 (website). Good opener for the call: their website shows an email address that doesn't belong to them, so customer emails never reach them.
 **To:** info@americanfence.com
 **Subject:** `two phone numbers on your listings`
 
@@ -345,6 +346,7 @@ Reply "no" and I won't email again.
 ```
 
 ## 14. Harbinger Fence, Deck & Pergola (Frisco)
+**DO NOT SEND. Checked 2026-10-16: harbingerfence.com has no mail server, so this address will bounce.** Call (972) 242-9464 instead, or use the contact form on their site.
 **To:** info@harbingerfence.com
 **Subject:** `how your site shows up on google`
 
