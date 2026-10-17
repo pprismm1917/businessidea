@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Blackwell Fencing | Custom Cedar Fences, Iron &amp; Gates in Wylie, TX</title>
-  <meta name="description" content="Blackwell Fencing builds custom cedar fences, ornamental iron, automatic gates, decks and chain link in Wylie, TX and the surrounding Collin, Rockwall and Dallas county communities. Family owned since 1983. 5-year warranty on material and labor. Free estimates: (972) 412-6877.">
+  <meta name="description" content="Blackwell Fencing builds custom cedar fences, ornamental iron, automatic gates, decks and chain link in Wylie, TX and 19 nearby cities, from Allen and Plano to Rockwall and Royse City. Family owned since 1983. 5-year warranty on material and labor. Free estimates: (972) 412-6877.">
   <!-- Prospect preview: never indexed. The /preview/* path also sends X-Robots-Tag: noindex. -->
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#1F1D1B">
@@ -14,12 +14,13 @@
   <link rel="preload" href="/assets/fonts/barlow-condensed-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="img/hero-gate.jpg" as="image">
   <link rel="stylesheet" href="style.css">
-  <!-- app.js is loaded synchronously (it is small) so the html.js class is set before first paint
-       and the mobile menu never flashes open. No inline scripts: the CSP is script-src 'self'. -->
-  <script src="app.js"></script>
+  <!-- js-flag.js (one line) runs synchronously so the html.js class is set before first paint and the
+       mobile menu never flashes open; app.js is deferred. No inline scripts: the CSP is script-src 'self'. -->
+  <script src="js-flag.js"></script>
+  <script src="app.js" defer></script>
 
-  <!-- Simple data-URI icon so the browser does not fall back to the Picket Digital favicon at the site root. -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231F1D1B'/%3E%3Cpath fill='%238E1B2A' d='M7 6l4 4v16H3V10zM14 6l4 4v16h-8V10zM21 6l4 4v16h-8V10z'/%3E%3Crect x='2' y='14' width='28' height='3' fill='%23FAF7F2'/%3E%3Crect x='2' y='22' width='28' height='3' fill='%23FAF7F2'/%3E%3C/svg%3E">
+  <!-- Simple data-URI icon (picket mark) so the browser does not fall back to the Picket Digital favicon at the site root. -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231F1D1B'/%3E%3Cpath fill='%239D1118' d='M7 6l4 4v16H3V10zM14 6l4 4v16h-8V10zM21 6l4 4v16h-8V10z'/%3E%3Crect x='2' y='14' width='28' height='3' fill='%23FAF7F2'/%3E%3Crect x='2' y='22' width='28' height='3' fill='%23FAF7F2'/%3E%3C/svg%3E">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Blackwell Fencing">
@@ -42,11 +43,10 @@
        =================================================================== -->
   <div class="preview-bar" role="region" aria-label="Preview notice">
     <div class="preview-bar__inner">
-      <p class="preview-bar__text"><span class="preview-bar__tag">Preview</span> Built for Blackwell Fencing by Picket Digital &middot; not live yet</p>
-      <p class="preview-bar__links">
-        <a href="tel:+14696297172">Questions? Call Moe (469) 629-7172</a>
-        <a class="preview-bar__cta" href="#make-it-live">Make it live</a>
-      </p>
+      <span class="preview-bar__tag">Preview</span>
+      <p class="preview-bar__text"><span class="preview-bar__long">Built for Blackwell Fencing by </span>Picket Digital</p>
+      <a class="preview-bar__moe" href="tel:+14696297172">Questions? Call Moe (469) 629-7172</a>
+      <a class="preview-bar__cta" href="#make-it-live">Make it live</a>
     </div>
   </div>
 
@@ -56,20 +56,12 @@
   <header class="site-header">
     <div class="site-header__inner container">
       <a class="brand" href="#top" aria-label="Blackwell Fencing, back to top">
-        <svg class="brand__mark" viewBox="0 0 40 32" aria-hidden="true" focusable="false">
-          <path class="brand__pickets" d="M8 1l5 5v26H3V6zM20 1l5 5v26H15V6zM32 1l5 5v26H27V6z"/>
-          <rect class="brand__rail" x="0" y="12" width="40" height="3"/>
-          <rect class="brand__rail" x="0" y="22" width="40" height="3"/>
-        </svg>
-        <span class="brand__text">
-          <span class="brand__name">Blackwell Fencing</span>
-          <span class="brand__since">Wylie, Texas &middot; Since 1983</span>
-        </span>
+        <img class="brand__logo" src="img/logo.png" width="325" height="159" alt="Blackwell Fencing" decoding="async">
       </a>
 
-      <a class="header__phone" href="tel:+19724126877">
+      <a class="header__phone" href="tel:+19724126877" aria-label="Call (972) 412-6877">
         <svg class="icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="#i-phone"/></svg>
-        <span>(972) 412-6877</span>
+        <span class="header__phone-num">(972) 412-6877</span>
       </a>
 
       <a class="btn btn--primary header__cta" href="#estimate">Free Estimate</a>
@@ -100,9 +92,8 @@
     <section class="hero" aria-labelledby="hero-title">
       <img class="hero__img" src="img/hero-gate.jpg" width="800" height="600" alt="" loading="eager" fetchpriority="high" decoding="async">
       <div class="hero__inner container">
-        <p class="hero__kicker">Blackwell Fencing &middot; Wylie, Texas</p>
-        <h1 class="hero__title" id="hero-title">Custom cedar fences, iron and&nbsp;gates. Built in Wylie since&nbsp;1983.</h1>
-        <p class="hero__sub">Family owned and operated. 5-year warranty on material and labor. Free estimates across Collin, Rockwall and Dallas counties.</p>
+        <h1 class="hero__title" id="hero-title">Custom cedar fences, iron and&nbsp;gates. Wylie, Texas. Since&nbsp;1983.</h1>
+        <p class="hero__sub">Family owned and operated. 5-year warranty on material and labor. Free estimates in Wylie and 19 nearby cities.</p>
         <div class="hero__actions">
           <a class="btn btn--primary btn--lg" href="tel:+19724126877">
             <svg class="icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="#i-phone"/></svg>
@@ -120,7 +111,7 @@
       <ul class="trust__list container">
         <li class="trust__item">
           <svg class="icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="#i-flag"/></svg>
-          <span><strong>Since 1983</strong><small>Established by Gary Blackwell</small></span>
+          <span><strong>Since 1983</strong><small>Founded by Gary Blackwell</small></span>
         </li>
         <li class="trust__item">
           <svg class="icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="#i-home"/></svg>
@@ -146,49 +137,49 @@
          =================================================================== -->
     <section class="section services" id="services" aria-labelledby="services-title">
       <div class="container">
-        <p class="eyebrow">What we build</p>
-        <h2 class="section__title" id="services-title">Five things, done right</h2>
-        <p class="section__lead">Fences, gates and decks for homeowners who want it built once. Repairs too. No job too small.</p>
+        <p class="eyebrow">Services</p>
+        <h2 class="section__title" id="services-title">What we build</h2>
+        <p class="section__lead">Custom wood fences, decks and patio covers, ornamental iron, automatic gates and chain link. Repairs too. No job too small.</p>
 
         <ul class="cards">
           <li class="card">
-            <img class="card__img" src="img/wood-4.jpg" srcset="img/wood-4-480.jpg 480w, img/wood-4.jpg 800w" sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw" width="800" height="600" loading="lazy" decoding="async" alt="8 ft board-on-board cedar fence with a walk gate, a decorative iron window and a Blackwell Fencing sign.">
+            <img class="card__img" src="img/wood-4.jpg" srcset="img/wood-4-480.jpg 480w, img/wood-4.jpg 800w" sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 120px" width="800" height="600" loading="lazy" decoding="async" alt="8 ft board-on-board cedar fence with a walk gate, a decorative iron window and a Blackwell Fencing sign.">
             <div class="card__body">
               <h3 class="card__title">Custom Wood Fences</h3>
-              <p>Cedar board-on-board, side-by-side and double-face fences, 6 or 8 feet tall, with cap rail and trim options and walk gates with decorative hardware.</p>
-              <a class="card__link" href="#estimate" data-service="wood">Get an estimate for a wood fence<span aria-hidden="true"> &rarr;</span></a>
+              <p>Cedar board-on-board and side-by-side fences in 6 or 8 ft, 8 ft double-face, with cap rail and trim options and walk gates with decorative hardware.</p>
+              <a class="card__link" href="#estimate" data-service="wood">Get an estimate for a wood fence&nbsp;<span aria-hidden="true">&rarr;</span></a>
             </div>
           </li>
           <li class="card">
-            <img class="card__img" src="img/deck-3.jpg" srcset="img/deck-3-480.jpg 480w, img/deck-3.jpg 800w" sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw" width="800" height="600" loading="lazy" decoding="async" alt="Covered cedar deck attached to a brick home.">
+            <img class="card__img" src="img/deck-3.jpg" srcset="img/deck-3-480.jpg 480w, img/deck-3.jpg 800w" sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 120px" width="800" height="600" loading="lazy" decoding="async" alt="Covered cedar deck attached to a brick home.">
             <div class="card__body">
               <h3 class="card__title">Decks &amp; Patio Covers</h3>
               <p>Cedar decks, pool decks and covered decks, plus pergola-style patio covers. Your backyard is just another room of the house.</p>
-              <a class="card__link" href="#estimate" data-service="deck">Get an estimate for a deck<span aria-hidden="true"> &rarr;</span></a>
+              <a class="card__link" href="#estimate" data-service="deck">Get an estimate for a deck&nbsp;<span aria-hidden="true">&rarr;</span></a>
             </div>
           </li>
           <li class="card">
-            <img class="card__img" src="img/iron-1.jpg" srcset="img/iron-1-480.jpg 480w, img/iron-1.jpg 800w" sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw" width="800" height="600" loading="lazy" decoding="async" alt="Black ornamental iron fence across a front yard.">
+            <img class="card__img" src="img/iron-1.jpg" srcset="img/iron-1-480.jpg 480w, img/iron-1.jpg 800w" sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 120px" width="800" height="600" loading="lazy" decoding="async" alt="Black ornamental iron fence across a front yard.">
             <div class="card__body">
               <h3 class="card__title">Ornamental Iron Fences</h3>
               <p>Black ornamental iron for front yards, backyards and pool enclosures.</p>
-              <a class="card__link" href="#estimate" data-service="iron">Get an estimate for iron<span aria-hidden="true"> &rarr;</span></a>
+              <a class="card__link" href="#estimate" data-service="iron">Get an estimate for iron&nbsp;<span aria-hidden="true">&rarr;</span></a>
             </div>
           </li>
           <li class="card">
-            <img class="card__img" src="img/gate-3.jpg" srcset="img/gate-3-480.jpg 480w, img/gate-3.jpg 800w" sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw" width="800" height="459" loading="lazy" decoding="async" alt="Iron driveway gate with a Texas star, with the Blackwell Fencing truck parked behind it.">
+            <img class="card__img" src="img/gate-3.jpg" srcset="img/gate-3-480.jpg 480w, img/gate-3.jpg 800w" sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 120px" width="800" height="459" loading="lazy" decoding="async" alt="Iron driveway gate with a Texas star, with the Blackwell Fencing truck parked behind it.">
             <div class="card__body">
               <h3 class="card__title">Automatic Gates</h3>
-              <p>Swing gates in wood or iron and decorative iron driveway gates, including solar-powered gates.</p>
-              <a class="card__link" href="#estimate" data-service="gate">Get an estimate for a gate<span aria-hidden="true"> &rarr;</span></a>
+              <p>Swing gates in wood or iron and decorative iron driveway gates.</p>
+              <a class="card__link" href="#estimate" data-service="gate">Get an estimate for a gate&nbsp;<span aria-hidden="true">&rarr;</span></a>
             </div>
           </li>
           <li class="card">
-            <img class="card__img" src="img/chainlink-2.jpg" srcset="img/chainlink-2-480.jpg 480w, img/chainlink-2.jpg 800w" sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw" width="800" height="533" loading="lazy" decoding="async" alt="Black chain link fence and walk gate in a backyard with a young tree.">
+            <img class="card__img" src="img/chainlink-2.jpg" srcset="img/chainlink-2-480.jpg 480w, img/chainlink-2.jpg 800w" sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 120px" width="800" height="533" loading="lazy" decoding="async" alt="Black chain link fence and walk gate in a backyard with a young tree.">
             <div class="card__body">
               <h3 class="card__title">Chain Link Fence</h3>
               <p>Galvanized or black vinyl-coated chain link for a sturdy boundary that doesn&rsquo;t block the view.</p>
-              <a class="card__link" href="#estimate" data-service="chainlink">Get an estimate for chain link<span aria-hidden="true"> &rarr;</span></a>
+              <a class="card__link" href="#estimate" data-service="chainlink">Get an estimate for chain link&nbsp;<span aria-hidden="true">&rarr;</span></a>
             </div>
           </li>
         </ul>
@@ -207,7 +198,7 @@
         <div class="sheet">
           <div class="sheet__head">
             <span>Spec sheet</span>
-            <span>Cedar privacy fence &middot; Blackwell Fencing</span>
+            <span>Cedar privacy fence</span>
           </div>
           <div class="sheet__body">
             <ol class="spec-list">
@@ -217,7 +208,7 @@
               </li>
               <li class="spec">
                 <span class="spec__num" aria-hidden="true">02</span>
-                <div class="spec__text"><h3 class="spec__term">Set</h3><p>3 ft deep, in concrete, on 5 ft 9 in centers.</p></div>
+                <div class="spec__text"><h3 class="spec__term">Post depth</h3><p>3 ft deep in concrete, 5 ft 9 in on center.</p></div>
               </li>
               <li class="spec">
                 <span class="spec__num" aria-hidden="true">03</span>
@@ -273,6 +264,14 @@
             </svg>
           </div>
         </div>
+
+        <!-- Trimmed verbatim from Norma York's review (full text in Reviews). -->
+        <figure class="proof">
+          <blockquote>
+            <p>&ldquo;Blackwell built me a wood fence in Allen, TX about 20 years ago. &hellip; it is still standing straight and tall with no maintenance except staining.&rdquo;</p>
+          </blockquote>
+          <figcaption>Norma York</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -299,19 +298,28 @@
         <ul class="gallery" id="gallery">
           <li class="gallery__item" data-cat="wood"><a class="gallery__link" href="img/wood-1.jpg"><img src="img/wood-1-480.jpg" srcset="img/wood-1-480.jpg 480w, img/wood-1.jpg 800w" sizes="(min-width: 1024px) 270px, (min-width: 640px) 33vw, 50vw" width="800" height="600" loading="lazy" decoding="async" alt="Cedar board-on-board fence with cap rail wrapping a corner lot."></a></li>
           <li class="gallery__item" data-cat="gate"><a class="gallery__link" href="img/gate-1.jpg"><img src="img/gate-1-480.jpg" srcset="img/gate-1-480.jpg 480w, img/gate-1.jpg 800w" sizes="(min-width: 1024px) 270px, (min-width: 640px) 33vw, 50vw" width="800" height="600" loading="lazy" decoding="async" alt="Cedar fence with an arched ornamental iron driveway gate."></a></li>
-          <li class="gallery__item" data-cat="iron"><a class="gallery__link" href="img/iron-2.jpg"><img src="img/iron-2-480.jpg" srcset="img/iron-2-480.jpg 480w, img/iron-2.jpg 800w" sizes="(min-width: 1024px) 270px, (min-width: 640px) 33vw, 50vw" width="800" height="600" loading="lazy" decoding="async" alt="Black ornamental iron fence along a driveway lined with shrubs."></a></li>
           <li class="gallery__item" data-cat="deck"><a class="gallery__link" href="img/deck-1.jpg"><img src="img/deck-1-480.jpg" srcset="img/deck-1-480.jpg 480w, img/deck-1.jpg 800w" sizes="(min-width: 1024px) 270px, (min-width: 640px) 33vw, 50vw" width="800" height="600" loading="lazy" decoding="async" alt="Cedar pool deck with railing and two lounge chairs."></a></li>
-          <li class="gallery__item" data-cat="wood"><a class="gallery__link" href="img/wood-2.jpg"><img src="img/wood-2-480.jpg" srcset="img/wood-2-480.jpg 480w, img/wood-2.jpg 800w" sizes="(min-width: 1024px) 270px, (min-width: 640px) 33vw, 50vw" width="800" height="600" loading="lazy" decoding="async" alt="Cedar fence and walk gate with black hardware beside rose bushes at a brick home."></a></li>
-          <li class="gallery__item" data-cat="chainlink"><a class="gallery__link" href="img/chainlink-1.jpg"><img src="img/chainlink-1-480.jpg" srcset="img/chainlink-1-480.jpg 480w, img/chainlink-1.jpg 800w" sizes="(min-width: 1024px) 270px, (min-width: 640px) 33vw, 50vw" width="800" height="533" loading="lazy" decoding="async" alt="Black chain link fence and gate along an open field."></a></li>
+          <li class="gallery__item" data-cat="iron"><a class="gallery__link" href="img/iron-2.jpg"><img src="img/iron-2-480.jpg" srcset="img/iron-2-480.jpg 480w, img/iron-2.jpg 800w" sizes="(min-width: 1024px) 270px, (min-width: 640px) 33vw, 50vw" width="800" height="600" loading="lazy" decoding="async" alt="Black ornamental iron fence along a side yard with shrubs and flower beds."></a></li>
+          <li class="gallery__item" data-cat="wood"><a class="gallery__link" href="img/wood-4.jpg"><img src="img/wood-4-480.jpg" srcset="img/wood-4-480.jpg 480w, img/wood-4.jpg 800w" sizes="(min-width: 1024px) 270px, (min-width: 640px) 33vw, 50vw" width="800" height="600" loading="lazy" decoding="async" alt="8 ft board-on-board cedar fence with a walk gate, a decorative iron window and a Blackwell Fencing sign."></a></li>
+          <li class="gallery__item" data-cat="deck"><a class="gallery__link" href="img/deck-3.jpg"><img src="img/deck-3-480.jpg" srcset="img/deck-3-480.jpg 480w, img/deck-3.jpg 800w" sizes="(min-width: 1024px) 270px, (min-width: 640px) 33vw, 50vw" width="800" height="600" loading="lazy" decoding="async" alt="Covered cedar deck attached to a brick home."></a></li>
           <li class="gallery__item" data-cat="gate"><a class="gallery__link" href="img/gate-2.jpg"><img src="img/gate-2-480.jpg" srcset="img/gate-2-480.jpg 480w, img/gate-2.jpg 800w" sizes="(min-width: 1024px) 270px, (min-width: 640px) 33vw, 50vw" width="800" height="600" loading="lazy" decoding="async" alt="Scrolled iron double driveway gate at a brick home."></a></li>
-          <li class="gallery__item" data-cat="wood"><a class="gallery__link" href="img/wood-3.jpg"><img src="img/wood-3-480.jpg" srcset="img/wood-3-480.jpg 480w, img/wood-3.jpg 800w" sizes="(min-width: 1024px) 270px, (min-width: 640px) 33vw, 50vw" width="800" height="600" loading="lazy" decoding="async" alt="Cedar privacy fence built on top of a stone retaining wall."></a></li>
+          <li class="gallery__item" data-cat="wood"><a class="gallery__link" href="img/wood-2.jpg"><img src="img/wood-2-480.jpg" srcset="img/wood-2-480.jpg 480w, img/wood-2.jpg 800w" sizes="(min-width: 1024px) 270px, (min-width: 640px) 33vw, 50vw" width="800" height="600" loading="lazy" decoding="async" alt="Cedar fence and walk gate with black hardware beside rose bushes at a brick home."></a></li>
           <li class="gallery__item" data-cat="iron"><a class="gallery__link" href="img/iron-5.jpg"><img src="img/iron-5-480.jpg" srcset="img/iron-5-480.jpg 480w, img/iron-5.jpg 800w" sizes="(min-width: 1024px) 270px, (min-width: 640px) 33vw, 50vw" width="800" height="600" loading="lazy" decoding="async" alt="Black iron fence with brick columns around a backyard pool."></a></li>
+          <li class="gallery__item" data-cat="chainlink"><a class="gallery__link" href="img/chainlink-1.jpg"><img src="img/chainlink-1-480.jpg" srcset="img/chainlink-1-480.jpg 480w, img/chainlink-1.jpg 800w" sizes="(min-width: 1024px) 270px, (min-width: 640px) 33vw, 50vw" width="800" height="533" loading="lazy" decoding="async" alt="Black chain link fence and gate along an open field."></a></li>
+          <li class="gallery__item" data-cat="deck"><a class="gallery__link" href="img/deck-4.jpg"><img src="img/deck-4-480.jpg" srcset="img/deck-4-480.jpg 480w, img/deck-4.jpg 800w" sizes="(min-width: 1024px) 270px, (min-width: 640px) 33vw, 50vw" width="800" height="600" loading="lazy" decoding="async" alt="Cedar deck with railing and a patio dining set."></a></li>
+          <li class="gallery__item" data-cat="wood"><a class="gallery__link" href="img/wood-3.jpg"><img src="img/wood-3-480.jpg" srcset="img/wood-3-480.jpg 480w, img/wood-3.jpg 800w" sizes="(min-width: 1024px) 270px, (min-width: 640px) 33vw, 50vw" width="800" height="600" loading="lazy" decoding="async" alt="Cedar privacy fence built on top of a stone retaining wall."></a></li>
+          <li class="gallery__item" data-cat="gate"><a class="gallery__link" href="img/gate-3.jpg"><img src="img/gate-3-480.jpg" srcset="img/gate-3-480.jpg 480w, img/gate-3.jpg 800w" sizes="(min-width: 1024px) 270px, (min-width: 640px) 33vw, 50vw" width="800" height="459" loading="lazy" decoding="async" alt="Iron driveway gate with a Texas star, with the Blackwell Fencing truck parked behind it."></a></li>
+          <li class="gallery__item" data-cat="iron"><a class="gallery__link" href="img/iron-1.jpg"><img src="img/iron-1-480.jpg" srcset="img/iron-1-480.jpg 480w, img/iron-1.jpg 800w" sizes="(min-width: 1024px) 270px, (min-width: 640px) 33vw, 50vw" width="800" height="600" loading="lazy" decoding="async" alt="Black ornamental iron fence across a front yard."></a></li>
           <li class="gallery__item" data-cat="deck"><a class="gallery__link" href="img/deck-2.jpg"><img src="img/deck-2-480.jpg" srcset="img/deck-2-480.jpg 480w, img/deck-2.jpg 800w" sizes="(min-width: 1024px) 270px, (min-width: 640px) 33vw, 50vw" width="800" height="600" loading="lazy" decoding="async" alt="Multi-level cedar deck with a built-in bench and stairs."></a></li>
           <li class="gallery__item" data-cat="wood"><a class="gallery__link" href="img/wood-5.jpg"><img src="img/wood-5-480.jpg" srcset="img/wood-5-480.jpg 480w, img/wood-5.jpg 800w" sizes="(min-width: 1024px) 270px, (min-width: 640px) 33vw, 50vw" width="800" height="600" loading="lazy" decoding="async" alt="Side-by-side cedar fence with arched cap trim along a sidewalk."></a></li>
           <li class="gallery__item" data-cat="gate"><a class="gallery__link" href="img/gate-4.jpg"><img src="img/gate-4-480.jpg" srcset="img/gate-4-480.jpg 480w, img/gate-4.jpg 800w" sizes="(min-width: 1024px) 270px, (min-width: 640px) 33vw, 50vw" width="800" height="642" loading="lazy" decoding="async" alt="Cedar fence with an arched iron driveway gate at a two-story brick home."></a></li>
+          <li class="gallery__item" data-cat="wood"><a class="gallery__link" href="img/hero-alt-pool.jpg"><img src="img/hero-alt-pool-480.jpg" srcset="img/hero-alt-pool-480.jpg 480w, img/hero-alt-pool.jpg 800w" sizes="(min-width: 1024px) 270px, (min-width: 640px) 33vw, 50vw" width="800" height="600" loading="lazy" decoding="async" alt="Cedar privacy fence around a backyard pool and patio."></a></li>
           <li class="gallery__item" data-cat="iron"><a class="gallery__link" href="img/iron-3.jpg"><img src="img/iron-3-480.jpg" srcset="img/iron-3-480.jpg 480w, img/iron-3.jpg 800w" sizes="(min-width: 1024px) 270px, (min-width: 640px) 33vw, 50vw" width="800" height="600" loading="lazy" decoding="async" alt="Low black iron fence and gate at a stone and brick house."></a></li>
-          <li class="gallery__item" data-cat="chainlink"><a class="gallery__link" href="img/chainlink-2.jpg"><img src="img/chainlink-2-480.jpg" srcset="img/chainlink-2-480.jpg 480w, img/chainlink-2.jpg 800w" sizes="(min-width: 1024px) 270px, (min-width: 640px) 33vw, 50vw" width="800" height="533" loading="lazy" decoding="async" alt="Black chain link fence and walk gate in a backyard with a young tree."></a></li>
+          <li class="gallery__item" data-cat="deck"><a class="gallery__link" href="img/deck-5.jpg"><img src="img/deck-5-480.jpg" srcset="img/deck-5-480.jpg 480w, img/deck-5.jpg 800w" sizes="(min-width: 1024px) 270px, (min-width: 640px) 33vw, 50vw" width="800" height="600" loading="lazy" decoding="async" alt="Pergola-style cedar patio cover over a deck at a brick home."></a></li>
+          <li class="gallery__item" data-cat="gate"><a class="gallery__link" href="img/gate-5.jpg"><img src="img/gate-5-480.jpg" srcset="img/gate-5-480.jpg 480w, img/gate-5.jpg 800w" sizes="(min-width: 1024px) 270px, (min-width: 640px) 33vw, 50vw" width="800" height="600" loading="lazy" decoding="async" alt="Cedar fence with an arched iron driveway gate and a cedar walk gate."></a></li>
           <li class="gallery__item" data-cat="wood"><a class="gallery__link" href="img/wood-6.jpg"><img src="img/wood-6-480.jpg" srcset="img/wood-6-480.jpg 480w, img/wood-6.jpg 800w" sizes="(min-width: 1024px) 270px, (min-width: 640px) 33vw, 50vw" width="800" height="600" loading="lazy" decoding="async" alt="Long board-on-board cedar run on a corner lot under mature trees."></a></li>
+          <li class="gallery__item" data-cat="chainlink"><a class="gallery__link" href="img/chainlink-2.jpg"><img src="img/chainlink-2-480.jpg" srcset="img/chainlink-2-480.jpg 480w, img/chainlink-2.jpg 800w" sizes="(min-width: 1024px) 270px, (min-width: 640px) 33vw, 50vw" width="800" height="533" loading="lazy" decoding="async" alt="Black chain link fence and walk gate in a backyard with a young tree."></a></li>
+          <li class="gallery__item" data-cat="iron"><a class="gallery__link" href="img/iron-4.jpg"><img src="img/iron-4-480.jpg" srcset="img/iron-4-480.jpg 480w, img/iron-4.jpg 800w" sizes="(min-width: 1024px) 270px, (min-width: 640px) 33vw, 50vw" width="800" height="533" loading="lazy" decoding="async" alt="Black ornamental iron fence along a backyard lawn with young trees."></a></li>
         </ul>
         <p class="gallery__empty" hidden>No photos in this category yet.</p>
       </div>
@@ -340,9 +348,9 @@
           </li>
           <li class="quote">
             <blockquote>
-              <p>We are very pleased with your work and have already recommended your company. Excellent work. The Best looking fence we&rsquo;ve seen.</p>
+              <p>I wanted to take a moment and thank you for your prompt response in coming by to erect my fence a few weeks back. I am grateful for your service and would be more than happy to serve as a referral for the quality of product and SERVICE that you and your company deliver.</p>
             </blockquote>
-            <p class="quote__who">Mr. Ritch</p>
+            <p class="quote__who">W. Larone Secrease</p>
           </li>
         </ul>
 
@@ -354,7 +362,7 @@
               <p class="quote__who">K. Rawley</p>
             </li>
             <li class="quote">
-              <blockquote><p>I&rsquo;m very happy with the work you did repairing my fence and so is my back neighbor. I know who to call for future fence service.</p></blockquote>
+              <blockquote><p>Gary and Carie, I&rsquo;m very happy with the work you did repairing my fence and so is my back neighbor. I know who to call for future fence service.</p></blockquote>
               <p class="quote__who">Bobby</p>
             </li>
             <li class="quote">
@@ -362,8 +370,8 @@
               <p class="quote__who">L. Morrison</p>
             </li>
             <li class="quote">
-              <blockquote><p>I wanted to take a moment and thank you for your prompt response in coming by to erect my fence a few weeks back. I am grateful for your service and would be more than happy to serve as a referral for the quality of product and SERVICE that you and your company deliver.</p></blockquote>
-              <p class="quote__who">W. Larone Secrease</p>
+              <blockquote><p>We are very pleased with your work and have already recommended your company. Excellent work. The Best looking fence we&rsquo;ve seen.</p></blockquote>
+              <p class="quote__who">Mr. Ritch</p>
             </li>
             <li class="quote">
               <blockquote><p>Gary I wanted to thank you and your crew for the excellent job on our new fence. It looks so awesome and the quality of the work. I also thank you for excellent customer service and communicating with me here in Eagle Id. We just love the fence wow..</p></blockquote>
@@ -380,7 +388,7 @@
     <section class="section area" id="area" aria-labelledby="area-title">
       <div class="container">
         <p class="eyebrow">Service area</p>
-        <h2 class="section__title" id="area-title">Serving Wylie and our neighbors across Collin, Rockwall and Dallas counties</h2>
+        <h2 class="section__title" id="area-title">Serving Wylie and 19 neighboring cities</h2>
         <p class="section__lead">Based at 3915 Troy Rd in Wylie. We build in these cities and the areas around them.</p>
         <ul class="cities" aria-label="Cities we serve">
           <li>Wylie</li><li>Allen</li><li>Fairview</li><li>Fate</li><li>Garland</li><li>Heath</li><li>Lavon</li><li>Lucas</li><li>Mesquite</li><li>Murphy</li><li>Nevada</li><li>Parker</li><li>Plano</li><li>Richardson</li><li>Rockwall</li><li>Rowlett</li><li>Royse City</li><li>Sachse</li><li>St. Paul</li><li>Sunnyvale</li>
@@ -395,36 +403,20 @@
     <section class="section faq" id="faq" aria-labelledby="faq-title">
       <div class="container container--narrow">
         <p class="eyebrow">Questions</p>
-        <h2 class="section__title" id="faq-title">Straight answers</h2>
+        <h2 class="section__title" id="faq-title">Questions we get</h2>
 
         <div class="faq__list">
-          <details class="faq__item">
-            <summary>How deep do you set the posts?</summary>
-            <p>3 feet deep, in concrete, on 5 ft 9 in centers.</p>
-          </details>
-          <details class="faq__item">
-            <summary>What kind of posts do you use?</summary>
-            <p>2&#8239;3/8 in., .095 gauge galvanized steel posts.</p>
-          </details>
           <details class="faq__item">
             <summary>What is the difference between #1 cedar and clear cedar pickets?</summary>
             <p>A clear picket doesn&rsquo;t have the knots a traditional #1 cedar picket has. We build with #1 Western Red cedar or clear cedar, your choice.</p>
           </details>
           <details class="faq__item">
-            <summary>What are the rails made of?</summary>
-            <p>2x4 rough cedar rails, appearance grade.</p>
-          </details>
-          <details class="faq__item">
-            <summary>What nails do you use?</summary>
-            <p>Duo-Fast aluminum ring shank nails.</p>
-          </details>
-          <details class="faq__item">
             <summary>Should I stain my new fence? Do you stain?</summary>
-            <p>We recommend staining 4 to 6 weeks after installation, and not with a paint-based stain. Blackwell Fence does not stain fences.</p>
+            <p>We recommend staining 4 to 6 weeks after installation, and not with a paint-based stain. Blackwell doesn&rsquo;t stain fences.</p>
           </details>
           <details class="faq__item">
             <summary>Do you offer pre-dipped (pre-stained) wood?</summary>
-            <p>No. After twenty plus years of experience, we have yet to see a good pre-dipped product, so we don&rsquo;t quote it.</p>
+            <p>No. We have yet to see a good pre-dipped product, so we don&rsquo;t quote it.</p>
           </details>
         </div>
       </div>
@@ -536,15 +528,8 @@
     <div class="container footer__grid">
       <div class="footer__brand">
         <a class="brand brand--light" href="#top" aria-label="Blackwell Fencing, back to top">
-          <svg class="brand__mark" viewBox="0 0 40 32" aria-hidden="true" focusable="false">
-            <path class="brand__pickets" d="M8 1l5 5v26H3V6zM20 1l5 5v26H15V6zM32 1l5 5v26H27V6z"/>
-            <rect class="brand__rail" x="0" y="12" width="40" height="3"/>
-            <rect class="brand__rail" x="0" y="22" width="40" height="3"/>
-          </svg>
-          <span class="brand__text">
-            <span class="brand__name">Blackwell Fencing</span>
-            <span class="brand__since">Family owned and operated since 1983</span>
-          </span>
+          <img class="brand__logo" src="img/logo.png" width="325" height="159" alt="Blackwell Fencing" loading="lazy" decoding="async">
+          <span class="brand__since brand__since--always">Family owned and operated since 1983</span>
         </a>
         <p>Custom wood fences, decks and patio covers, ornamental iron, automatic gates and chain link. 5-year warranty on material and labor. Accredited member of the Better Business Bureau since 2005.</p>
       </div>
@@ -559,7 +544,7 @@
       </div>
       <div class="footer__col">
         <h2 class="footer__heading">Service area</h2>
-        <p>Wylie and the surrounding Collin, Rockwall and Dallas county communities, from Allen and Plano to Rockwall and Royse City.</p>
+        <p>Wylie and 19 surrounding cities, from Allen and Plano to Rockwall and Royse City.</p>
         <p><a href="#area">See all 20 cities</a></p>
       </div>
     </div>
@@ -576,15 +561,16 @@
       <p class="live__tag">Picket Digital preview</p>
       <h2 class="live__title" id="live-title">Like it? Make it live.</h2>
       <ul class="live__list">
-        <li>Megan gets this site on blackwellfencing.com: phone-first, with quote requests sent to her inbox and phone. Hosting and edits included.</li>
+        <li>This site goes live on blackwellfencing.com, phone-first, with quote requests sent straight to Megan&rsquo;s inbox and your phone.</li>
         <li>Nothing to pay until you&rsquo;ve approved the design.</li>
         <li>Call or text Moe <a href="tel:+14696297172">(469) 629-7172</a> &middot; <a href="mailto:moe@picketdigital.com">moe@picketdigital.com</a></li>
       </ul>
     </div>
   </section>
 
-  <!-- Sticky call / estimate bar: phones and small tablets only (see style.css). -->
-  <div class="sticky-bar" id="sticky-bar">
+  <!-- Sticky call / estimate bar: phones only (see style.css). Starts hidden with JS on; app.js slides it in
+       once the hero buttons scroll away and hides it again while the form is on screen. With JS off it just shows. -->
+  <div class="sticky-bar is-hidden" id="sticky-bar">
     <a class="btn btn--dark" href="tel:+19724126877">
       <svg class="icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="#i-phone"/></svg>
       Call (972) 412-6877

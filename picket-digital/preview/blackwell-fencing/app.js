@@ -1,13 +1,14 @@
 /* ==========================================================================
    Blackwell Fencing — app.js
-   Loaded synchronously in <head> so the "js" class is set before first paint.
-   Everything else waits for DOMContentLoaded. No external requests.
+   Loaded with defer (js-flag.js sets the "js" class before first paint).
+   Everything waits for DOMContentLoaded. No external requests.
    Pieces: mobile menu, service preselect, gallery filters, lightbox,
    demo estimate form, sticky call bar.
    ========================================================================== */
 (function () {
   'use strict';
 
+  // Harmless if js-flag.js already did this.
   document.documentElement.classList.replace('no-js', 'js');
 
   var $ = function (sel, root) { return (root || document).querySelector(sel); };
@@ -116,16 +117,23 @@
       var link = $('a', list[current]);
       var thumb = $('img', link);
       img.src = link.getAttribute('href');
-      img.alt = thumb.alt;
+      // The figcaption carries the description; an identical alt would be read twice.
+      img.alt = '';
       img.width = thumb.getAttribute('width');
       img.height = thumb.getAttribute('height');
       caption.textContent = thumb.alt;
       count.textContent = '(' + (current + 1) + ' of ' + list.length + ')';
+      // Warm the cache for Prev/Next so they don't flash a black box (same origin, no CSP change).
+      [current + 1, current - 1].forEach(function (i) {
+        var pre = new Image();
+        pre.src = $('a', list[(i + list.length) % list.length]).getAttribute('href');
+      });
     }
 
     function open(index, from) {
       opener = from || null;
       show(index);
+      document.documentElement.classList.add('has-modal');
       dialog.showModal();
       closeBtn.focus();
     }
@@ -161,6 +169,7 @@
     });
 
     dialog.addEventListener('close', function () {
+      document.documentElement.classList.remove('has-modal');
       img.removeAttribute('src');
       if (opener) opener.focus();
     });
@@ -248,14 +257,24 @@
     });
   }
 
-  /* ---------- Sticky bar: slide away while the estimate form is on screen ---------- */
+  /* ---------- Sticky bar: hidden while the hero buttons or the estimate form are on screen ----------
+     The bar starts with is-hidden in the HTML, so it slides in on the first scroll past the hero
+     instead of covering the hero's own Call / Free estimate buttons. Without IntersectionObserver
+     it simply stays shown. */
   function initStickyBar() {
     var bar = $('#sticky-bar');
-    var form = $('#estimate');
-    if (!bar || !form || !('IntersectionObserver' in window)) return;
+    if (!bar) return;
+    var targets = [$('.hero__actions'), $('#estimate')].filter(Boolean);
+    if (!targets.length || !('IntersectionObserver' in window)) { bar.classList.remove('is-hidden'); return; }
+    var onScreen = [];
     var io = new IntersectionObserver(function (entries) {
-      bar.classList.toggle('is-hidden', entries[0].isIntersecting);
+      entries.forEach(function (en) {
+        var i = onScreen.indexOf(en.target);
+        if (en.isIntersecting && i === -1) onScreen.push(en.target);
+        if (!en.isIntersecting && i !== -1) onScreen.splice(i, 1);
+      });
+      bar.classList.toggle('is-hidden', onScreen.length > 0);
     }, { rootMargin: '0px 0px -40px 0px', threshold: 0 });
-    io.observe(form);
+    targets.forEach(function (t) { io.observe(t); });
   }
 })();
