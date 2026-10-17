@@ -141,7 +141,8 @@ small { font-size: .875em; }
 }
 /* The sentence may truncate on narrow phones; the tag and the link never do. */
 .preview-bar__text { flex: 1 1 auto; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.preview-bar__long, .preview-bar__moe { display: none; }
+/* Moe's number only from 900px (it lives in the Make it live section too). Scoped so it beats the .preview-bar a rule below. */
+.preview-bar__long, .preview-bar .preview-bar__moe { display: none; }
 .preview-bar a { display: inline-flex; align-items: center; min-height: 44px; color: #fff; font-weight: 600; white-space: nowrap; flex: none; }
 .preview-bar__cta::after { content: " \2193"; }
 
@@ -250,7 +251,8 @@ small { font-size: .875em; }
 .spec__num { font-family: var(--font-head); font-size: 1.9rem; line-height: 1; color: var(--cedar); min-width: 2.2rem; padding-top: .1rem; }
 .spec__term { font-size: 1.35rem; letter-spacing: .02em; text-transform: uppercase; }
 .spec__text p { margin-top: .2rem; color: var(--ink-2); font-size: .98rem; }
-.sheet__diagram { width: 100%; max-width: 420px; margin: 1rem auto 0; font-family: var(--font-body); font-size: 14px; font-weight: 600; }
+/* Labels are in SVG units: 16 keeps them >= 14px at 360 (svg 296px wide); 14 from 480px where the svg is wider. */
+.sheet__diagram { width: 100%; max-width: 420px; margin: 1rem auto 0; font-family: var(--font-body); font-size: 16px; font-weight: 600; }
 .sheet__diagram .dg-pickets rect { fill: var(--cedar); }
 .sheet__diagram .dg-pickets path { stroke: var(--cedar-deep); stroke-width: 2; opacity: .55; }
 .sheet__diagram .dg-ground path { stroke: var(--charcoal); stroke-width: 2; }
@@ -413,8 +415,11 @@ small { font-size: .875em; }
 /* Only JS toggles the bar (hidden while the hero buttons or the form are on screen); with JS off it simply shows. */
 .js .sticky-bar.is-hidden { transform: translateY(110%); }
 
-/* Lightbox open: lock page scroll behind the dialog (toggled by app.js) */
+/* Lightbox open: lock page scroll behind the dialog. app.js adds .has-modal and sets body top to -scrollY,
+   because overflow:hidden alone is ignored by mobile browsers; the dialog also contains scroll chaining. */
 .has-modal { overflow: hidden; }
+.has-modal body { position: fixed; left: 0; right: 0; width: 100%; }
+.lightbox[open] { overflow: auto; overscroll-behavior: contain; }
 
 /* ========================================================================
    Breakpoints
@@ -429,6 +434,7 @@ small { font-size: .875em; }
 }
 @media (min-width: 480px) {
   .header__phone-num { display: inline; }
+  .sheet__diagram { font-size: 14px; }
 }
 
 @media (min-width: 640px) {
@@ -461,7 +467,7 @@ small { font-size: .875em; }
 }
 
 @media (min-width: 900px) {
-  .preview-bar__moe { display: inline-flex; margin-left: auto; }
+  .preview-bar .preview-bar__moe { display: inline-flex; margin-left: auto; }
   .brand__logo { height: 64px; }
   .section { padding-block: 4.5rem; }
   .trust__list { grid-template-columns: repeat(5, 1fr); padding-block: 1.25rem; }

@@ -107,6 +107,7 @@
     var nextBtn = $('.lightbox__next', dialog);
     var current = -1;
     var opener = null;
+    var lockY = 0;
 
     function visible() { return items.filter(function (li) { return !li.hidden; }); }
 
@@ -130,10 +131,26 @@
       });
     }
 
+    // Scroll lock: pin the body at the current scroll position (overflow:hidden alone is not enough on phones).
+    function lock() {
+      lockY = window.pageYOffset || document.documentElement.scrollTop || 0;
+      document.body.style.top = -lockY + 'px';
+      document.documentElement.classList.add('has-modal');
+    }
+    function unlock() {
+      var html = document.documentElement;
+      html.classList.remove('has-modal');
+      document.body.style.top = '';
+      var prev = html.style.scrollBehavior;
+      html.style.scrollBehavior = 'auto';   // jump back, don't smooth-scroll
+      window.scrollTo(0, lockY);
+      html.style.scrollBehavior = prev;
+    }
+
     function open(index, from) {
       opener = from || null;
       show(index);
-      document.documentElement.classList.add('has-modal');
+      lock();
       dialog.showModal();
       closeBtn.focus();
     }
@@ -169,7 +186,7 @@
     });
 
     dialog.addEventListener('close', function () {
-      document.documentElement.classList.remove('has-modal');
+      unlock();
       img.removeAttribute('src');
       if (opener) opener.focus();
     });
