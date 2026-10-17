@@ -12,6 +12,7 @@
 
   <!-- Fonts are self-hosted at the site root (same origin, allowed by the CSP). -->
   <link rel="preload" href="/assets/fonts/barlow-condensed-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="img/truck-at-gate.jpg" as="image" imagesrcset="img/truck-at-gate-480.jpg 480w, img/truck-at-gate.jpg 1000w" imagesizes="(min-width: 1024px) 50vw, 100vw">
   <link rel="stylesheet" href="style.css">
   <!-- js-flag.js (one line) runs synchronously so the html.js class is set before first paint and the
@@ -65,7 +66,7 @@
         <span class="header__phone-num">469-369-7949</span>
       </a>
 
-      <a class="btn btn--primary header__cta" href="#estimate">Free Estimate</a>
+      <a class="btn btn--outline header__cta" href="#estimate">Free Estimate</a>
 
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
         <svg class="icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="#i-menu"/></svg>
@@ -93,7 +94,7 @@
          HERO
          =================================================================== -->
     <section class="hero" aria-labelledby="hero-title">
-      <!-- Phones: the photo sits above the headline (nothing covers the truck). From 1024px they sit side by side. -->
+      <!-- Phones: the photo fades into the headline block (the fade stays below the truck). From 1024px they sit side by side with a left-edge fade. -->
       <div class="hero__media">
         <img class="hero__img" src="img/truck-at-gate.jpg" srcset="img/truck-at-gate-480.jpg 480w, img/truck-at-gate.jpg 1000w" sizes="(min-width: 1024px) 50vw, 100vw" width="1000" height="667" alt="The red American Dream Fence Crew truck parked at a finished iron gate in front of a stone home." loading="eager" fetchpriority="high" decoding="async">
       </div>
@@ -101,6 +102,7 @@
         <p class="hero__kicker">Forney, Texas &middot; Since 2006</p>
         <h1 class="hero__title" id="hero-title">Wood, iron and custom gates, built by the crew in the red&nbsp;truck.</h1>
         <p class="hero__sub">Owner and operator Bobby Quaid. Free estimates.</p>
+        <p class="hero__rating"><svg class="icon icon--fill" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="#i-star"/></svg>4.9 stars &middot; 207 Google reviews</p>
         <div class="hero__actions">
           <a class="btn btn--primary btn--lg" href="tel:+14693697949">
             <svg class="icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="#i-phone"/></svg>
@@ -125,57 +127,72 @@
     </section>
 
     <!-- ===================================================================
+         WORK STRIP (phones only): six finished jobs in the first swipe. Each tile opens the
+         gallery lightbox at that photo (data-gallery-index); with JS off it opens the full image.
+         ================================================================== -->
+    <section class="strip" aria-label="Recent work">
+      <ul class="strip__list">
+        <li class="strip__item"><a class="strip__link" href="img/gate-2.jpg" data-gallery-index="1"><img src="img/gate-2-480.jpg" srcset="img/gate-2-360.jpg 360w, img/gate-2-480.jpg 480w, img/gate-2.jpg 1000w" sizes="calc(50vw - 36px)" width="1000" height="750" loading="lazy" decoding="async" alt="Arched iron driveway gate beside a cedar fence, crew finishing the install."></a></li>
+        <li class="strip__item"><a class="strip__link" href="img/wood-3.jpg" data-gallery-index="0"><img src="img/wood-3-480.jpg" srcset="img/wood-3-360.jpg 360w, img/wood-3-480.jpg 480w, img/wood-3.jpg 1000w" sizes="calc(50vw - 36px)" width="1000" height="750" loading="lazy" decoding="async" alt="Long run of stained board-on-board cedar fence."></a></li>
+        <li class="strip__item"><a class="strip__link" href="img/iron-5.jpg" data-gallery-index="2"><img src="img/iron-5-480.jpg" srcset="img/iron-5-360.jpg 360w, img/iron-5-480.jpg 480w, img/iron-5.jpg 1000w" sizes="calc(50vw - 36px)" width="1000" height="750" loading="lazy" decoding="async" alt="Black wrought iron fence around a large stone home."></a></li>
+        <li class="strip__item"><a class="strip__link" href="img/gate-5.jpg" data-gallery-index="5"><img src="img/gate-5-480.jpg" srcset="img/gate-5-360.jpg 360w, img/gate-5-480.jpg 480w, img/gate-5.jpg 960w" sizes="calc(50vw - 36px)" width="960" height="720" loading="lazy" decoding="async" alt="D monogram iron gate hung on stone columns."></a></li>
+        <li class="strip__item"><a class="strip__link" href="img/wood-6.jpg" data-gallery-index="4"><img src="img/wood-6-480.jpg" srcset="img/wood-6-360.jpg 360w, img/wood-6-480.jpg 480w, img/wood-6.jpg 1000w" sizes="calc(50vw - 36px)" width="1000" height="750" loading="lazy" decoding="async" alt="Horizontal cedar fence along a driveway."></a></li>
+        <li class="strip__item"><a class="strip__link" href="img/deck-4.jpg" data-gallery-index="3"><img src="img/deck-4-480.jpg" srcset="img/deck-4-360.jpg 360w, img/deck-4-480.jpg 480w, img/deck-4.jpg 1000w" sizes="calc(50vw - 36px)" width="1000" height="748" loading="lazy" decoding="async" alt="Large wood deck with railing behind a brick home."></a></li>
+      </ul>
+    </section>
+
+    <!-- ===================================================================
          SERVICES
          =================================================================== -->
     <section class="section services" id="services" aria-labelledby="services-title">
       <div class="container">
         <p class="eyebrow">Services</p>
-        <h2 class="section__title" id="services-title">What we build</h2>
-        <p class="section__lead">Wood, wrought iron and chain link fences. Custom gates and automatic openers. Decks and porches. Repairs. Residential, commercial, custom and builder work.</p>
+        <h2 class="section__title reveal" id="services-title">What we build</h2>
+        <p class="section__lead reveal">Wood, wrought iron and chain link fences. Custom gates and automatic openers. Decks and porches. Repairs. Residential, commercial, custom and builder work.</p>
 
         <ul class="cards">
-          <li class="card">
-            <img class="card__img" src="img/wood-3-480.jpg" srcset="img/wood-3-360.jpg 360w, img/wood-3-480.jpg 480w, img/wood-3.jpg 1000w" sizes="(min-width: 1180px) 353px, (min-width: 1024px) calc(33vw - 26px), (min-width: 640px) calc(50vw - 26px), 120px" width="1000" height="750" loading="lazy" decoding="async" alt="Long run of stained board-on-board cedar fence.">
+          <li class="card reveal">
+            <img class="card__img" src="img/wood-3-480.jpg" srcset="img/wood-3-360.jpg 360w, img/wood-3-480.jpg 480w, img/wood-3.jpg 1000w" sizes="(min-width: 1180px) 353px, (min-width: 1024px) calc(33vw - 26px), (min-width: 640px) calc(50vw - 26px), 136px" width="1000" height="750" loading="lazy" decoding="async" alt="Long run of stained board-on-board cedar fence.">
             <div class="card__body">
               <h3 class="card__title">Wood fences</h3>
               <p>Board-on-board and horizontal cedar, 6 ft and 8 ft, with double kick board, trim and cap board. Staining too.</p>
               <a class="card__link" href="#estimate" data-service="wood">Get an estimate for a wood fence&nbsp;<span aria-hidden="true">&rarr;</span></a>
             </div>
           </li>
-          <li class="card">
-            <img class="card__img" src="img/iron-5-480.jpg" srcset="img/iron-5-360.jpg 360w, img/iron-5-480.jpg 480w, img/iron-5.jpg 1000w" sizes="(min-width: 1180px) 353px, (min-width: 1024px) calc(33vw - 26px), (min-width: 640px) calc(50vw - 26px), 120px" width="1000" height="750" loading="lazy" decoding="async" alt="Black wrought iron fence around a large stone home.">
+          <li class="card reveal">
+            <img class="card__img" src="img/iron-6-480.jpg" srcset="img/iron-6-360.jpg 360w, img/iron-6-480.jpg 480w, img/iron-6.jpg 1000w" sizes="(min-width: 1180px) 353px, (min-width: 1024px) calc(33vw - 26px), (min-width: 640px) calc(50vw - 26px), 136px" width="1000" height="750" loading="lazy" decoding="async" alt="Black wrought iron fence at sunset.">
             <div class="card__body">
               <h3 class="card__title">Wrought iron</h3>
               <p>Simple or decorative. 4 ft flat-top wrought iron, rackable for slopes. 1,000 linear feet of it on one acre in Talty, 500 ft in Heath.</p>
               <a class="card__link" href="#estimate" data-service="iron">Get an estimate for wrought iron&nbsp;<span aria-hidden="true">&rarr;</span></a>
             </div>
           </li>
-          <li class="card">
-            <img class="card__img" src="img/gate-4-480.jpg" srcset="img/gate-4-360.jpg 360w, img/gate-4-480.jpg 480w, img/gate-4.jpg 800w" sizes="(min-width: 1180px) 353px, (min-width: 1024px) calc(33vw - 26px), (min-width: 640px) calc(50vw - 26px), 120px" width="800" height="600" loading="lazy" decoding="async" alt="Arched iron driveway gate.">
+          <li class="card reveal">
+            <img class="card__img" src="img/gate-4-480.jpg" srcset="img/gate-4-360.jpg 360w, img/gate-4-480.jpg 480w, img/gate-4.jpg 800w" sizes="(min-width: 1180px) 353px, (min-width: 1024px) calc(33vw - 26px), (min-width: 640px) calc(50vw - 26px), 136px" width="800" height="600" loading="lazy" decoding="async" alt="Arched iron driveway gate.">
             <div class="card__body">
               <h3 class="card__title">Custom gates &amp; automatic openers</h3>
               <p>Swing gates, roll gates and sliding gates in iron or wood, fabricated in our shop. Automatic openers installed.</p>
               <a class="card__link" href="#estimate" data-service="gate">Get an estimate for a gate&nbsp;<span aria-hidden="true">&rarr;</span></a>
             </div>
           </li>
-          <li class="card">
-            <img class="card__img" src="img/chain-1-480.jpg" srcset="img/chain-1-480.jpg 480w, img/chain-1.jpg 1000w" sizes="(min-width: 1180px) 353px, (min-width: 1024px) calc(33vw - 26px), (min-width: 640px) calc(50vw - 26px), 120px" width="1000" height="750" loading="lazy" decoding="async" alt="Galvanized chain link fence in a backyard.">
+          <li class="card reveal">
+            <img class="card__img" src="img/chain-3-480.jpg" srcset="img/chain-3-360.jpg 360w, img/chain-3-480.jpg 480w, img/chain-3.jpg 1000w" sizes="(min-width: 1180px) 353px, (min-width: 1024px) calc(33vw - 26px), (min-width: 640px) calc(50vw - 26px), 136px" width="1000" height="750" loading="lazy" decoding="async" alt="Black chain link rolling gate.">
             <div class="card__body">
               <h3 class="card__title">Chain link</h3>
               <p>Galvanized or black vinyl chain link, fences and gates. Simple, efficient and cost friendly. Decorative chain link available.</p>
               <a class="card__link" href="#estimate" data-service="chainlink">Get an estimate for chain link&nbsp;<span aria-hidden="true">&rarr;</span></a>
             </div>
           </li>
-          <li class="card">
-            <img class="card__img" src="img/deck-1-480.jpg" srcset="img/deck-1-360.jpg 360w, img/deck-1-480.jpg 480w, img/deck-1.jpg 1000w" sizes="(min-width: 1180px) 353px, (min-width: 1024px) calc(33vw - 26px), (min-width: 640px) calc(50vw - 26px), 120px" width="1000" height="750" loading="lazy" decoding="async" alt="Covered porch deck with railings.">
+          <li class="card reveal">
+            <img class="card__img" src="img/deck-4-480.jpg" srcset="img/deck-4-360.jpg 360w, img/deck-4-480.jpg 480w, img/deck-4.jpg 1000w" sizes="(min-width: 1180px) 353px, (min-width: 1024px) calc(33vw - 26px), (min-width: 640px) calc(50vw - 26px), 136px" width="1000" height="748" loading="lazy" decoding="async" alt="Large wood deck with railing behind a brick home.">
             <div class="card__body">
               <h3 class="card__title">Decks &amp; porches</h3>
               <p>Wrap-around, multi-tiered, attached or detached platform decks, rooftop and pool decks, porches and entryways.</p>
               <a class="card__link" href="#estimate" data-service="deck">Get an estimate for a deck&nbsp;<span aria-hidden="true">&rarr;</span></a>
             </div>
           </li>
-          <li class="card">
-            <img class="card__img" src="img/wood-4-480.jpg" srcset="img/wood-4-360.jpg 360w, img/wood-4-480.jpg 480w, img/wood-4.jpg 1000w" sizes="(min-width: 1180px) 353px, (min-width: 1024px) calc(33vw - 26px), (min-width: 640px) calc(50vw - 26px), 120px" width="1000" height="750" loading="lazy" decoding="async" alt="Cedar double walk gate with black hinges.">
+          <li class="card reveal">
+            <img class="card__img" src="img/wood-4-480.jpg" srcset="img/wood-4-360.jpg 360w, img/wood-4-480.jpg 480w, img/wood-4.jpg 1000w" sizes="(min-width: 1180px) 353px, (min-width: 1024px) calc(33vw - 26px), (min-width: 640px) calc(50vw - 26px), 136px" width="1000" height="750" loading="lazy" decoding="async" alt="Cedar double walk gate with black hinges.">
             <div class="card__body">
               <h3 class="card__title">Fence repair</h3>
               <p>Posts and panels, gates, storm damage. Wood, chain link and wrought iron. You don&rsquo;t have to pay for a full replacement when a repair will do the job.</p>
@@ -193,25 +210,25 @@
     <section class="section repairs" id="repairs" aria-labelledby="repairs-title">
       <div class="container">
         <p class="eyebrow">Fence repair</p>
-        <h2 class="section__title" id="repairs-title">Fixed, when a repair will do the job</h2>
-        <p class="section__lead">Storms, time, and everyday wear take a toll on even the best-built fence. We offer fast, affordable fence repair for wood, chain link, and wrought iron fences and gates, so you don&rsquo;t have to pay for a full replacement when a repair will do the job.</p>
+        <h2 class="section__title reveal" id="repairs-title">Fixed, when a repair will do the job</h2>
+        <p class="section__lead reveal">Storms, time, and everyday wear take a toll on even the best-built fence. We offer fast, affordable fence repair for wood, chain link, and wrought iron fences and gates, so you don&rsquo;t have to pay for a full replacement when a repair will do the job.</p>
 
         <ol class="repairs__list">
-          <li class="repair">
+          <li class="repair reveal">
             <span class="repair__num" aria-hidden="true">01</span>
             <div>
               <h3 class="repair__title">Post &amp; panel repair</h3>
               <p>We reset posts in concrete, replace rotted pickets and rails, and match materials so the repair blends in.</p>
             </div>
           </li>
-          <li class="repair">
+          <li class="repair reveal">
             <span class="repair__num" aria-hidden="true">02</span>
             <div>
               <h3 class="repair__title">Gate repair &amp; realignment</h3>
               <p>We repair and realign hinges, latches, and frames, and rebuild gates that have shifted out of square.</p>
             </div>
           </li>
-          <li class="repair">
+          <li class="repair reveal">
             <span class="repair__num" aria-hidden="true">03</span>
             <div>
               <h3 class="repair__title">Wind &amp; storm damage repair</h3>
@@ -230,31 +247,31 @@
       <div class="container gates__grid">
         <div class="gates__text">
           <p class="eyebrow">Gates</p>
-          <h2 class="section__title" id="gates-title">Custom gate fabrication</h2>
-          <p class="section__lead">Arched iron driveway gates. Monogram gates with your initial. Plasma-cut panels made in our shop. Horizontal-slat sliding gates, wood swing gates and roll gates. Automatic openers, too.</p>
+          <h2 class="section__title reveal" id="gates-title">Custom gate fabrication</h2>
+          <p class="section__lead reveal">Arched iron driveway gates. Monogram gates with your initial. Plasma-cut panels made in our shop. Horizontal-slat sliding gates, wood swing gates and roll gates. Automatic openers, too.</p>
           <p class="gates__quote">We would love to work with you to create a gate that stands out for you. We can help you plan, design and install your custom gate.</p>
           <a class="btn btn--primary" href="#estimate" data-service="gate">Get an estimate for a gate</a>
         </div>
         <ul class="gates__photos">
-          <li class="gates__photo gates__photo--tall">
+          <li class="gates__photo gates__photo--tall reveal">
             <figure>
               <img src="img/gate-fab-480.jpg" srcset="img/gate-fab-480.jpg 360w, img/gate-fab.jpg 1000w" sizes="(min-width: 900px) 270px, calc(50vw - 21px)" width="1000" height="1333" loading="lazy" decoding="async" alt="A plasma-cut gate panel being made, crew working at the far end.">
               <figcaption>Plasma-cut panel, before install</figcaption>
             </figure>
           </li>
-          <li class="gates__photo">
+          <li class="gates__photo reveal">
             <figure>
               <img src="img/gate-1-480.jpg" srcset="img/gate-1-360.jpg 360w, img/gate-1-480.jpg 480w, img/gate-1.jpg 1000w" sizes="(min-width: 900px) 270px, calc(50vw - 21px)" width="1000" height="750" loading="lazy" decoding="async" alt="Ranch entry gate with two H monograms.">
               <figcaption>&ldquo;H&rdquo; ranch gate</figcaption>
             </figure>
           </li>
-          <li class="gates__photo">
+          <li class="gates__photo reveal">
             <figure>
               <img src="img/gate-5-480.jpg" srcset="img/gate-5-360.jpg 360w, img/gate-5-480.jpg 480w, img/gate-5.jpg 960w" sizes="(min-width: 900px) 270px, calc(50vw - 21px)" width="960" height="720" loading="lazy" decoding="async" alt="D monogram iron gate hung on stone columns.">
               <figcaption>&ldquo;D&rdquo; gate on stone columns</figcaption>
             </figure>
           </li>
-          <li class="gates__photo gates__photo--wide">
+          <li class="gates__photo gates__photo--wide reveal">
             <figure>
               <img src="img/gate-6-480.jpg" srcset="img/gate-6-360.jpg 360w, img/gate-6-480.jpg 480w, img/gate-6.jpg 1000w" sizes="(min-width: 900px) 556px, calc(100vw - 32px)" width="1000" height="502" loading="lazy" decoding="async" alt="Decorative plasma-cut iron driveway gate.">
               <figcaption>Plasma-cut decorative gate</figcaption>
@@ -270,8 +287,8 @@
     <section class="section work" id="work" aria-labelledby="work-title">
       <div class="container">
         <p class="eyebrow">Our work</p>
-        <h2 class="section__title" id="work-title">Fences, gates and decks</h2>
-        <p class="section__lead">Tap a photo to see it larger.</p>
+        <h2 class="section__title reveal" id="work-title">Fences, gates and decks</h2>
+        <p class="section__lead reveal">Tap a photo to see it larger.</p>
 
         <!-- Filter chips are JS-only; without JS every photo shows. -->
         <div class="filters" role="group" aria-label="Filter photos by type">
@@ -284,7 +301,7 @@
         <p class="filters__status visually-hidden" aria-live="polite"></p>
 
         <ul class="gallery" id="gallery">
-          <li class="gallery__item" data-cat="wood"><a class="gallery__link" href="img/wood-3.jpg"><img src="img/wood-3-480.jpg" srcset="img/wood-3-360.jpg 360w, img/wood-3-480.jpg 480w, img/wood-3.jpg 1000w" sizes="(min-width: 1180px) 265px, (min-width: 768px) calc(25vw - 20px), calc(50vw - 21px)" width="1000" height="750" loading="lazy" decoding="async" alt="Long run of stained board-on-board cedar fence."></a></li>
+          <li class="gallery__item gallery__item--feature" data-cat="wood"><a class="gallery__link" href="img/wood-3.jpg"><img src="img/wood-3-480.jpg" srcset="img/wood-3-360.jpg 360w, img/wood-3-480.jpg 480w, img/wood-3.jpg 1000w" sizes="(min-width: 1180px) 550px, (min-width: 768px) calc(50vw - 28px), 240px" width="1000" height="750" loading="lazy" decoding="async" alt="Long run of stained board-on-board cedar fence."></a></li>
           <li class="gallery__item" data-cat="gate"><a class="gallery__link" href="img/gate-2.jpg"><img src="img/gate-2-480.jpg" srcset="img/gate-2-360.jpg 360w, img/gate-2-480.jpg 480w, img/gate-2.jpg 1000w" sizes="(min-width: 1180px) 265px, (min-width: 768px) calc(25vw - 20px), calc(50vw - 21px)" width="1000" height="750" loading="lazy" decoding="async" alt="Arched iron driveway gate beside a cedar fence, crew finishing the install."></a></li>
           <li class="gallery__item" data-cat="iron"><a class="gallery__link" href="img/iron-5.jpg"><img src="img/iron-5-480.jpg" srcset="img/iron-5-360.jpg 360w, img/iron-5-480.jpg 480w, img/iron-5.jpg 1000w" sizes="(min-width: 1180px) 265px, (min-width: 768px) calc(25vw - 20px), calc(50vw - 21px)" width="1000" height="750" loading="lazy" decoding="async" alt="Black wrought iron fence around a large stone home."></a></li>
           <li class="gallery__item" data-cat="deck"><a class="gallery__link" href="img/deck-4.jpg"><img src="img/deck-4-480.jpg" srcset="img/deck-4-360.jpg 360w, img/deck-4-480.jpg 480w, img/deck-4.jpg 1000w" sizes="(min-width: 1180px) 265px, (min-width: 768px) calc(25vw - 20px), calc(50vw - 21px)" width="1000" height="748" loading="lazy" decoding="async" alt="Large wood deck with railing behind a brick home."></a></li>
@@ -292,12 +309,12 @@
           <li class="gallery__item" data-cat="gate"><a class="gallery__link" href="img/gate-5.jpg"><img src="img/gate-5-480.jpg" srcset="img/gate-5-360.jpg 360w, img/gate-5-480.jpg 480w, img/gate-5.jpg 960w" sizes="(min-width: 1180px) 265px, (min-width: 768px) calc(25vw - 20px), calc(50vw - 21px)" width="960" height="720" loading="lazy" decoding="async" alt="D monogram iron gate hung on stone columns."></a></li>
           <li class="gallery__item" data-cat="iron"><a class="gallery__link" href="img/iron-3.jpg"><img src="img/iron-3-480.jpg" srcset="img/iron-3-360.jpg 360w, img/iron-3-480.jpg 480w, img/iron-3.jpg 1000w" sizes="(min-width: 1180px) 265px, (min-width: 768px) calc(25vw - 20px), calc(50vw - 21px)" width="1000" height="750" loading="lazy" decoding="async" alt="Wrought iron fence on a lakefront lot."></a></li>
           <li class="gallery__item" data-cat="wood"><a class="gallery__link" href="img/wood-1.jpg"><img src="img/wood-1-480.jpg" srcset="img/wood-1-360.jpg 360w, img/wood-1-480.jpg 480w, img/wood-1.jpg 1000w" sizes="(min-width: 1180px) 265px, (min-width: 768px) calc(25vw - 20px), calc(50vw - 21px)" width="1000" height="750" loading="lazy" decoding="async" alt="Cedar privacy fence around a backyard pool."></a></li>
-          <li class="gallery__item" data-cat="gate"><a class="gallery__link" href="img/gate-1.jpg"><img src="img/gate-1-480.jpg" srcset="img/gate-1-360.jpg 360w, img/gate-1-480.jpg 480w, img/gate-1.jpg 1000w" sizes="(min-width: 1180px) 265px, (min-width: 768px) calc(25vw - 20px), calc(50vw - 21px)" width="1000" height="750" loading="lazy" decoding="async" alt="Ranch entry gate with two H monograms."></a></li>
+          <li class="gallery__item gallery__item--feature" data-cat="gate"><a class="gallery__link" href="img/gate-1.jpg"><img src="img/gate-1-480.jpg" srcset="img/gate-1-360.jpg 360w, img/gate-1-480.jpg 480w, img/gate-1.jpg 1000w" sizes="(min-width: 1180px) 550px, (min-width: 768px) calc(50vw - 28px), 240px" width="1000" height="750" loading="lazy" decoding="async" alt="Ranch entry gate with two H monograms."></a></li>
           <li class="gallery__item" data-cat="deck"><a class="gallery__link" href="img/deck-3.jpg"><img src="img/deck-3-480.jpg" srcset="img/deck-3-360.jpg 360w, img/deck-3-480.jpg 480w, img/deck-3.jpg 1000w" sizes="(min-width: 1180px) 265px, (min-width: 768px) calc(25vw - 20px), calc(50vw - 21px)" width="1000" height="747" loading="lazy" decoding="async" alt="Covered front porch with cedar posts."></a></li>
           <li class="gallery__item" data-cat="iron"><a class="gallery__link" href="img/iron-1.jpg"><img src="img/iron-1-480.jpg" srcset="img/iron-1-360.jpg 360w, img/iron-1-480.jpg 480w, img/iron-1.jpg 1000w" sizes="(min-width: 1180px) 265px, (min-width: 768px) calc(25vw - 20px), calc(50vw - 21px)" width="1000" height="750" loading="lazy" decoding="async" alt="Flat-top wrought iron fence on turf."></a></li>
           <li class="gallery__item" data-cat="wood"><a class="gallery__link" href="img/wood-4.jpg"><img src="img/wood-4-480.jpg" srcset="img/wood-4-360.jpg 360w, img/wood-4-480.jpg 480w, img/wood-4.jpg 1000w" sizes="(min-width: 1180px) 265px, (min-width: 768px) calc(25vw - 20px), calc(50vw - 21px)" width="1000" height="750" loading="lazy" decoding="async" alt="Cedar double walk gate with black hinges."></a></li>
           <li class="gallery__item" data-cat="gate"><a class="gallery__link" href="img/gate-6.jpg"><img src="img/gate-6-480.jpg" srcset="img/gate-6-360.jpg 360w, img/gate-6-480.jpg 480w, img/gate-6.jpg 1000w" sizes="(min-width: 1180px) 265px, (min-width: 768px) calc(25vw - 20px), calc(50vw - 21px)" width="1000" height="502" loading="lazy" decoding="async" alt="Decorative plasma-cut iron driveway gate."></a></li>
-          <li class="gallery__item" data-cat="wood"><a class="gallery__link" href="img/wood-7.jpg"><img src="img/wood-7-480.jpg" srcset="img/wood-7-360.jpg 360w, img/wood-7-480.jpg 480w, img/wood-7.jpg 1000w" sizes="(min-width: 1180px) 265px, (min-width: 768px) calc(25vw - 20px), calc(50vw - 21px)" width="1000" height="750" loading="lazy" decoding="async" alt="Horizontal cedar fence panels."></a></li>
+          <li class="gallery__item gallery__item--feature" data-cat="wood"><a class="gallery__link" href="img/wood-7.jpg"><img src="img/wood-7-480.jpg" srcset="img/wood-7-360.jpg 360w, img/wood-7-480.jpg 480w, img/wood-7.jpg 1000w" sizes="(min-width: 1180px) 550px, (min-width: 768px) calc(50vw - 28px), 240px" width="1000" height="750" loading="lazy" decoding="async" alt="Horizontal cedar fence panels."></a></li>
           <li class="gallery__item" data-cat="gate"><a class="gallery__link" href="img/gate-7.jpg"><img src="img/gate-7-480.jpg" srcset="img/gate-7-360.jpg 360w, img/gate-7-480.jpg 480w, img/gate-7.jpg 1000w" sizes="(min-width: 1180px) 265px, (min-width: 768px) calc(25vw - 20px), calc(50vw - 21px)" width="1000" height="750" loading="lazy" decoding="async" alt="Horizontal-slat metal sliding gate."></a></li>
           <li class="gallery__item" data-cat="deck"><a class="gallery__link" href="img/deck-1.jpg"><img src="img/deck-1-480.jpg" srcset="img/deck-1-360.jpg 360w, img/deck-1-480.jpg 480w, img/deck-1.jpg 1000w" sizes="(min-width: 1180px) 265px, (min-width: 768px) calc(25vw - 20px), calc(50vw - 21px)" width="1000" height="750" loading="lazy" decoding="async" alt="Covered porch deck with railings."></a></li>
           <li class="gallery__item" data-cat="wood"><a class="gallery__link" href="img/wood-2.jpg"><img src="img/wood-2-480.jpg" srcset="img/wood-2-360.jpg 360w, img/wood-2-480.jpg 480w, img/wood-2.jpg 1000w" sizes="(min-width: 1180px) 265px, (min-width: 768px) calc(25vw - 20px), calc(50vw - 21px)" width="1000" height="750" loading="lazy" decoding="async" alt="Stained cedar fence beside a pool."></a></li>
@@ -307,7 +324,7 @@
           <li class="gallery__item" data-cat="iron"><a class="gallery__link" href="img/iron-6.jpg"><img src="img/iron-6-480.jpg" srcset="img/iron-6-360.jpg 360w, img/iron-6-480.jpg 480w, img/iron-6.jpg 1000w" sizes="(min-width: 1180px) 265px, (min-width: 768px) calc(25vw - 20px), calc(50vw - 21px)" width="1000" height="750" loading="lazy" decoding="async" alt="Wrought iron fence at sunset."></a></li>
           <li class="gallery__item" data-cat="deck"><a class="gallery__link" href="img/deck-2.jpg"><img src="img/deck-2-480.jpg" srcset="img/deck-2-360.jpg 360w, img/deck-2-480.jpg 480w, img/deck-2.jpg 1000w" sizes="(min-width: 1180px) 265px, (min-width: 768px) calc(25vw - 20px), calc(50vw - 21px)" width="1000" height="750" loading="lazy" decoding="async" alt="Wood stairs and landing."></a></li>
           <li class="gallery__item" data-cat="wood"><a class="gallery__link" href="img/wood-8.jpg"><img src="img/wood-8-480.jpg" srcset="img/wood-8-360.jpg 360w, img/wood-8-480.jpg 480w, img/wood-8.jpg 1000w" sizes="(min-width: 1180px) 265px, (min-width: 768px) calc(25vw - 20px), calc(50vw - 21px)" width="1000" height="750" loading="lazy" decoding="async" alt="Horizontal cedar fence beside a covered patio."></a></li>
-          <li class="gallery__item" data-cat="gate"><a class="gallery__link" href="img/gate-8.jpg"><img src="img/gate-8-480.jpg" srcset="img/gate-8-360.jpg 360w, img/gate-8-480.jpg 480w, img/gate-8.jpg 1000w" sizes="(min-width: 1180px) 265px, (min-width: 768px) calc(25vw - 20px), calc(50vw - 21px)" width="1000" height="750" loading="lazy" decoding="async" alt="Wood-and-steel sliding gate."></a></li>
+          <li class="gallery__item gallery__item--feature" data-cat="gate"><a class="gallery__link" href="img/gate-8.jpg"><img src="img/gate-8-480.jpg" srcset="img/gate-8-360.jpg 360w, img/gate-8-480.jpg 480w, img/gate-8.jpg 1000w" sizes="(min-width: 1180px) 550px, (min-width: 768px) calc(50vw - 28px), 240px" width="1000" height="750" loading="lazy" decoding="async" alt="Wood-and-steel sliding gate."></a></li>
         </ul>
         <p class="gallery__empty" hidden>No photos in this category yet.</p>
       </div>
@@ -319,41 +336,41 @@
     <section class="section videos" id="videos" aria-labelledby="videos-title">
       <div class="container">
         <p class="eyebrow">Videos</p>
-        <h2 class="section__title" id="videos-title">Watch the crew work</h2>
-        <p class="section__lead">From our YouTube channel. Each one opens on YouTube in a new tab.</p>
+        <h2 class="section__title reveal" id="videos-title">Watch the crew work</h2>
+        <p class="section__lead reveal">From our YouTube channel. Each one opens on YouTube in a new tab.</p>
 
         <ul class="videos__grid">
-          <li class="video">
+          <li class="video reveal">
             <a class="video__link" href="https://www.youtube.com/watch?v=TsSXzXAai3M" target="_blank" rel="noopener">
               <span class="video__thumb"><img src="img/yt/TsSXzXAai3M.jpg" width="480" height="360" loading="lazy" decoding="async" alt=""><span class="video__play" aria-hidden="true"><svg class="icon icon--fill" focusable="false" viewBox="0 0 24 24"><use href="#i-play"/></svg></span></span>
               <span class="video__title">6ft Board on Board With Double Kick, Trim, Cap Board, Roll &amp; Walk Gates</span><span class="visually-hidden"> (opens in a new tab)</span>
             </a>
           </li>
-          <li class="video">
+          <li class="video reveal">
             <a class="video__link" href="https://www.youtube.com/watch?v=_gWup0Ff65k" target="_blank" rel="noopener">
               <span class="video__thumb"><img src="img/yt/_gWup0Ff65k.jpg" width="480" height="360" loading="lazy" decoding="async" alt=""><span class="video__play" aria-hidden="true"><svg class="icon icon--fill" focusable="false" viewBox="0 0 24 24"><use href="#i-play"/></svg></span></span>
               <span class="video__title">1 Acre, 1000 Linear Feet, 4ft Flat Top Wrought Iron Fence | Talty, TX</span><span class="visually-hidden"> (opens in a new tab)</span>
             </a>
           </li>
-          <li class="video">
+          <li class="video reveal">
             <a class="video__link" href="https://www.youtube.com/watch?v=uyHln9XkMoQ" target="_blank" rel="noopener">
               <span class="video__thumb"><img src="img/yt/uyHln9XkMoQ.jpg" width="480" height="360" loading="lazy" decoding="async" alt=""><span class="video__play" aria-hidden="true"><svg class="icon icon--fill" focusable="false" viewBox="0 0 24 24"><use href="#i-play"/></svg></span></span>
               <span class="video__title">8' Board on Board Rockwall</span><span class="visually-hidden"> (opens in a new tab)</span>
             </a>
           </li>
-          <li class="video">
+          <li class="video reveal">
             <a class="video__link" href="https://www.youtube.com/watch?v=Db_UUhrTBow" target="_blank" rel="noopener">
               <span class="video__thumb"><img src="img/yt/Db_UUhrTBow.jpg" width="480" height="360" loading="lazy" decoding="async" alt=""><span class="video__play" aria-hidden="true"><svg class="icon icon--fill" focusable="false" viewBox="0 0 24 24"><use href="#i-play"/></svg></span></span>
               <span class="video__title">500' 4" Rackable 4' Wrought Iron Heath TX</span><span class="visually-hidden"> (opens in a new tab)</span>
             </a>
           </li>
-          <li class="video">
+          <li class="video reveal">
             <a class="video__link" href="https://www.youtube.com/watch?v=GW62EAKy_Vg" target="_blank" rel="noopener">
               <span class="video__thumb"><img src="img/yt/GW62EAKy_Vg.jpg" width="480" height="360" loading="lazy" decoding="async" alt=""><span class="video__play" aria-hidden="true"><svg class="icon icon--fill" focusable="false" viewBox="0 0 24 24"><use href="#i-play"/></svg></span></span>
               <span class="video__title">550' 5 foot Black Vinyl Chain Link</span><span class="visually-hidden"> (opens in a new tab)</span>
             </a>
           </li>
-          <li class="video">
+          <li class="video reveal">
             <a class="video__link" href="https://www.youtube.com/watch?v=wJVNmVZSr0A" target="_blank" rel="noopener">
               <span class="video__thumb"><img src="img/yt/wJVNmVZSr0A.jpg" width="480" height="360" loading="lazy" decoding="async" alt=""><span class="video__play" aria-hidden="true"><svg class="icon icon--fill" focusable="false" viewBox="0 0 24 24"><use href="#i-play"/></svg></span></span>
               <span class="video__title">Rockwall Deck 1800 sq ft</span><span class="visually-hidden"> (opens in a new tab)</span>
@@ -370,8 +387,8 @@
     <section class="section area" id="area" aria-labelledby="area-title">
       <div class="container">
         <p class="eyebrow">Service area</p>
-        <h2 class="section__title" id="area-title">Forney and the east side of DFW</h2>
-        <p class="section__lead">Based in Forney, serving DFW and East Texas.</p>
+        <h2 class="section__title reveal" id="area-title">Forney and the east side of DFW</h2>
+        <p class="section__lead reveal">Based in Forney, serving DFW and East Texas.</p>
         <ul class="cities" aria-label="Cities we serve">
           <li class="cities__home">Forney</li><li>Crandall</li><li>Garland</li><li>Heath</li><li>Kaufman</li><li>Mesquite</li><li>Richardson</li><li>Rockwall</li><li>Sachse</li><li>Talty</li><li>Terrell</li><li>Wylie</li>
         </ul>
@@ -384,13 +401,13 @@
          =================================================================== -->
     <section class="section about" id="about" aria-labelledby="about-title">
       <div class="container about__grid">
-        <figure class="about__photo">
+        <figure class="about__photo reveal">
           <img src="img/hero-stained-fence-gate.jpg" srcset="img/hero-stained-fence-gate-480.jpg 480w, img/hero-stained-fence-gate.jpg 1000w" sizes="(min-width: 900px) 540px, calc(100vw - 32px)" width="1000" height="750" loading="lazy" decoding="async" alt="A stained cedar privacy fence with a custom monogram iron gate across a driveway at a brick home.">
           <figcaption>Stained cedar privacy fence with a custom gate across the driveway.</figcaption>
         </figure>
         <div class="about__text">
           <p class="eyebrow">About</p>
-          <h2 class="section__title" id="about-title">Founded in 2006 by owner and operator Bobby Quaid</h2>
+          <h2 class="section__title reveal" id="about-title">Founded in 2006 by owner and operator Bobby Quaid</h2>
           <p>With over 20 years of experience in fencing, carpentry, stage building and home construction, Bobby founded American Dream Builders, the parent company of American Dream Fence Crew. Residential, commercial, custom and builder work, with complete custom design services, estimates and consulting.</p>
           <p>We use only the highest quality materials and adhere to industry standard best practices.</p>
           <blockquote class="mission">
@@ -399,19 +416,19 @@
         </div>
       </div>
       <ul class="crew container" aria-label="The crew">
-        <li class="crew__item">
+        <li class="crew__item reveal">
           <figure>
             <img src="img/crew-with-gate-480.jpg" srcset="img/crew-with-gate-360.jpg 360w, img/crew-with-gate-480.jpg 480w, img/crew-with-gate.jpg 887w" sizes="(min-width: 1180px) 360px, calc(33vw - 16px)" width="887" height="665" loading="lazy" decoding="async" alt="The crew standing with a finished arched iron gate.">
             <figcaption>The crew with a finished arched iron gate</figcaption>
           </figure>
         </li>
-        <li class="crew__item">
+        <li class="crew__item reveal">
           <figure>
             <img src="img/two-men-at-gate-480.jpg" srcset="img/two-men-at-gate-360.jpg 360w, img/two-men-at-gate-480.jpg 480w, img/two-men-at-gate.jpg 1000w" sizes="(min-width: 1180px) 360px, calc(33vw - 16px)" width="1000" height="562" loading="lazy" decoding="async" alt="Two crew members at a finished iron gate.">
             <figcaption>At a finished iron gate</figcaption>
           </figure>
         </li>
-        <li class="crew__item">
+        <li class="crew__item reveal">
           <figure>
             <img src="img/crew-building-480.jpg" srcset="img/crew-building-360.jpg 360w, img/crew-building-480.jpg 480w, img/crew-building.jpg 1000w" sizes="(min-width: 1180px) 360px, calc(33vw - 16px)" width="1000" height="750" loading="lazy" decoding="async" alt="The crew on ladders installing a tall cedar fence.">
             <figcaption>Setting a tall cedar fence</figcaption>
@@ -427,8 +444,8 @@
       <div class="container contact__grid">
         <div class="contact__intro">
           <p class="eyebrow">Free estimate</p>
-          <h2 class="section__title" id="contact-title">Tell us about the job</h2>
-          <p class="section__lead">Send a few details and Bobby will get back to you to set up a free estimate. Or just call.</p>
+          <h2 class="section__title reveal" id="contact-title">Tell us about the job</h2>
+          <p class="section__lead reveal">Send a few details and Bobby will get back to you to set up a free estimate. Or just call.</p>
           <ul class="contact__details">
             <li>
               <svg class="icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="#i-phone"/></svg>
@@ -451,7 +468,7 @@
 
         <!-- On the live site this would post to the form service. In the preview, app.js
              intercepts submit and shows a message. With JS off it harmlessly reloads this page. -->
-        <form class="form" id="estimate" action="#estimate" method="get">
+        <form class="form reveal" id="estimate" action="#estimate" method="get">
           <h3 class="form__title">Request a free estimate</h3>
           <p class="form__hint"><span class="req" aria-hidden="true">*</span> Required</p>
 
@@ -513,7 +530,7 @@
 
           <button class="btn btn--primary btn--lg form__submit" type="submit">Request my free estimate</button>
           <noscript><p class="form__alt">The demo form needs JavaScript. On the live site it works either way.</p></noscript>
-          <p class="form__alt">Or call Bobby at <a href="tel:+14693697949">469-369-7949</a></p>
+          <a class="btn btn--outline form__call" href="tel:+14693697949">Or call Bobby at 469-369-7949</a>
         </form>
       </div>
     </section>
@@ -526,8 +543,9 @@
     <div class="container footer__grid">
       <div class="footer__brand">
         <a class="footer__logo-link" href="#top" aria-label="American Dream Fence Crew, back to top">
-          <img class="footer__logo" src="img/logo-on-black.jpg" width="1000" height="654" alt="American Dream Fence Crew. Good Fences Make Good Neighbors." loading="lazy" decoding="async">
+          <span class="brand brand--footer"><img class="brand__mark" src="img/logo-mark.png" width="192" height="192" alt="" loading="lazy" decoding="async"><span class="brand__word"><span class="brand__word-top">American Dream</span><span class="brand__word-bottom">Fence Crew</span></span></span>
         </a>
+        <p class="footer__tagline">Good Fences Make Good Neighbors</p>
         <p>Wood, wrought iron and chain link fences, custom gates and automatic openers, decks and porches. Serving DFW &amp; East Texas since 2006.</p>
       </div>
       <div class="footer__col">
@@ -548,7 +566,6 @@
       </div>
     </div>
     <div class="container footer__legal">
-      <p class="footer__tagline">Good Fences Make Good Neighbors</p>
       <p>&copy; 2026 American Dream Fence Crew</p>
     </div>
   </footer>
@@ -571,11 +588,11 @@
   <!-- Sticky call / estimate bar: phones only (see style.css). Starts hidden with JS on; app.js slides it in
        once the hero buttons scroll away and hides it again while the form is on screen. With JS off it just shows. -->
   <div class="sticky-bar is-hidden" id="sticky-bar">
-    <a class="btn btn--outline" href="tel:+14693697949">
+    <a class="btn btn--primary" href="tel:+14693697949">
       <svg class="icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="#i-phone"/></svg>
       Call 469-369-7949
     </a>
-    <a class="btn btn--primary" href="#estimate">Free Estimate</a>
+    <a class="btn btn--outline" href="#estimate">Free Estimate</a>
   </div>
 
   <!-- Lightbox (native dialog; opened by app.js). -->

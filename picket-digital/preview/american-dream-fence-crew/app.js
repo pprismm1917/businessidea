@@ -2,8 +2,10 @@
    American Dream Fence Crew — app.js
    Loaded with defer (js-flag.js sets the "js" class before first paint).
    Everything waits for DOMContentLoaded. No external requests.
-   Pieces: mobile menu, service preselect, gallery filters, lightbox,
-   demo estimate form, sticky call bar.
+   Pieces: mobile menu, service preselect, gallery filters, lightbox (also opened
+   from the phone work strip), demo estimate form, sticky call bar, reveal-on-enter
+   and lazy-photo fade-in (both skipped under prefers-reduced-motion), scrolled header
+   shadow and the current-section marker in the desktop nav.
    ========================================================================== */
 (function () {
   'use strict';
@@ -20,7 +22,12 @@
     initGallery();
     initForm();
     initStickyBar();
+    initReveal();
+    initImageFade();
+    initHeader();
   });
+
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- Mobile menu ---------- */
   function initMenu() {
@@ -166,6 +173,16 @@
       open(index, link);
     });
 
+    // Phone work strip: each tile opens the lightbox at that gallery photo. The filter is reset to
+    // "All" first so the strip's indices match the full list. With JS off the link opens the image.
+    $$('[data-gallery-index]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (chips[0] && chips[0].getAttribute('aria-pressed') !== 'true') chips[0].click();
+        open(+a.getAttribute('data-gallery-index'), a);
+      });
+    });
+
     closeBtn.addEventListener('click', function () { dialog.close(); });
     prevBtn.addEventListener('click', function () { show(current - 1); });
     nextBtn.addEventListener('click', function () { show(current + 1); });
@@ -296,5 +313,79 @@
       bar.classList.toggle('is-hidden', onScreen.length > 0);
     }, { rootMargin: '0px 0px -40px 0px', threshold: 0 });
     targets.forEach(function (t) { io.observe(t); });
+  }
+
+  /* ---------- Reveal: .reveal elements fade up 12px as they enter (style.css, .js only).
+     Siblings stagger by 40ms through --i (set with the CSSOM, which the CSP allows).
+     Without IntersectionObserver, or when the person prefers reduced motion, everything
+     is shown at once. ---------- */
+  function initReveal() {
+    var els = $$('.reveal');
+    if (!els.length) return;
+    if (!('IntersectionObserver' in window) || reduceMotion) {
+      els.forEach(function (el) { el.classList.add('is-in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        en.target.classList.add('is-in');
+        io.unobserve(en.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
+    els.forEach(function (el) {
+      var i = 0, sib = el;
+      while ((sib = sib.previousElementSibling)) { if (sib.classList.contains('reveal')) i++; }
+      el.style.setProperty('--i', i % 6);
+      io.observe(el);
+    });
+  }
+
+  /* ---------- Lazy photos fade in once decoded (style.css hides them until .is-loaded).
+     Errors also mark the image so alt text is never stuck invisible. ---------- */
+  function initImageFade() {
+    $$('img[loading="lazy"]').forEach(function (img) {
+      var done = function () { img.classList.add('is-loaded'); };
+      if (img.complete) done();
+      else {
+        img.addEventListener('load', done, { once: true });
+        img.addEventListener('error', done, { once: true });
+      }
+    });
+  }
+
+  /* ---------- Desktop header: a shadow once the page has scrolled, and the section currently
+     under the top of the viewport marked in the nav with aria-current. ---------- */
+  function initHeader() {
+    var header = $('.site-header');
+    if (!header) return;
+    var onScroll = function () { header.classList.toggle('is-scrolled', window.scrollY > 8); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    var links = $$('.nav__list a[href^="#"]');
+    if (!links.length || !('IntersectionObserver' in window)) return;
+    var byId = {};
+    links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+    var sections = $$('section[id]').filter(function (s) { return byId[s.id]; });
+    var inBand = [];
+    var setCurrent = function (id) {
+      links.forEach(function (a) {
+        if (id && a === byId[id]) a.setAttribute('aria-current', 'location');
+        else a.removeAttribute('aria-current');
+      });
+    };
+    // A band at 25-45% of the viewport decides which section is "current" (tall sections never reach
+    // a 40% visible threshold, so a band works better). Nothing in the band (the hero) means no marker.
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        var i = inBand.indexOf(en.target);
+        if (en.isIntersecting && i === -1) inBand.push(en.target);
+        if (!en.isIntersecting && i !== -1) inBand.splice(i, 1);
+      });
+      var top = inBand.slice().sort(function (a, b) { return a.getBoundingClientRect().top - b.getBoundingClientRect().top; })[0];
+      setCurrent(top ? top.id : null);
+    }, { rootMargin: '-25% 0px -55% 0px', threshold: 0 });
+    sections.forEach(function (s) { io.observe(s); });
   }
 })();
