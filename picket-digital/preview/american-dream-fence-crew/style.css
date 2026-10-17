@@ -224,7 +224,7 @@ figcaption { font-size: .9rem; color: var(--muted); }
 .trust__item small { display: block; font-size: .9rem; font-weight: 500; }
 .trust__item--tag { border-top: 1px solid rgba(255, 255, 255, .35); padding-top: .7rem; margin-top: .25rem; }
 /* White on the red band (the global link red would vanish); the padding trick above keeps a 44px tap height. */
-.trust a { color: #fff; font-weight: 700; text-decoration-color: rgba(255, 255, 255, .6); }
+.trust a { color: #fff; font-weight: 700; text-decoration-color: rgba(255, 255, 255, .6); padding-block: .85rem; margin-block: -.85rem; }
 .trust a:hover { color: #fff; text-decoration-color: #fff; }
 
 /* ---------- Sections ---------- */
@@ -521,18 +521,20 @@ figcaption { font-size: .9rem; color: var(--muted); }
   /* Side-by-side hero: text in the left half (aligned with the container), the truck fills the right half to the edge.
      The 4-column grid keeps the text on the container's left edge without 100vw math (which the scrollbar throws off). */
   .hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, calc(var(--max) / 2)) minmax(0, calc(var(--max) / 2)) minmax(0, 1fr); min-height: 600px; }
-  .hero__inner { grid-area: 1 / 2 / 2 / 3; max-width: none; margin: 0; padding: 3rem 2.5rem 3rem var(--gutter); display: flex; flex-direction: column; justify-content: center; }
+  .hero__inner { grid-area: 1 / 2 / 2 / 3; max-width: none; margin: 0; padding: 3rem 2rem 3rem var(--gutter); display: flex; flex-direction: column; justify-content: center; }
   .hero__media { grid-area: 1 / 3 / 2 / 5; }
   .hero__img { position: absolute; inset: 0; height: 100%; aspect-ratio: auto; object-position: 38% 50%; }
   .hero__title { font-size: clamp(3rem, 1.6rem + 2.4vw, 4.4rem); max-width: 18ch; }
+  .hero__actions { flex-wrap: wrap; }
+  .hero__actions .btn { min-width: 0; white-space: nowrap; }
   /* Inline navigation: mark, phone, Free Estimate and the eight links fit on one row from here */
   .site-header__inner { flex-wrap: nowrap; gap: .5rem; }
   .js .menu-toggle { display: none; }
   .js .nav, .nav { display: block; flex-basis: auto; margin-left: auto; }
   .js .nav__list, .nav__list { flex-direction: row; gap: .1rem; padding: 0; border: 0; margin: 0; }
-  .js .nav__list a, .nav__list a { min-height: 44px; padding: 0 .45rem; font-size: .95rem; }
+  .js .nav__list a, .nav__list a { min-height: 44px; padding: 0 .4rem; font-size: .95rem; }
   .js .nav__list, .nav__list { flex-wrap: nowrap; }
-  .header__phone { margin-left: 0; border-color: transparent; }
+  .header__phone { margin-left: 0; border-color: transparent; flex: none; }
   .header__phone-num { display: none; }  /* icon only until the row has room for the number (1280px) */
   .header__cta { margin-right: .25rem; padding-inline: 1rem; }
 }
@@ -548,8 +550,12 @@ figcaption { font-size: .9rem; color: var(--muted); }
 }
 
 @media (min-width: 1280px) {
+  /* The number joins the row here; brand + number + button + eight links need nearly the whole 1108px, so gaps stay tight */
+  .site-header__inner { gap: .5rem; }
   .header__phone-num { display: inline; }
-  .header__phone { font-size: 1.05rem; }
+  .header__phone { padding: 0 .4rem; }
+  .header__cta { margin-right: 0; }
+  .js .nav__list a, .nav__list a { padding: 0 .4rem; }
 }
 
 @media (min-width: 1200px) {
