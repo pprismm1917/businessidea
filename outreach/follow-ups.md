@@ -26,3 +26,27 @@ JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al 
 
 Reply "no" and I won't email again.
 ```
+
+## American Dream Fence Crew (Forney) — reply in Bobby's thread ("Re: 207 reviews and a fence-first website")
+**To:** bobbyquaid1@gmail.com
+**Preview:** https://picketdigital.com/preview/american-dream-fence-crew/
+**When:** Monday 2026-10-19, Dallas morning. Send whether or not he replied to the last email.
+
+```
+Hi Bobby,
+
+I said I'd show you instead of telling you. Here it is:
+
+https://picketdigital.com/preview/american-dream-fence-crew/
+
+Two minutes on your phone. Everything on it is yours: your truck, your gates, your fence photos, your videos, your repair pages, your 207 reviews. The number can be tapped from anywhere on the page, which your current site doesn't do.
+
+It isn't live and nothing on it sends anywhere. If it's not clearly better than what you have, delete it and I won't email again. If it is, it goes on americandreamfencecrew.com and you pay nothing until you've approved it.
+
+Moe
+Picket Digital
+picketdigital.com · (469) 629-7172
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, UAE
+
+Reply "no" and I won't email again.
+```
