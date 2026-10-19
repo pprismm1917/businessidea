@@ -29,19 +29,24 @@ Reply "no" and I won't email again.
 
 ## 2. Gil's Fence (DFW)
 **To:** jcamargo@gilsfence.com
-**Subject:** `your phone number on gilsfence.com`
-**Evidence:** Mobile browser: 0 tap-to-call links; (214) 668 6286 shown as plain text. "Serving the DFW area since 1994", family owned, "Se habla español".
+**Subject:** `a few things I noticed on gilsfence.com`
+**Evidence (checked 2026-10-19 on a phone):** the whole site is one page ("Services" and "Get a Quote" only scroll down; service tiles just open the photo); no reviews or testimonials anywhere; typos "vynil" and "harbors" (for arbors) in the welcome text; 0 tap-to-call links; main heading (H1) is "CONTACT US"; no meta description; ~13.7 MB downloaded on a phone. Family owned, "since 1994", "Se habla español", cities listed: Allen, Carrollton, Coppell, Garland, Irving, Lewisville, Little Elm, The Colony, Plano, Richardson, Southlake.
 
 ```
 Hi there,
 
-On a phone, the number on gilsfence.com, (214) 668 6286, shows as plain text, so homeowners can't tap it to call you. They have to copy it or type it in, and some won't bother.
+I spent a few minutes on gilsfence.com and noticed some things that are probably costing you calls:
 
-I'm Moe. I build websites only for fence and deck companies in DFW. A family company serving DFW since 1994 deserves a site that makes calling you one tap. I'd like to make you a free draft with tap-to-call everywhere, your photos, English and Spanish, and a quote form that sends requests straight to your phone.
+- It's a single page. "Services" just scrolls down to six photos, so there's no page about your fences, decks, pergolas or patio covers for Google to show people searching in Plano, Allen or Irving.
+- There isn't one customer review on the site, after 30 years in business.
+- A couple of typos homeowners will notice: "vynil" instead of vinyl, and "harbors" where it should say arbors.
+- On a phone, your number can't be tapped to call.
+
+None of this says anything about your work. Your photos show it's good. I'm Moe, and I build websites only for fence and deck companies in DFW. I'd like to make Gil's Fence a free draft: a page for each service, your reviews up front, English and Spanish, and tap-to-call everywhere.
 
 No cost and nothing to sign to see it.
 
-Reply "yes" and I'll send a draft in 48 hours.
+Reply "yes" and I'll send it in 48 hours.
 
 Moe
 Picket Digital
