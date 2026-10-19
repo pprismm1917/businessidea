@@ -278,3 +278,33 @@ JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al 
 
 Reply "no" and I won't email again.
 ```
+
+---
+
+## American Dream Fence Crew (Forney): reply to Bobby's commission proposal. To send 2026-10-19
+**To:** bobbyquaid1@gmail.com · reply in Bobby's thread
+Bobby wrote (2026-10-19): he won't pay someone to run ads and pay for the ads too; paying for leads "don't really pay the bills"; if someone brings leads he can close, he'd pay commission on the contracts.
+
+```
+Hi Bobby,
+
+Yes, I'm interested. You only pay when a job closes. That's fair.
+
+Here's the simple version: I put the new site live on americandreamfencecrew.com at no cost to you. The phone number and the quote form on it are tracked, so we both see every call and request that comes from the site. When one of those turns into a job, you pay me 10% of the contract after the customer pays you. Calls from your Google listing, referrals or yard signs are yours, and I don't count those.
+
+No ads to start. The site, your Google listing and your 207 reviews do the work.
+
+Two quick questions so I don't repeat what didn't work for you:
+
+1. When you paid someone to run ads before, what did it cost you a month, and did any jobs come from it?
+2. Is 10% in line with what you had in mind?
+
+Happy to talk it through on a call too: (469) 629-7172.
+
+Moe
+Picket Digital
+picketdigital.com · (469) 629-7172
+JT030066 Compass Building, Al Shohada Road, Al Hamra Industrial Zone-FZ, Ras Al Khaimah, UAE
+```
+
+After he answers: a one-page written agreement covering what counts as a site lead, 10% paid when the customer pays, a monthly list from both sides, and a 90-day trial.
