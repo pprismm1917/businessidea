@@ -258,7 +258,7 @@ Reply "no" and I won't email again.
 
 ### American Dream Fence Crew (Forney): preview email. SENT (Bobby declined)
 **To:** bobbyquaid1@gmail.com · reply in Bobby's thread ("Re: 207 reviews and a fence-first website")
-**Preview:** https://picketdigital.com/preview/american-dream-fence-crew/ (remove by 2026-10-26 unless Bobby OKs it as a sample)
+**Preview:** https://picketdigital.com/preview/american-dream-fence-crew/ (keep it up: on 2026-10-19 Bobby proposed a commission deal, see `prospects.csv`)
 
 ```
 Hi Bobby,
